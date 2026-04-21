@@ -16,6 +16,8 @@ import { Route as DonateRouteImport } from './routes/donate'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as MediaIndexRouteImport } from './routes/media.index'
+import { Route as MediaSlugRouteImport } from './routes/media.$slug'
 
 const ProgramsRoute = ProgramsRouteImport.update({
   id: '/programs',
@@ -52,6 +54,16 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MediaIndexRoute = MediaIndexRouteImport.update({
+  id: '/media/',
+  path: '/media/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MediaSlugRoute = MediaSlugRouteImport.update({
+  id: '/media/$slug',
+  path: '/media/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -61,6 +73,8 @@ export interface FileRoutesByFullPath {
   '/gallery': typeof GalleryRoute
   '/get-involved': typeof GetInvolvedRoute
   '/programs': typeof ProgramsRoute
+  '/media/$slug': typeof MediaSlugRoute
+  '/media/': typeof MediaIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -70,6 +84,8 @@ export interface FileRoutesByTo {
   '/gallery': typeof GalleryRoute
   '/get-involved': typeof GetInvolvedRoute
   '/programs': typeof ProgramsRoute
+  '/media/$slug': typeof MediaSlugRoute
+  '/media': typeof MediaIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -80,6 +96,8 @@ export interface FileRoutesById {
   '/gallery': typeof GalleryRoute
   '/get-involved': typeof GetInvolvedRoute
   '/programs': typeof ProgramsRoute
+  '/media/$slug': typeof MediaSlugRoute
+  '/media/': typeof MediaIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -91,6 +109,8 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/get-involved'
     | '/programs'
+    | '/media/$slug'
+    | '/media/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -100,6 +120,8 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/get-involved'
     | '/programs'
+    | '/media/$slug'
+    | '/media'
   id:
     | '__root__'
     | '/'
@@ -109,6 +131,8 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/get-involved'
     | '/programs'
+    | '/media/$slug'
+    | '/media/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -119,6 +143,8 @@ export interface RootRouteChildren {
   GalleryRoute: typeof GalleryRoute
   GetInvolvedRoute: typeof GetInvolvedRoute
   ProgramsRoute: typeof ProgramsRoute
+  MediaSlugRoute: typeof MediaSlugRoute
+  MediaIndexRoute: typeof MediaIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -172,6 +198,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/media/': {
+      id: '/media/'
+      path: '/media'
+      fullPath: '/media/'
+      preLoaderRoute: typeof MediaIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/media/$slug': {
+      id: '/media/$slug'
+      path: '/media/$slug'
+      fullPath: '/media/$slug'
+      preLoaderRoute: typeof MediaSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -183,7 +223,18 @@ const rootRouteChildren: RootRouteChildren = {
   GalleryRoute: GalleryRoute,
   GetInvolvedRoute: GetInvolvedRoute,
   ProgramsRoute: ProgramsRoute,
+  MediaSlugRoute: MediaSlugRoute,
+  MediaIndexRoute: MediaIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { createStart } from '@tanstack/react-start'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+  }
+}
