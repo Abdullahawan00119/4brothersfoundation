@@ -1,26 +1,34 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Hero } from "@/components/site/Hero";
+import { ImpactStats } from "@/components/site/ImpactStats";
+import { Programs } from "@/components/site/Programs";
+import { Stories } from "@/components/site/Stories";
+import { DonateCTA } from "@/components/site/DonateCTA";
+import { Partners } from "@/components/site/Partners";
 
 export const Route = createFileRoute("/")({
-  component: Index,
+  component: Home,
+  head: () => ({
+    meta: [
+      { title: "4 Brothers Welfare Trust — Together as Humans" },
+      {
+        name: "description",
+        content:
+          "Donate, volunteer or partner with 4 Brothers Welfare Trust. Food, education, healthcare and emergency relief for families across Pakistan.",
+      },
+    ],
+  }),
 });
 
-// IMPORTANT: Replace this placeholder. For sites with multiple pages (About, Services, Contact, etc.),
-// create separate route files (about.tsx, services.tsx, contact.tsx) — don't put all pages in this file.
-function PlaceholderIndex() {
+function Home() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <>
+      <Hero />
+      <ImpactStats />
+      <Programs />
+      <Stories />
+      <DonateCTA />
+      <Partners />
+    </>
   );
-}
-
-function Index() {
-  return <PlaceholderIndex />;
 }
