@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "@tanstack/react-router";
 import { ChevronDown, Heart, Users } from "lucide-react";
-import heroImg from "@/assets/hero-distribution.jpg";
+import heroImg from "@/assets/quetta-distribution.jpg";
 import { Button } from "@/components/ui/button";
 
 export function Hero() {
@@ -58,9 +58,10 @@ export function Hero() {
             transition={{ duration: 0.9, delay: 0.45 }}
             className="mt-6 max-w-2xl text-lg text-white/80 leading-relaxed"
           >
-            For more than a decade, 4 Brothers Welfare Trust has stood beside the
-            vulnerable — feeding families, educating children, and bringing
-            healthcare to communities that need it most.
+            From the snow-belt of Ziarat to the deserts of Kharan, 4 Brothers
+            Welfare Trust stands beside the people of Quetta and Balochistan —
+            feeding families, educating children, and bringing healthcare to
+            communities that need it most.
           </motion.p>
 
           <motion.div

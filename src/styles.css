@@ -53,13 +53,13 @@
 :root {
   --radius: 0.875rem;
 
-  /* Brand */
-  --gold: oklch(0.79 0.15 75);             /* #F5A623 */
-  --gold-foreground: oklch(0.18 0.05 260);
-  --navy: oklch(0.28 0.13 258);            /* #003B73 deep navy */
+  /* Brand — sourced from the 4 Brothers Welfare Trust logo */
+  --gold: oklch(0.78 0.17 70);             /* vivid sun gold */
+  --gold-foreground: oklch(0.20 0.08 258);
+  --navy: oklch(0.30 0.16 258);            /* deep navy banner */
   --navy-foreground: oklch(0.98 0.01 80);
-  --ocean: oklch(0.55 0.13 240);           /* #2B7AB5 */
-  --sky: oklch(0.75 0.13 230);             /* #4DB8E8 */
+  --ocean: oklch(0.58 0.15 240);           /* globe ocean blue */
+  --sky: oklch(0.78 0.13 225);             /* bright sky accent */
   --success: oklch(0.68 0.15 160);
 
   --background: oklch(0.99 0.005 80);

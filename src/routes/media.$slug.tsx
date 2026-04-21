@@ -2,7 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { Reveal } from "@/components/site/Reveal";
 import { news, formatDate } from "@/data/news";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Calendar, Clock, Facebook, Twitter, Linkedin, Heart, User } from "lucide-react";
+import { ArrowLeft, Calendar, Clock, Facebook, Twitter, Linkedin, Heart, User, MapPin } from "lucide-react";
 
 export const Route = createFileRoute("/media/$slug")({
   component: ArticlePage,
@@ -60,6 +60,7 @@ function ArticlePage() {
             <p className="mt-5 text-lg text-white/85 max-w-3xl">{article.excerpt}</p>
             <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-white/75">
               <span className="inline-flex items-center gap-1.5"><User className="size-4 text-gold" /> {article.author}</span>
+              <span className="inline-flex items-center gap-1.5"><MapPin className="size-4 text-gold" /> {article.location}</span>
               <span className="inline-flex items-center gap-1.5"><Calendar className="size-4 text-gold" /> {formatDate(article.date)}</span>
               <span className="inline-flex items-center gap-1.5"><Clock className="size-4 text-gold" /> {article.readMin} min read</span>
             </div>
