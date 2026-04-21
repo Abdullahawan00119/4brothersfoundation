@@ -1,11 +1,12 @@
-import distribution from "@/assets/hero-distribution.jpg";
-import education from "@/assets/program-education.jpg";
-import medical from "@/assets/program-medical.jpg";
-import water from "@/assets/program-water.jpg";
-import relief from "@/assets/program-relief.jpg";
-import skills from "@/assets/news-skills.jpg";
-import winter from "@/assets/news-winter.jpg";
-import ramadan from "@/assets/news-ramadan.jpg";
+import distribution from "@/assets/quetta-distribution.jpg";
+import education from "@/assets/quetta-education.jpg";
+import medical from "@/assets/quetta-medical.jpg";
+import water from "@/assets/quetta-water.jpg";
+import flood from "@/assets/quetta-flood.jpg";
+import skills from "@/assets/quetta-skills.jpg";
+import winter from "@/assets/quetta-winter.jpg";
+import ramadan from "@/assets/quetta-ramadan.jpg";
+import city from "@/assets/quetta-city.jpg";
 
 export type NewsCategory = "News" | "Stories" | "Press Release" | "Events" | "Reports";
 
@@ -19,136 +20,145 @@ export type NewsItem = {
   date: string; // ISO
   readMin: number;
   author: string;
+  location: string;
 };
 
 export const news: NewsItem[] = [
   {
-    slug: "ramadan-iftar-drive-2024",
-    title: "Ramadan Iftar Drive Feeds 12,000 Across 14 Cities",
+    slug: "ramadan-iftar-quetta-2024",
+    title: "Ramadan Iftar Dastarkhwan Feeds 8,000 Nightly Across Quetta",
     excerpt:
-      "Our largest iftar drive yet brought the community together for 30 nights of shared meals, prayers and hope.",
+      "Our largest iftar drive in Balochistan brought the city together for 30 nights of shared meals on Jinnah Road, Sariab and Hazara Town.",
     body: [
-      "This Ramadan, 4 Brothers Welfare Trust hosted nightly iftar dastarkhwans across 14 cities of Pakistan, serving freshly cooked meals to over 12,000 individuals every evening.",
-      "From day-wage laborers in Karachi to refugee families in Peshawar, no one who arrived at our tables was turned away. Volunteers worked from dawn preparing food, setting tables and welcoming neighbors as guests of honor.",
-      "We are deeply grateful to every donor, restaurant partner and volunteer who made this possible. Your generosity literally fed the spirit of an entire community.",
+      "This Ramadan, 4 Brothers Welfare Trust hosted nightly iftar dastarkhwans across Quetta, serving freshly cooked meals to over 8,000 individuals every evening on Jinnah Road, Sariab Road, Hazara Town, Brewery Road and outside the historic Hanna Lake gateway.",
+      "From day-wage laborers and Afghan refugees to students from interior Balochistan studying at BUITEMS and University of Balochistan — no one who arrived at our tables was turned away. Volunteers worked from Asr preparing sajji, pulao and dates, setting tables and welcoming neighbors as guests of honor.",
+      "We are deeply grateful to every donor, restaurant partner from Liaquat Bazaar and volunteer who made this possible. Your generosity literally fed the spirit of an entire city.",
     ],
     image: ramadan,
     category: "Events",
     date: "2024-04-12",
     readMin: 3,
-    author: "Communications Team",
+    author: "Communications Team — Quetta",
+    location: "Quetta, Balochistan",
   },
   {
-    slug: "winter-blanket-campaign",
-    title: "Winter Campaign: 5,000 Blankets Reach Mountain Villages",
+    slug: "winter-blanket-ziarat-2024",
+    title: "Winter Campaign: 5,000 Blankets Reach Ziarat & Kalat Highlands",
     excerpt:
-      "Our annual winter drive delivered warm clothing and high-tog blankets to families in northern Pakistan facing sub-zero nights.",
+      "Our annual winter drive delivered warm clothing and high-tog blankets to families across Ziarat, Kalat and Mastung facing sub-zero nights.",
     body: [
-      "Every winter, families in upper Hunza, Chitral and Skardu battle brutal cold with little protection. This year our team trekked to 38 remote settlements with truckloads of blankets, jackets and woolen caps.",
-      "We worked closely with local leaders to identify the most vulnerable households — elderly, widows and families with newborns — to make sure aid reached those who needed it most.",
-      "If you'd like to sponsor a winter pack for a family next year, our recurring donation program makes it simple.",
+      "Every winter, families in Ziarat's juniper valleys, the high plateaus of Kalat, and the snow-belt around Mastung battle brutal cold with little protection. This year our team trekked to 38 remote settlements across Balochistan with truckloads of blankets, jackets and woolen caps.",
+      "We worked closely with local maliks and elders in Pishin, Killa Abdullah and Harnai to identify the most vulnerable households — elderly Baloch and Pashtun widows, families with newborns, and Afghan refugee households — to make sure aid reached those who needed it most.",
+      "If you'd like to sponsor a winter pack for a family in upper Balochistan next year, our recurring donation program makes it simple.",
     ],
     image: winter,
     category: "News",
     date: "2024-01-22",
     readMin: 4,
-    author: "Field Operations",
+    author: "Field Operations — Balochistan",
+    location: "Ziarat & Kalat, Balochistan",
   },
   {
-    slug: "skill-development-center-launch",
-    title: "New Skill Development Center Opens for Women in Korangi",
+    slug: "skill-development-center-quetta",
+    title: "New Women's Skill Center Opens in Sariab, Quetta",
     excerpt:
-      "Free six-month courses in tailoring, embroidery and IT will give women a path to financial independence.",
+      "Free six-month courses in tailoring, traditional Balochi embroidery (doch) and IT will give women a path to financial independence.",
     body: [
-      "We're proud to announce the opening of our second Skill Development Center, in Korangi, Karachi. The center offers free six-month diploma courses in tailoring, embroidery, and basic computer literacy.",
-      "Each graduating cohort receives a starter kit — a sewing machine or a refurbished laptop — so trainees can start earning from day one after graduation.",
-      "Applications for the first batch are open. If you know someone who could benefit, please share this with them.",
+      "We're proud to announce the opening of our Skill Development Center in Sariab Road, Quetta. The center offers free six-month diploma courses in tailoring, traditional Balochi doch embroidery, and basic computer literacy — designed for Baloch, Pashtun and Hazara women from the surrounding katchi abadis.",
+      "Each graduating cohort receives a starter kit — a sewing machine or a refurbished laptop — so trainees can start earning from day one. Our first batch is already supplying hand-embroidered pieces to boutiques in Karachi and Islamabad.",
+      "Applications for the next batch are open at our Sariab office. If you know a sister, daughter or neighbor who could benefit, please share this with them.",
     ],
     image: skills,
     category: "Press Release",
     date: "2024-03-05",
     readMin: 3,
-    author: "Programs Team",
+    author: "Programs Team — Quetta",
+    location: "Sariab Road, Quetta",
   },
   {
-    slug: "medical-camp-thatta",
-    title: "Free Medical Camp Treats 480 Patients in Thatta",
+    slug: "medical-camp-khuzdar",
+    title: "Free Medical Camp Treats 480 Patients in Khuzdar District",
     excerpt:
-      "Our two-day camp brought specialist doctors, free medication and follow-up plans to a community with no nearby hospital.",
+      "Our two-day camp brought specialist doctors from Quetta, free medication and follow-up plans to a community four hours from the nearest hospital.",
     body: [
-      "In partnership with volunteer doctors from Karachi, our two-day camp in Thatta provided free consultations, diagnostic tests and medicine to 480 patients.",
-      "Of these, 22 were referred for surgical procedures fully sponsored by the trust. Five children received pediatric specialist care for the first time in their lives.",
-      "Camps like this are only possible because of monthly donors. Becoming one is the single highest-impact way to support our medical mission.",
+      "In partnership with volunteer doctors from Bolan Medical Complex and Sandeman Provincial Hospital, our two-day camp in a remote village near Khuzdar provided free consultations, diagnostic tests and medicine to 480 patients.",
+      "Of these, 22 were referred for surgical procedures fully sponsored by the trust at facilities in Quetta. Five children received pediatric specialist care for the first time in their lives, and 60 women attended a dedicated maternal-health session.",
+      "Camps like this are only possible because of monthly donors. Becoming one is the single highest-impact way to support our medical mission across rural Balochistan.",
     ],
     image: medical,
     category: "Stories",
     date: "2024-02-18",
     readMin: 3,
     author: "Medical Wing",
+    location: "Khuzdar, Balochistan",
   },
   {
     slug: "annual-impact-report-2023",
-    title: "Annual Impact Report 2023 — A Year of Quiet Miracles",
+    title: "Annual Impact Report 2023 — A Year of Quiet Miracles in Balochistan",
     excerpt:
-      "Read our complete transparency report: where every rupee went, who it reached, and what changed.",
+      "Read our complete transparency report: where every rupee went across Balochistan, who it reached, and what changed.",
     body: [
-      "We believe transparency is the foundation of trust. Our 2023 Annual Impact Report breaks down every program, every cost line, and every measurable outcome.",
-      "Highlights: 4.2 million meals served, 8,200 students sponsored, 22 new water sites commissioned and a 96% donation efficiency ratio.",
-      "Download the full PDF on this page or get in touch with our finance team for any clarification.",
+      "We believe transparency is the foundation of trust. Our 2023 Annual Impact Report breaks down every program across Balochistan — every cost line and every measurable outcome — district by district.",
+      "Highlights: 1.4 million meals served across Quetta division, 2,200 students sponsored from Quetta to Gwadar, 22 new water sites commissioned in Tharparkar-style arid zones of Kharan and Chagai, and a 96% donation efficiency ratio audited by an independent firm.",
+      "Download the full PDF on this page or get in touch with our finance team at the Quetta office for any clarification.",
     ],
-    image: distribution,
+    image: city,
     category: "Reports",
     date: "2024-01-05",
     readMin: 6,
     author: "Office of the CEO",
+    location: "Quetta, Balochistan",
   },
   {
-    slug: "clean-water-tharparkar",
-    title: "Twelve New Water Wells Commissioned in Tharparkar",
+    slug: "clean-water-kharan-chagai",
+    title: "Twelve New Water Wells Commissioned in Kharan & Chagai",
     excerpt:
-      "After eight months of fieldwork, twelve villages in Tharparkar now have year-round access to clean drinking water.",
+      "After eight months of fieldwork in Balochistan's drought belt, twelve villages now have year-round access to clean drinking water.",
     body: [
-      "In the deserts of Tharparkar, women and children walk hours every day to fetch water — often unsafe to drink. Twelve villages will no longer have to.",
-      "Our hydrogeology partners surveyed underground aquifers, and our engineers built deep wells with hand pumps and solar-powered filtration. Each well is maintained by a trained village committee.",
-      "One well costs roughly PKR 350,000 and serves up to 200 people for years. To sponsor one in your name or in someone's memory, please contact us.",
+      "In the deserts of Kharan and Chagai, women and children walk hours every day to fetch water — often unsafe to drink. Twelve villages will no longer have to.",
+      "Our hydrogeology partners surveyed underground aquifers, and our engineers built deep wells with hand pumps and solar-powered filtration designed to handle Balochistan's high salinity. Each well is maintained by a trained village committee of local Baloch elders.",
+      "One well costs roughly PKR 450,000 in this terrain and serves up to 200 people for years. To sponsor one in your name or in someone's memory, please contact our Quetta office.",
     ],
     image: water,
     category: "News",
     date: "2023-12-08",
     readMin: 4,
     author: "Water Programs",
+    location: "Kharan & Chagai, Balochistan",
   },
   {
-    slug: "education-scholarships-batch-2024",
-    title: "850 New Education Scholarships Awarded for 2024",
+    slug: "education-scholarships-balochistan-2024",
+    title: "850 New Education Scholarships Awarded Across Balochistan",
     excerpt:
-      "From primary school to university — meet the next generation of dreamers we're standing behind.",
+      "From primary school in Pishin to university in Quetta — meet the next generation of Baloch and Pashtun dreamers we're standing behind.",
     body: [
-      "This academic year, 850 students from low-income families received full scholarships covering tuition, uniforms, books and transport.",
-      "Among them: 320 girls in middle and high school, 110 first-generation university students, and 12 students entering medical and engineering programs.",
-      "Education breaks generational cycles of poverty in a way nothing else does. Thank you for believing in these young lives.",
+      "This academic year, 850 students from low-income families across Balochistan received full scholarships covering tuition, uniforms, books and transport — from Quetta and Pishin to Loralai, Turbat and Gwadar.",
+      "Among them: 320 girls in middle and high school in districts where female literacy is below 20%, 110 first-generation university students at University of Balochistan and BUITEMS, and 12 students entering Bolan Medical College and engineering programs.",
+      "Education breaks generational cycles of poverty in a way nothing else does. Thank you for believing in these young Baloch lives.",
     ],
     image: education,
     category: "Stories",
     date: "2024-08-20",
     readMin: 3,
     author: "Education Programs",
+    location: "Balochistan-wide",
   },
   {
-    slug: "flood-response-balochistan",
-    title: "Emergency Flood Response Reaches 60 Villages in Balochistan",
+    slug: "flood-response-balochistan-2024",
+    title: "Emergency Flood Response Reaches 60 Villages in Naseerabad & Jaffarabad",
     excerpt:
-      "Our rapid response teams deployed within 36 hours of the first warnings, delivering food, tents and medical aid.",
+      "Our rapid response teams from Quetta deployed within 36 hours of the first warnings, delivering food, tents and medical aid.",
     body: [
-      "When flash floods devastated parts of Balochistan, our emergency response teams mobilized within 36 hours. Convoys of food rations, drinking water, tents and medical kits reached 60 villages in the first week.",
-      "Our medical wing set up two field clinics treating waterborne illnesses, while our logistics team coordinated with the army and local NGOs to avoid duplication.",
-      "Disaster response is unpredictable. Your unrestricted donations are what allow us to move this fast.",
+      "When flash floods devastated Naseerabad, Jaffarabad and Sohbatpur in lower Balochistan, our emergency response teams mobilized from Quetta within 36 hours. Convoys of food rations, drinking water, tents and medical kits reached 60 villages in the first week.",
+      "Our medical wing set up two field clinics treating waterborne illnesses around Dera Murad Jamali, while our logistics team coordinated with the FC, PDMA Balochistan and local NGOs to avoid duplication.",
+      "Disaster response is unpredictable. Your unrestricted donations are what allow us to move this fast across Balochistan's vast distances.",
     ],
-    image: relief,
+    image: flood,
     category: "News",
     date: "2024-07-30",
     readMin: 4,
     author: "Emergency Response",
+    location: "Naseerabad & Jaffarabad, Balochistan",
   },
 ];
 

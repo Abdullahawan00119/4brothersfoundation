@@ -20,8 +20,9 @@ export function SiteFooter() {
               </div>
             </div>
             <p className="text-sm text-white/70 leading-relaxed">
-              Together as humans, we build hope, restore dignity and change lives across Pakistan
-              through food, education, healthcare and emergency relief.
+              Together as humans, we build hope, restore dignity and change lives
+              across Quetta and Balochistan through food, education, healthcare
+              and emergency relief.
             </p>
             <div className="flex gap-3 mt-6">
               {[Facebook, Instagram, Twitter, Youtube].map((Icon, i) => (
@@ -61,8 +62,8 @@ export function SiteFooter() {
           <div>
             <h4 className="font-display font-semibold mb-5 text-gold">Get in Touch</h4>
             <ul className="space-y-4 text-sm text-white/75">
-              <li className="flex gap-3"><MapPin className="size-4 mt-0.5 text-gold shrink-0" /> Karachi, Sindh, Pakistan</li>
-              <li className="flex gap-3"><Phone className="size-4 mt-0.5 text-gold shrink-0" /> +92 300 0000000</li>
+              <li className="flex gap-3"><MapPin className="size-4 mt-0.5 text-gold shrink-0" /> Sariab Road, Quetta, Balochistan, Pakistan</li>
+              <li className="flex gap-3"><Phone className="size-4 mt-0.5 text-gold shrink-0" /> +92 81 000 0000</li>
               <li className="flex gap-3"><Mail className="size-4 mt-0.5 text-gold shrink-0" /> info@4brotherswelfare.org</li>
             </ul>
           </div>
