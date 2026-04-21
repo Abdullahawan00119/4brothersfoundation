@@ -76,7 +76,7 @@ function ArticlePage() {
           </Reveal>
 
           <article className="prose prose-lg max-w-none">
-            {article.body.map((p, i) => (
+            {article.body.map((p: string, i: number) => (
               <Reveal key={i} delay={i * 0.05}>
                 <p className="text-foreground/90 text-lg leading-relaxed mb-6">{p}</p>
               </Reveal>

@@ -44,6 +44,7 @@ export function SiteFooter() {
                 ["/about", "About Us"],
                 ["/programs", "Our Programs"],
                 ["/gallery", "Gallery"],
+                ["/media", "Media & Updates"],
                 ["/get-involved", "Volunteer"],
                 ["/donate", "Donate"],
                 ["/contact", "Contact"],
