@@ -208,10 +208,6 @@ function GetInvolvedPage() {
             </motion.div>
           </div>
         </div>
-
-        {/* Bottom fade */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"
-          style={{ background: "linear-gradient(to bottom, transparent, oklch(0.13 0.05 260))" }} />
       </section>
 
       {/* ── Stats Strip ── */}
