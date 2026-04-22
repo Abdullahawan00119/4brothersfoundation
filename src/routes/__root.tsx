@@ -1,6 +1,9 @@
 import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
+import { LoadingScreen } from "@/components/site/LoadingScreen";
+import { PageTransition } from "@/components/site/PageTransition";
+import { useState, useEffect } from "react";
 
 import appCss from "../styles.css?url";
 
@@ -51,10 +54,33 @@ export const Route = createRootRoute({
 });
 
 function RootShell({ children }: { children: React.ReactNode }) {
+  const orgSchema = {
+    "@context": "https://schema.org",
+    "@type": "NGO",
+    name: "4 Brothers Welfare Trust",
+    url: "https://4brotherswelfare.org",
+    logo: "https://4brotherswelfare.org/logo.png",
+    description: "Welfare organization serving Quetta and Balochistan through food, education, healthcare and emergency relief.",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Quetta",
+      addressRegion: "Balochistan",
+      addressCountry: "PK",
+    },
+    sameAs: [
+      "https://facebook.com/4brotherswelfare",
+      "https://twitter.com/4brotherswelfare",
+    ],
+  };
+
   return (
     <html lang="en">
       <head>
         <HeadContent />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
+        />
       </head>
       <body>
         {children}
@@ -65,13 +91,62 @@ function RootShell({ children }: { children: React.ReactNode }) {
 }
 
 function RootComponent() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [showLoadingScreen, setShowLoadingScreen] = useState(false);
+
+  useEffect(() => {
+    // Check if this is the first visit in this session
+    const hasSeenLoadingScreen = sessionStorage.getItem('hasSeenLoadingScreen');
+    
+    if (!hasSeenLoadingScreen) {
+      // First visit - show loading screen
+      setShowLoadingScreen(true);
+      
+      // Mark as seen for this session
+      sessionStorage.setItem('hasSeenLoadingScreen', 'true');
+      
+      // Simulate initial page load completion
+      // In a real app, this would wait for critical resources
+      const timer = setTimeout(() => {
+        setIsLoading(false);
+      }, 100);
+      
+      return () => clearTimeout(timer);
+    } else {
+      // Not first visit - skip loading screen
+      setIsLoading(false);
+      setShowLoadingScreen(false);
+    }
+  }, []);
+
+  const handleLoadComplete = () => {
+    setShowLoadingScreen(false);
+  };
+
   return (
-    <div className="min-h-screen flex flex-col">
-      <SiteHeader />
-      <main className="flex-1">
-        <Outlet />
-      </main>
-      <SiteFooter />
-    </div>
+    <>
+      {showLoadingScreen && (
+        <LoadingScreen 
+          isLoading={isLoading} 
+          onLoadComplete={handleLoadComplete}
+        />
+      )}
+      {/* Skip to content for screen readers */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-gold focus:text-navy focus:font-bold focus:rounded-lg"
+      >
+        Skip to content
+      </a>
+      <div className="min-h-screen flex flex-col">
+        <SiteHeader />
+        <main id="main-content" className="flex-1">
+          <PageTransition>
+            <Outlet />
+          </PageTransition>
+        </main>
+        <SiteFooter />
+      </div>
+    </>
   );
 }

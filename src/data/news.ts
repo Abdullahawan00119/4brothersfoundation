@@ -1,12 +1,12 @@
-import distribution from "@/assets/quetta-distribution.jpg";
-import education from "@/assets/quetta-education.jpg";
-import medical from "@/assets/quetta-medical.jpg";
-import water from "@/assets/quetta-water.jpg";
-import flood from "@/assets/quetta-flood.jpg";
-import skills from "@/assets/quetta-skills.jpg";
-import winter from "@/assets/quetta-winter.jpg";
-import ramadan from "@/assets/quetta-ramadan.jpg";
-import city from "@/assets/quetta-city.jpg";
+const distribution = "/images/f1.jpg";
+const education    = "/images/education.webp";
+const medical      = "/images/medical.jpeg";
+const water        = "/images/water.jpg";
+const flood        = "/images/f12.jpg";
+const skills       = "/images/f13.jpg";
+const winter       = "/images/f2.jpg";
+const ramadan      = "/images/f3.jpg";
+const city         = "/images/f6.jpg";
 
 export type NewsCategory = "News" | "Stories" | "Press Release" | "Events" | "Reports";
 

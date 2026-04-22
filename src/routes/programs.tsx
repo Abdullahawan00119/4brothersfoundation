@@ -3,11 +3,11 @@ import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/Reveal";
 import { Button } from "@/components/ui/button";
 import { Heart } from "lucide-react";
-import education from "@/assets/program-education.jpg";
-import medical from "@/assets/program-medical.jpg";
-import water from "@/assets/program-water.jpg";
-import relief from "@/assets/program-relief.jpg";
-import distribution from "@/assets/hero-distribution.jpg";
+const education   = "/images/education.webp";
+const medical     = "/images/medical.jpeg";
+const water       = "/images/water.jpg";
+const relief      = "/images/f11.jpg";
+const distribution = "/images/f1.jpg";
 
 export const Route = createFileRoute("/programs")({
   component: ProgramsPage,
@@ -52,7 +52,7 @@ const programs = [
   },
   {
     title: "Orphan Care",
-    img: education,
+    img: "/images/orphan.jpeg",
     desc: "Sponsorship covering food, education, healthcare and emotional support for orphaned children.",
     impact: "300+ children sponsored",
   },
