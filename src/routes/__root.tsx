@@ -92,31 +92,16 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 function RootComponent() {
   const [isLoading, setIsLoading] = useState(true);
-  const [showLoadingScreen, setShowLoadingScreen] = useState(false);
+  const [showLoadingScreen, setShowLoadingScreen] = useState(true);
 
   useEffect(() => {
-    // Check if this is the first visit in this session
-    const hasSeenLoadingScreen = sessionStorage.getItem('hasSeenLoadingScreen');
-    
-    if (!hasSeenLoadingScreen) {
-      // First visit - show loading screen
-      setShowLoadingScreen(true);
-      
-      // Mark as seen for this session
-      sessionStorage.setItem('hasSeenLoadingScreen', 'true');
-      
-      // Simulate initial page load completion
-      // In a real app, this would wait for critical resources
-      const timer = setTimeout(() => {
-        setIsLoading(false);
-      }, 100);
-      
-      return () => clearTimeout(timer);
-    } else {
-      // Not first visit - skip loading screen
+    // Simulate initial page load completion
+    // In a real app, this would wait for critical resources
+    const timer = setTimeout(() => {
       setIsLoading(false);
-      setShowLoadingScreen(false);
-    }
+    }, 100);
+    
+    return () => clearTimeout(timer);
   }, []);
 
   const handleLoadComplete = () => {

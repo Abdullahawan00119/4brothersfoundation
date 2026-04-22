@@ -13,17 +13,15 @@ export function LoadingScreen({ isLoading, onLoadComplete }: LoadingScreenProps)
 
   // Ensure minimum display time of 800ms
   useEffect(() => {
-    if (isLoading) {
-      setShouldRender(true);
-      setHasMinTimeElapsed(false);
-      
-      const timer = setTimeout(() => {
-        setHasMinTimeElapsed(true);
-      }, 800);
+    setShouldRender(true);
+    setHasMinTimeElapsed(false);
+    
+    const timer = setTimeout(() => {
+      setHasMinTimeElapsed(true);
+    }, 800);
 
-      return () => clearTimeout(timer);
-    }
-  }, [isLoading]);
+    return () => clearTimeout(timer);
+  }, []);
 
   // Only hide when both loading is complete AND minimum time has elapsed
   useEffect(() => {

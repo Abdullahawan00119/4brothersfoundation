@@ -96,7 +96,7 @@ function GalleryPage() {
               <Reveal key={`${img.src}-${i}`} delay={(i % 3) * 0.08}>
                 <button
                   onClick={() => openLightbox(i)}
-                  className={`break-inside-avoid w-full rounded-2xl overflow-hidden shadow-soft hover:shadow-elegant transition-all group block ${
+                  className={`relative break-inside-avoid w-full rounded-2xl overflow-hidden shadow-soft hover:shadow-elegant transition-all group block ${
                     img.tall ? "h-[420px]" : "h-[280px]"
                   }`}
                   aria-label={`View ${img.alt}`}
@@ -107,6 +107,10 @@ function GalleryPage() {
                     loading="lazy"
                     className="size-full object-cover group-hover:scale-110 transition-transform duration-1000"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-6">
+                    <span className="text-gold font-bold text-xs uppercase tracking-wider mb-1">{img.category}</span>
+                    <h3 className="text-white font-display font-semibold text-lg leading-tight">{img.caption}</h3>
+                  </div>
                 </button>
               </Reveal>
             ))}

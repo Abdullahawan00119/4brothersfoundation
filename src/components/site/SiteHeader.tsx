@@ -51,7 +51,6 @@ export function SiteHeader() {
   const [scrolled, setScrolled]   = useState(false);
   const [open, setOpen]           = useState(false);
   const [dropdown, setDropdown]   = useState<string | null>(null);
-  const [mobileOpen, setMobileOpen] = useState<string | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
 
@@ -98,13 +97,13 @@ export function SiteHeader() {
           <Link to="/" className="flex items-center gap-3 shrink-0">
             <motion.img
               src="/logo.png"
-              alt="4 Brothers Welfare Trust"
+              alt="4 Brothers Foundation"
               className={`transition-all duration-300 ${scrolled ? "h-9" : "h-10"} w-auto drop-shadow`}
               whileHover={{ rotate: 8, scale: 1.06 }}
             />
             <div className="leading-tight hidden sm:block">
               <div className={`font-display font-bold text-sm ${scrolled ? "text-foreground" : "text-white"}`}>
-                4 Brothers Welfare
+                4 Brothers Foundation
               </div>
               <div className={`text-[10px] tracking-[0.18em] uppercase ${scrolled ? "text-muted-foreground" : "text-white/60"}`}>
                 Together as Humans
@@ -211,50 +210,13 @@ export function SiteHeader() {
               <div className="px-4 py-3 flex flex-col gap-0.5">
                 {nav.map((item) => (
                   <div key={item.label}>
-                    {item.sub ? (
-                      <>
-                        <button
-                          onClick={() => setMobileOpen(mobileOpen === item.label ? null : item.label)}
-                          className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium text-foreground/80 hover:bg-accent transition-colors"
-                        >
-                          {item.label}
-                          <motion.span animate={{ rotate: mobileOpen === item.label ? 180 : 0 }} transition={{ duration: 0.2 }}>
-                            <ChevronDown className="size-4 opacity-50" />
-                          </motion.span>
-                        </button>
-                        <AnimatePresence>
-                          {mobileOpen === item.label && (
-                            <motion.div
-                              initial={{ height: 0, opacity: 0 }}
-                              animate={{ height: "auto", opacity: 1 }}
-                              exit={{ height: 0, opacity: 0 }}
-                              transition={{ duration: 0.2 }}
-                              className="overflow-hidden pl-3"
-                            >
-                              {item.sub.map((s) => (
-                                <Link
-                                  key={s.label}
-                                  to={s.to}
-                                  onClick={() => setOpen(false)}
-                                  className="flex flex-col px-3 py-2 rounded-xl hover:bg-accent transition-colors"
-                                >
-                                  <span className="text-sm font-medium text-foreground/80">{s.label}</span>
-                                  {s.desc && <span className="text-[11px] text-muted-foreground">{s.desc}</span>}
-                                </Link>
-                              ))}
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </>
-                    ) : (
-                      <Link
-                        to={item.to}
-                        onClick={() => setOpen(false)}
-                        className="block px-3 py-2.5 rounded-xl text-sm font-medium text-foreground/80 hover:bg-accent transition-colors"
-                      >
-                        {item.label}
-                      </Link>
-                    )}
+                    <Link
+                      to={item.to}
+                      onClick={() => setOpen(false)}
+                      className="block px-3 py-2.5 rounded-xl text-sm font-medium text-foreground/80 hover:bg-accent transition-colors"
+                    >
+                      {item.label}
+                    </Link>
                   </div>
                 ))}
                 <div className="pt-2 pb-1">

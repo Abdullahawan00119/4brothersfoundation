@@ -5,7 +5,6 @@ import { Programs } from "@/components/site/Programs";
 import { Stories } from "@/components/site/Stories";
 import { DonateCTA } from "@/components/site/DonateCTA";
 import { LatestNews } from "@/components/site/LatestNews";
-import { Partners } from "@/components/site/Partners";
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -30,7 +29,6 @@ function Home() {
       <Stories />
       <DonateCTA />
       <LatestNews />
-      <Partners />
     </>
   );
 }
