@@ -7,7 +7,13 @@ npm run build        # Production build
 npm run preview      # Test production build locally
 ```
 
-Deployment target: **Cloudflare Pages** (configured via `wrangler.jsonc`)
+Deployment target: **Vercel**
+
+To deploy on Vercel:
+1. Connect your GitHub repository to Vercel.
+2. Vercel will automatically detect the Vite framework.
+3. The build command will automatically be set to `npm run build` and the output directory to `dist`.
+4. Ensure the `vercel.json` file is present in the root directory for client-side routing.
 
 ## Pre-Deployment Checklist
 
@@ -71,7 +77,8 @@ Track these metrics after going live:
 
 ## Rollback
 
-Cloudflare Pages keeps deployment history. To rollback:
-1. Go to Cloudflare Dashboard → Pages → 4brotherswelfare
-2. Select previous deployment
-3. Click "Rollback to this deployment"
+Vercel keeps deployment history automatically. To rollback:
+1. Go to your project on the Vercel Dashboard.
+2. Navigate to the "Deployments" tab.
+3. Find the previous successful deployment you want to revert to.
+4. Click the three dots (...) and select "Promote to Production".
