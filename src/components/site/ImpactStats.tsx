@@ -14,12 +14,12 @@ export function ImpactStats() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.3 });
 
   return (
-    <section ref={ref} className="relative py-24 bg-muted/40 overflow-hidden">
+    <section ref={ref} className="relative py-16 sm:py-24 bg-muted/40 overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,oklch(0.79_0.15_75/0.08),transparent_70%)]" />
       <div className="container-x relative">
-        <Reveal className="text-center max-w-2xl mx-auto mb-16">
+        <Reveal className="text-center max-w-2xl mx-auto mb-10 sm:mb-16">
           <p className="text-xs uppercase tracking-[0.22em] text-gold font-semibold">Our Impact</p>
-          <h2 className="mt-3 text-3xl sm:text-5xl font-bold text-foreground">
+          <h2 className="mt-3 text-2xl sm:text-3xl lg:text-5xl font-bold text-foreground">
             Real numbers. <span className="text-gradient-gold">Real lives changed.</span>
           </h2>
         </Reveal>
