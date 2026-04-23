@@ -1,5 +1,19 @@
 {
-  "routes": [
-    { "src": "/(.*)", "dest": "/" }
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, s-maxage=2678400, stale-while-revalidate"
+        }
+      ]
+    }
   ]
 }
