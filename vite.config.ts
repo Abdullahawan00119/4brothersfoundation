@@ -4,7 +4,7 @@ export default defineConfig({
   cloudflare: false,
   tanstackStart: {
     server: {
-      preset: "static",
+      preset: "vercel",
     },
   },
 });
