@@ -24,18 +24,18 @@ export function ImpactStats() {
           </h2>
         </Reveal>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {stats.map((s, i) => (
             <Reveal key={s.label} delay={i * 0.1}>
-              <div className="group relative bg-card rounded-3xl p-8 shadow-soft hover:shadow-elegant transition-all duration-500 hover:-translate-y-2 border border-border">
-                <div className={`inline-flex p-3.5 rounded-2xl bg-accent ${s.color} mb-5 group-hover:scale-110 transition-transform`}>
-                  <s.icon className="size-7" />
+              <div className="group relative bg-card rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-soft hover:shadow-elegant transition-all duration-500 hover:-translate-y-2 border border-border">
+                <div className={`inline-flex p-2.5 sm:p-3.5 rounded-xl sm:rounded-2xl bg-accent ${s.color} mb-4 sm:mb-5 group-hover:scale-110 transition-transform`}>
+                  <s.icon className="size-5 sm:size-7" />
                 </div>
-                <div className="font-display text-4xl sm:text-5xl font-extrabold text-foreground tabular-nums">
+                <div className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-foreground tabular-nums leading-none">
                   {inView ? <CountUp end={s.value} duration={2.4} separator="," /> : 0}
                   {s.suffix}
                 </div>
-                <p className="mt-2 text-muted-foreground font-medium">{s.label}</p>
+                <p className="mt-2 text-sm sm:text-base text-muted-foreground font-medium leading-tight">{s.label}</p>
               </div>
             </Reveal>
           ))}
