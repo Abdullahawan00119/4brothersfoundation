@@ -13,16 +13,39 @@ export function PageHero({
   children?: ReactNode;
 }) {
   return (
-    <section 
-      className="relative py-28 pt-36 text-center overflow-hidden"
-      style={{ background: "linear-gradient(135deg, oklch(0.11 0.07 260) 0%, oklch(0.17 0.09 254) 50%, oklch(0.21 0.10 248) 100%)" }}
-    >
-      <div className="container-x max-w-2xl mx-auto text-white relative z-10">
+    <section className="relative pt-32 sm:pt-40 pb-16 sm:pb-20 bg-gradient-to-br from-[#071739] via-[#0C2D6E] to-[#185FA5] text-white overflow-hidden">
+      {/* Subtle geometric texture overlay */}
+      <div
+        className="absolute inset-0 opacity-[0.035] pointer-events-none"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(255,255,255,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.2) 1px, transparent 1px)",
+          backgroundSize: "40px 40px",
+        }}
+      />
+
+      <div className="container-x max-w-4xl mx-auto text-center relative z-10 px-4 sm:px-6">
         <Reveal>
-          <p className="text-xs uppercase tracking-[0.28em] text-gold font-bold mb-4">{eyebrow}</p>
-          <h1 className="text-[clamp(2rem,4.5vw,3.5rem)] font-extrabold leading-[1.1] tracking-[-0.03em] mb-5">{title}</h1>
-          {subtitle && <p className="text-lg text-white/60 leading-relaxed max-w-xl mx-auto">{subtitle}</p>}
-          {children && <div className="mt-8">{children}</div>}
+          {/* Eyebrow badge */}
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/10 border border-white/15 text-white/90 text-[11px] sm:text-xs font-semibold tracking-[0.2em] uppercase backdrop-blur-md mb-4 sm:mb-5">
+            <span className="size-1.5 rounded-full bg-gold" />
+            {eyebrow}
+          </div>
+
+          {/* Heading with clean professional sans font */}
+          <h1 className="font-sans text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.15] max-w-3xl mx-auto">
+            {title}
+          </h1>
+
+          {/* Subtitle */}
+          {subtitle && (
+            <p className="mt-4 sm:mt-5 text-sm sm:text-base lg:text-lg text-white/80 max-w-2xl mx-auto leading-relaxed font-normal">
+              {subtitle}
+            </p>
+          )}
+
+          {/* Optional children */}
+          {children && <div className="mt-6 sm:mt-8">{children}</div>}
         </Reveal>
       </div>
     </section>

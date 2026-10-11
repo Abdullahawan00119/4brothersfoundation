@@ -9,7 +9,9 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TeamRouteImport } from './routes/team'
 import { Route as ProgramsRouteImport } from './routes/programs'
+import { Route as ManagementRouteImport } from './routes/management'
 import { Route as GetInvolvedRouteImport } from './routes/get-involved'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as DonateRouteImport } from './routes/donate'
@@ -19,9 +21,19 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as MediaIndexRouteImport } from './routes/media.index'
 import { Route as MediaSlugRouteImport } from './routes/media.$slug'
 
+const TeamRoute = TeamRouteImport.update({
+  id: '/team',
+  path: '/team',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProgramsRoute = ProgramsRouteImport.update({
   id: '/programs',
   path: '/programs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ManagementRoute = ManagementRouteImport.update({
+  id: '/management',
+  path: '/management',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GetInvolvedRoute = GetInvolvedRouteImport.update({
@@ -72,7 +84,9 @@ export interface FileRoutesByFullPath {
   '/donate': typeof DonateRoute
   '/gallery': typeof GalleryRoute
   '/get-involved': typeof GetInvolvedRoute
+  '/management': typeof ManagementRoute
   '/programs': typeof ProgramsRoute
+  '/team': typeof TeamRoute
   '/media/$slug': typeof MediaSlugRoute
   '/media/': typeof MediaIndexRoute
 }
@@ -83,7 +97,9 @@ export interface FileRoutesByTo {
   '/donate': typeof DonateRoute
   '/gallery': typeof GalleryRoute
   '/get-involved': typeof GetInvolvedRoute
+  '/management': typeof ManagementRoute
   '/programs': typeof ProgramsRoute
+  '/team': typeof TeamRoute
   '/media/$slug': typeof MediaSlugRoute
   '/media': typeof MediaIndexRoute
 }
@@ -95,7 +111,9 @@ export interface FileRoutesById {
   '/donate': typeof DonateRoute
   '/gallery': typeof GalleryRoute
   '/get-involved': typeof GetInvolvedRoute
+  '/management': typeof ManagementRoute
   '/programs': typeof ProgramsRoute
+  '/team': typeof TeamRoute
   '/media/$slug': typeof MediaSlugRoute
   '/media/': typeof MediaIndexRoute
 }
@@ -108,7 +126,9 @@ export interface FileRouteTypes {
     | '/donate'
     | '/gallery'
     | '/get-involved'
+    | '/management'
     | '/programs'
+    | '/team'
     | '/media/$slug'
     | '/media/'
   fileRoutesByTo: FileRoutesByTo
@@ -119,7 +139,9 @@ export interface FileRouteTypes {
     | '/donate'
     | '/gallery'
     | '/get-involved'
+    | '/management'
     | '/programs'
+    | '/team'
     | '/media/$slug'
     | '/media'
   id:
@@ -130,7 +152,9 @@ export interface FileRouteTypes {
     | '/donate'
     | '/gallery'
     | '/get-involved'
+    | '/management'
     | '/programs'
+    | '/team'
     | '/media/$slug'
     | '/media/'
   fileRoutesById: FileRoutesById
@@ -142,18 +166,34 @@ export interface RootRouteChildren {
   DonateRoute: typeof DonateRoute
   GalleryRoute: typeof GalleryRoute
   GetInvolvedRoute: typeof GetInvolvedRoute
+  ManagementRoute: typeof ManagementRoute
   ProgramsRoute: typeof ProgramsRoute
+  TeamRoute: typeof TeamRoute
   MediaSlugRoute: typeof MediaSlugRoute
   MediaIndexRoute: typeof MediaIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/team': {
+      id: '/team'
+      path: '/team'
+      fullPath: '/team'
+      preLoaderRoute: typeof TeamRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/programs': {
       id: '/programs'
       path: '/programs'
       fullPath: '/programs'
       preLoaderRoute: typeof ProgramsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/management': {
+      id: '/management'
+      path: '/management'
+      fullPath: '/management'
+      preLoaderRoute: typeof ManagementRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/get-involved': {
@@ -222,7 +262,9 @@ const rootRouteChildren: RootRouteChildren = {
   DonateRoute: DonateRoute,
   GalleryRoute: GalleryRoute,
   GetInvolvedRoute: GetInvolvedRoute,
+  ManagementRoute: ManagementRoute,
   ProgramsRoute: ProgramsRoute,
+  TeamRoute: TeamRoute,
   MediaSlugRoute: MediaSlugRoute,
   MediaIndexRoute: MediaIndexRoute,
 }

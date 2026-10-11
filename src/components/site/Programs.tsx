@@ -1,92 +1,117 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Link } from "@tanstack/react-router";
-import { motion, useMotionValue, useTransform, animate } from "framer-motion";
-import { ArrowRight, ArrowLeft, ArrowUpRight, Heart } from "lucide-react";
-const distribution = "/images/f1.jpg";
-const education    = "/images/education.webp";
-const relief       = "/images/f11.jpg";
+import { motion, useMotionValue, animate } from "framer-motion";
+import { ArrowRight, ArrowLeft, ArrowUpRight, Heart, MapPin } from "lucide-react";
 import { Reveal } from "./Reveal";
 
 const programs = [
   {
-    title: "Food Distribution",
-    desc: "Hot meals and monthly ration packs reaching the most vulnerable families every single week.",
-    img: distribution,
-    count: "50K+",
-    unit: "meals/year",
-    color: "from-amber-500/80",
-  },
-  {
-    title: "Education Support",
-    desc: "Tuition fees, books, uniforms and after-school tutoring for children who can't afford it.",
-    img: education,
-    count: "10K+",
-    unit: "students",
+    title: "Gawahi 4B Hope & Ability School",
+    subtitle: "Special Needs Education & Therapy",
+    desc: "Dedicated education center for special children established in Feb 2026. 8 qualified teachers serving 27 students with Speech and Physiotherapy on Brewery Road.",
+    img: "/images/school-program.jpeg",
+    count: "27",
+    unit: "special students",
     color: "from-sky-500/80",
+    badge: "Since Feb 2026",
   },
   {
-    title: "Rehabilitation",
-    desc: "4 Brothers Foundation and NIJAT Drug Treatment Center — joining hands for a drug-free youth and a healthier society in Quetta city.",
+    title: "Community Ration Distribution",
+    subtitle: "Monthly Family Food Security",
+    desc: "Providing 25 to 30 monthly grocery packages (flour, rice, daal, oil, milk & sweets) to vulnerable families at an estimated cost of PKR 8,000 per bag.",
+    img: "/images/ration-program.jpeg",
+    count: "30",
+    unit: "bags / month",
+    color: "from-amber-500/80",
+    badge: "PKR 8,000 / bag",
+  },
+  {
+    title: "Community Meal Distribution",
+    subtitle: "Weekly Feeding & BMC Hospital",
+    desc: "Combatting hunger by serving freshly prepared hot meals to ~200 underprivileged individuals weekly, including regular distribution at BMC Hospital.",
+    img: "/images/meal-program.jpeg",
+    count: "200+",
+    unit: "meals / week",
+    color: "from-rose-500/80",
+    badge: "Weekly Feeding",
+  },
+  {
+    title: "Rehabilitation & Youth Recovery",
+    subtitle: "Partnering with NIJAT Center",
+    desc: "Joining hands with NIJAT Drug Treatment Center for a drug-free youth and a healthier society across Quetta city through medical care and counseling.",
     img: "/images/frehabliation.jpg",
     count: "500+",
-    unit: "families",
+    unit: "rehabilitated",
     color: "from-emerald-600/80",
+    badge: "Drug-Free Youth",
   },
   {
-    title: "Emergency Relief",
-    desc: "Rapid response with food, shelter and medical aid during floods and disasters.",
-    img: relief,
-    count: "24/7",
-    unit: "nationwide",
-    color: "from-red-500/80",
+    title: "Clean Water Projects",
+    subtitle: "Wells & RO Filtration Plants",
+    desc: "Bringing clean drinking water to remote, drought-affected areas of Balochistan with solar pumps and filtration stations.",
+    img: "/images/water.jpg",
+    count: "120+",
+    unit: "clean sites",
+    color: "from-blue-600/80",
+    badge: "Safe Water",
   },
 ];
 
-const CARD_W = 380;
-const GAP    = 20;
-const STEP   = CARD_W + GAP;
+const DESKTOP_CARD_W = 390;
+const GAP = 18;
+
+function getCardWidth() {
+  if (typeof window === "undefined") return DESKTOP_CARD_W;
+  return window.innerWidth < 640 ? Math.round(window.innerWidth * 0.85) : DESKTOP_CARD_W;
+}
 
 export function Programs() {
   const [active, setActive] = useState(0);
+  const [cardW, setCardW] = useState(DESKTOP_CARD_W);
   const trackRef = useRef<HTMLDivElement>(null);
   const x = useMotionValue(0);
+
+  useEffect(() => {
+    const update = () => setCardW(getCardWidth());
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
+  const step = cardW + GAP;
 
   const goTo = (idx: number) => {
     const clamped = Math.max(0, Math.min(idx, programs.length - 1));
     setActive(clamped);
-    animate(x, -(clamped * STEP), { type: "spring", stiffness: 260, damping: 30 });
+    animate(x, -(clamped * step), { type: "spring", stiffness: 260, damping: 30 });
   };
 
-  /* drag */
-  const dragStart = useRef(0);
-  const onDragStart = () => { dragStart.current = x.get(); };
   const onDragEnd = (_: unknown, info: { offset: { x: number } }) => {
     const delta = info.offset.x;
-    if (delta < -60) goTo(active + 1);
-    else if (delta > 60) goTo(active - 1);
+    if (delta < -45) goTo(active + 1);
+    else if (delta > 45) goTo(active - 1);
     else goTo(active);
   };
 
   return (
-    <section className="py-24 bg-background overflow-hidden">
+    <section className="py-14 sm:py-24 bg-background overflow-hidden">
       <div className="container-x">
-
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 sm:mb-12">
           <Reveal>
-            <p className="text-xs uppercase tracking-[0.22em] text-gold font-semibold mb-2">What We Do</p>
-            <h2 className="text-3xl sm:text-5xl font-bold max-w-xl leading-tight">
-              Programs designed for{" "}
-              <span className="text-gradient-gold">lasting change</span>
+            <p className="text-xs uppercase tracking-[0.22em] text-gold font-semibold mb-2">
+              What We Do
+            </p>
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold max-w-xl leading-tight">
+              Our Core <span className="text-gradient-gold">Programs</span>
             </h2>
           </Reveal>
 
           <Reveal delay={0.15} className="flex items-center gap-3">
-            {/* Prev / Next */}
             <button
               onClick={() => goTo(active - 1)}
               disabled={active === 0}
-              aria-label="Previous"
+              aria-label="Previous program"
               className="size-11 rounded-full border border-border flex items-center justify-center text-foreground/60 hover:border-gold hover:text-gold disabled:opacity-30 transition-all"
             >
               <ArrowLeft className="size-4" />
@@ -94,7 +119,7 @@ export function Programs() {
             <button
               onClick={() => goTo(active + 1)}
               disabled={active === programs.length - 1}
-              aria-label="Next"
+              aria-label="Next program"
               className="size-11 rounded-full border border-border flex items-center justify-center text-foreground/60 hover:border-gold hover:text-gold disabled:opacity-30 transition-all"
             >
               <ArrowRight className="size-4" />
@@ -103,117 +128,112 @@ export function Programs() {
               to="/programs"
               className="ml-2 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-gold transition-colors"
             >
-              All programs <ArrowUpRight className="size-4" />
+              View all programs <ArrowRight className="size-4" />
             </Link>
           </Reveal>
         </div>
 
-        {/* Progress dots */}
-        <Reveal className="flex items-center gap-2 mb-8">
+        {/* Carousel viewport */}
+        <div className="overflow-visible select-none -mx-4 px-4 sm:mx-0 sm:px-0">
+          <motion.div
+            ref={trackRef}
+            drag="x"
+            dragConstraints={{
+              left: -((programs.length - 1) * step),
+              right: 0,
+            }}
+            dragElastic={0.12}
+            onDragEnd={onDragEnd}
+            style={{ x }}
+            className="flex gap-4 sm:gap-5 cursor-grab active:cursor-grabbing py-3"
+          >
+            {programs.map((p, i) => (
+              <motion.article
+                key={p.title}
+                onClick={() => goTo(i)}
+                style={{ width: cardW, minWidth: cardW }}
+                animate={{
+                  scale: active === i ? 1 : 0.98,
+                  opacity: active === i ? 1 : 0.85,
+                }}
+                transition={{ duration: 0.3 }}
+                className={`relative group rounded-3xl overflow-hidden bg-card border border-border shadow-soft hover:shadow-elegant flex flex-col transition-all duration-300 ${
+                  active === i ? "ring-2 ring-gold/40" : ""
+                }`}
+              >
+                {/* Image top */}
+                <div className="relative h-56 sm:h-64 overflow-hidden bg-muted">
+                  <img
+                    src={p.img}
+                    alt={p.title}
+                    draggable={false}
+                    className="size-full object-cover group-hover:scale-105 transition-transform duration-700 pointer-events-none"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-card via-card/20 to-transparent" />
+
+                  {/* Badge */}
+                  <div className="absolute top-4 left-4">
+                    <span className="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-gold text-navy shadow-md">
+                      {p.badge}
+                    </span>
+                  </div>
+
+                  {/* Impact metric float */}
+                  <div className="absolute bottom-4 right-4 bg-black/60 backdrop-blur-md px-3.5 py-1.5 rounded-2xl border border-white/10 text-right">
+                    <div className="font-display font-black text-xl text-gold leading-none">
+                      {p.count}
+                    </div>
+                    <div className="text-[10px] uppercase tracking-wider text-white/80 font-bold mt-0.5">
+                      {p.unit}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Card body */}
+                <div className="p-6 flex flex-col flex-1">
+                  <p className="text-xs font-semibold text-primary/90 uppercase tracking-wider mb-1">
+                    {p.subtitle}
+                  </p>
+                  <h3 className="font-display font-extrabold text-xl text-foreground leading-snug mb-3">
+                    {p.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed flex-1 mb-5 line-clamp-3">
+                    {p.desc}
+                  </p>
+
+                  <div className="pt-4 border-t border-border flex items-center justify-between">
+                    <Link
+                      to="/programs"
+                      className="inline-flex items-center gap-1.5 text-xs font-bold text-foreground group-hover:text-gold transition-colors"
+                    >
+                      Explore Program <ArrowUpRight className="size-3.5" />
+                    </Link>
+                    <Link
+                      to="/donate"
+                      className="inline-flex items-center gap-1 text-xs font-bold px-3 py-1 rounded-lg bg-gold/15 text-gold hover:bg-gold hover:text-navy transition-all"
+                    >
+                      <Heart className="size-3 fill-gold group-hover:fill-navy" /> Donate
+                    </Link>
+                  </div>
+                </div>
+              </motion.article>
+            ))}
+          </motion.div>
+        </div>
+
+        {/* Indicator dots */}
+        <div className="flex items-center justify-center gap-2 mt-8">
           {programs.map((_, i) => (
             <button
               key={i}
               onClick={() => goTo(i)}
-              aria-label={`Go to ${programs[i].title}`}
-              className="relative h-1.5 rounded-full overflow-hidden transition-all duration-300"
-              style={{ width: i === active ? 32 : 8, background: i === active ? "oklch(0.78 0.17 70)" : "oklch(0.78 0.17 70 / 0.25)" }}
+              aria-label={`Go to slide ${i + 1}`}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                active === i ? "w-8 bg-gold" : "w-2 bg-border hover:bg-muted-foreground/40"
+              }`}
             />
           ))}
-        </Reveal>
-
-        {/* Track */}
-        <div className="relative" ref={trackRef}>
-          <motion.div
-            drag="x"
-            dragConstraints={{ left: -(STEP * (programs.length - 1)), right: 0 }}
-            dragElastic={0.08}
-            onDragStart={onDragStart}
-            onDragEnd={onDragEnd}
-            style={{ x }}
-            className="flex gap-5 cursor-grab active:cursor-grabbing select-none"
-          >
-            {programs.map((p, i) => {
-              const isActive = i === active;
-              return (
-                <motion.article
-                  key={p.title}
-                  animate={{ scale: isActive ? 1 : 0.95, opacity: isActive ? 1 : 0.65 }}
-                  transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                  className="relative shrink-0 rounded-3xl overflow-hidden shadow-soft"
-                  style={{ width: CARD_W, height: 480 }}
-                >
-                  {/* Image */}
-                  <img
-                    src={p.img}
-                    alt={p.title}
-                    loading="lazy"
-                    draggable={false}
-                    className="absolute inset-0 size-full object-cover transition-transform duration-[1200ms] group-hover:scale-105"
-                  />
-
-                  {/* Gradient overlay */}
-                  <div className={`absolute inset-0 bg-gradient-to-t ${p.color} via-navy/50 to-transparent`} />
-                  <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/30 to-transparent" />
-
-                  {/* Top badge */}
-                  <div className="absolute top-5 left-5">
-                    <span className="inline-flex items-baseline gap-1 bg-black/30 backdrop-blur-md border border-white/15 rounded-full px-3 py-1">
-                      <span className="font-display font-extrabold text-gold text-base leading-none">{p.count}</span>
-                      <span className="text-white/60 text-[10px] uppercase tracking-wide">{p.unit}</span>
-                    </span>
-                  </div>
-
-                  {/* Card number */}
-                  <div className="absolute top-5 right-5 font-display font-bold text-white/20 text-4xl leading-none select-none">
-                    {String(i + 1).padStart(2, "0")}
-                  </div>
-
-                  {/* Content */}
-                  <div className="absolute inset-x-0 bottom-0 p-7">
-                    <h3 className="font-display text-2xl font-bold text-white mb-2">{p.title}</h3>
-                    <p className="text-white/70 text-sm leading-relaxed mb-5 line-clamp-2">{p.desc}</p>
-
-                    {/* CTA */}
-                    <Link
-                      to="/donate"
-                      className="inline-flex items-center gap-2 bg-gradient-gold text-navy text-sm font-bold px-5 py-2.5 rounded-full shadow-glow hover:opacity-90 transition-opacity"
-                    >
-                      <Heart className="size-3.5 fill-navy" /> Donate Now
-                    </Link>
-                  </div>
-
-                  {/* Active indicator line */}
-                  {isActive && (
-                    <motion.div
-                      layoutId="active-line"
-                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-gold"
-                    />
-                  )}
-                </motion.article>
-              );
-            })}
-          </motion.div>
         </div>
-
-        {/* Active card detail strip */}
-        <Reveal className="mt-10 flex items-center gap-6 p-5 rounded-2xl border border-border bg-muted/40">
-          <div className="size-12 rounded-xl overflow-hidden shrink-0">
-            <img src={programs[active].img} alt="" className="size-full object-cover" />
-          </div>
-          <div className="flex-1 min-w-0">
-            <p className="font-display font-bold text-foreground truncate">{programs[active].title}</p>
-            <p className="text-sm text-muted-foreground mt-0.5 line-clamp-1">{programs[active].desc}</p>
-          </div>
-          <div className="shrink-0 text-right">
-            <div className="font-display font-extrabold text-gold text-xl leading-none">{programs[active].count}</div>
-            <div className="text-[10px] text-muted-foreground uppercase tracking-wide mt-1">{programs[active].unit}</div>
-          </div>
-          <Link to="/programs" className="shrink-0">
-            <span className="size-10 rounded-full bg-gradient-gold text-navy flex items-center justify-center shadow-glow">
-              <ArrowRight className="size-4" />
-            </span>
-          </Link>
-        </Reveal>
       </div>
     </section>
   );

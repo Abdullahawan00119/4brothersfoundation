@@ -1,41 +1,47 @@
 import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer";
-import { Utensils, GraduationCap, Stethoscope, HandHeart } from "lucide-react";
+import { GraduationCap, Users, Stethoscope, Utensils } from "lucide-react";
 import { Reveal } from "./Reveal";
 
 const stats = [
-  { icon: Utensils, value: 50000, suffix: "+", label: "Meals Distributed", color: "text-gold" },
-  { icon: GraduationCap, value: 10000, suffix: "+", label: "Students Educated", color: "text-ocean" },
-  { icon: Stethoscope, value: 5000, suffix: "+", label: "Medical Camp Visits", color: "text-success" },
-  { icon: HandHeart, value: 100, suffix: "+", label: "Active Volunteers", color: "text-sky" },
+  { icon: GraduationCap, value: 27, suffix: "+", label: "Students Enrolled", color: "text-sky-600 bg-sky-500/10 border-sky-500/20" },
+  { icon: Users, value: 8, suffix: "+", label: "Dedicated Teachers", color: "text-amber-600 bg-amber-500/10 border-amber-500/20" },
+  { icon: Stethoscope, value: 3200, suffix: "+", label: "Medical Consultations", color: "text-emerald-600 bg-emerald-500/10 border-emerald-500/20" },
+  { icon: Utensils, value: 50000, suffix: "+", label: "Meals Distributed", color: "text-blue-600 bg-blue-500/10 border-blue-500/20" },
 ];
 
 export function ImpactStats() {
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.3 });
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
 
   return (
-    <section ref={ref} className="relative py-16 sm:py-24 bg-muted/40 overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,oklch(0.79_0.15_75/0.08),transparent_70%)]" />
-      <div className="container-x relative">
-        <Reveal className="text-center max-w-2xl mx-auto mb-10 sm:mb-16">
-          <p className="text-xs uppercase tracking-[0.22em] text-gold font-semibold">Our Impact</p>
-          <h2 className="mt-3 text-2xl sm:text-3xl lg:text-5xl font-bold text-foreground">
-            Real numbers. <span className="text-gradient-gold">Real lives changed.</span>
+    <section ref={ref} className="py-14 sm:py-20 bg-slate-50/70 dark:bg-slate-900/40 border-b border-border/70">
+      <div className="container-x max-w-6xl mx-auto px-4 sm:px-6">
+        <Reveal className="text-center max-w-xl mx-auto mb-10 sm:mb-14">
+          <p className="text-[11px] uppercase tracking-[0.22em] text-primary font-bold mb-2">
+            Verified Field Impact
+          </p>
+          <h2 className="font-sans text-2xl sm:text-3xl lg:text-4xl font-extrabold text-foreground tracking-tight">
+            Measurable Change Across Communities
           </h2>
+          <p className="mt-2 text-xs sm:text-sm text-muted-foreground leading-relaxed">
+            Every donation directly powers active programs on the ground with verified beneficiaries.
+          </p>
         </Reveal>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {stats.map((s, i) => (
-            <Reveal key={s.label} delay={i * 0.1}>
-              <div className="group relative bg-card rounded-2xl sm:rounded-3xl p-5 sm:p-8 shadow-soft hover:shadow-elegant transition-all duration-500 hover:-translate-y-2 border border-border">
-                <div className={`inline-flex p-2.5 sm:p-3.5 rounded-xl sm:rounded-2xl bg-accent ${s.color} mb-4 sm:mb-5 group-hover:scale-110 transition-transform`}>
-                  <s.icon className="size-5 sm:size-7" />
+            <Reveal key={s.label} delay={i * 0.08}>
+              <div className="bg-card rounded-2xl p-5 sm:p-7 shadow-sm hover:shadow-md transition-all duration-300 border border-border text-center flex flex-col items-center group">
+                <div className={`p-3 rounded-xl border mb-3.5 ${s.color}`}>
+                  <s.icon className="size-5 sm:size-6" />
                 </div>
-                <div className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-foreground tabular-nums leading-none">
-                  {inView ? <CountUp end={s.value} duration={2.4} separator="," /> : 0}
+                <div className="font-sans text-2xl sm:text-3xl lg:text-4xl font-extrabold text-foreground tabular-nums leading-none tracking-tight">
+                  {inView ? <CountUp end={s.value} duration={2.2} separator="," /> : 0}
                   {s.suffix}
                 </div>
-                <p className="mt-2 text-sm sm:text-base text-muted-foreground font-medium leading-tight">{s.label}</p>
+                <p className="mt-2 text-xs sm:text-sm text-muted-foreground font-semibold leading-tight">
+                  {s.label}
+                </p>
               </div>
             </Reveal>
           ))}

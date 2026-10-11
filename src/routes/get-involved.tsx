@@ -1,13 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/Reveal";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import {
   CheckCircle2, Users, Briefcase, GraduationCap,
-  Heart, HandHeart, Sparkles, ArrowRight, MapPin,
+  Heart, HandHeart, ArrowRight, MapPin,
   Clock, Star, Send,
 } from "lucide-react";
 
@@ -80,139 +81,19 @@ function GetInvolvedPage() {
   return (
     <>
       {/* ── Hero ── */}
-      <section
-        className="relative min-h-[88vh] flex items-center overflow-hidden"
-        style={{ background: "linear-gradient(135deg, oklch(0.11 0.07 260) 0%, oklch(0.17 0.09 254) 50%, oklch(0.21 0.10 248) 100%)" }}
-      >
-        {/* Ambient orbs */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <motion.div
-            animate={{ scale: [1, 1.25, 1], opacity: [0.18, 0.32, 0.18] }}
-            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute -top-48 -left-48 size-[700px] rounded-full blur-[130px]"
-            style={{ background: "oklch(0.78 0.17 70 / 0.20)" }}
-          />
-          <motion.div
-            animate={{ scale: [1, 1.2, 1], opacity: [0.08, 0.18, 0.08] }}
-            transition={{ duration: 13, repeat: Infinity, ease: "easeInOut", delay: 3 }}
-            className="absolute -bottom-40 -right-40 size-[550px] rounded-full blur-[110px]"
-            style={{ background: "oklch(0.58 0.15 240 / 0.18)" }}
-          />
-          <motion.div
-            animate={{ y: [-15, 15, -15], opacity: [0.05, 0.12, 0.05] }}
-            transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-[450px] rounded-full blur-[100px]"
-            style={{ background: "oklch(0.78 0.13 225 / 0.12)" }}
-          />
-        </div>
-
-        {/* Grid overlay */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            backgroundImage: "linear-gradient(oklch(1 0 0 / 0.025) 1px, transparent 1px), linear-gradient(90deg, oklch(1 0 0 / 0.025) 1px, transparent 1px)",
-            backgroundSize: "64px 64px",
-          }}
-        />
-
-        {/* Floating particles */}
-        <div className="absolute inset-0 pointer-events-none">
-          {Array.from({ length: 20 }).map((_, i) => (
-            <motion.span
-              key={i}
-              className="absolute rounded-full"
-              style={{
-                width: i % 5 === 0 ? 5 : 2,
-                height: i % 5 === 0 ? 5 : 2,
-                left: `${(i * 47 + 9) % 92}%`,
-                top: `${(i * 33 + 7) % 85}%`,
-                background: i % 2 === 0 ? "oklch(0.78 0.17 70)" : "oklch(1 0 0 / 0.45)",
-                opacity: 0,
-              }}
-              animate={{ y: [-20, 20, -20], opacity: [0, i % 3 === 0 ? 0.85 : 0.4, 0] }}
-              transition={{ duration: 4 + (i % 5), repeat: Infinity, delay: i * 0.26, ease: "easeInOut" }}
-            />
-          ))}
-        </div>
-
-        <div className="container-x relative z-10 pt-36 pb-24">
-          <div className="max-w-3xl mx-auto text-center text-white">
-
-            {/* Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/[0.08] backdrop-blur-md px-5 py-2 mb-8"
-            >
-              <Sparkles className="size-4 text-gold" />
-              <span className="text-[10px] uppercase tracking-[0.28em] text-gold font-bold">Join the Movement</span>
-            </motion.div>
-
-            {/* Headline */}
-            <h1 className="text-[clamp(2.4rem,5vw,4.5rem)] font-extrabold leading-[1.06] tracking-[-0.03em] mb-6">
-              {["Lend", "a", "hand.", "Change", "a", "life."].map((word, wi) => (
-                <motion.span
-                  key={wi}
-                  initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
-                  animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                  transition={{ duration: 0.7, delay: 0.1 + wi * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                  className={`inline-block mr-[0.22em] ${wi >= 3 ? "text-gradient-gold" : "text-white"}`}
-                >
-                  {word}
-                </motion.span>
-              ))}
-            </h1>
-
-            {/* Subtitle */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.75, ease: [0.22, 1, 0.36, 1] }}
-              className="text-xl text-white/60 leading-relaxed mb-10 max-w-xl mx-auto"
-            >
-              There are many ways to be part of the movement — find the one that fits you and start making a difference today.
-            </motion.p>
-
-            {/* CTA Buttons */}
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
-              className="flex flex-wrap gap-4 justify-center"
-            >
-              <motion.a
-                href="#signup-form"
-                whileHover={{ scale: 1.04 }}
-                whileTap={{ scale: 0.97 }}
-              >
-                <Button
-                  size="lg"
-                  className="relative h-13 px-8 bg-gradient-gold text-navy font-extrabold text-base overflow-hidden group"
-                  style={{ boxShadow: "0 0 36px oklch(0.78 0.17 70 / 0.42)" }}
-                >
-                  <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12" />
-                  <Heart className="size-5 mr-2 fill-navy relative z-10" />
-                  <span className="relative z-10">Volunteer Now</span>
-                </Button>
-              </motion.a>
-              <motion.a href="#ways" whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="h-13 px-8 border-white/25 bg-white/[0.06] text-white hover:bg-white/[0.13] font-semibold text-base backdrop-blur-md"
-                >
-                  Explore Ways <ArrowRight className="size-4 ml-2 opacity-60" />
-                </Button>
-              </motion.a>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Join the Movement"
+        title={
+          <>
+            Lend a Hand. <span className="text-gold font-bold">Change a Life.</span>
+          </>
+        }
+        subtitle="There are many ways to be part of the movement — volunteer on the ground, partner as an organization, or sponsor life-changing programs."
+      />
 
       {/* ── Stats Strip ── */}
-      <section style={{ background: "oklch(0.13 0.05 260)" }} className="py-10 border-y border-white/[0.07]">
-        <div className="container-x">
+      <section className="bg-[#071739] text-white py-8 sm:py-10 border-b border-white/10">
+        <div className="container-x max-w-5xl mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
             {stats.map(({ icon: Icon, value, label }, i) => (
               <Reveal key={label} delay={i * 0.08}>
@@ -271,12 +152,12 @@ function GetInvolvedPage() {
       </section>
 
       {/* ── Why Volunteer ── */}
-      <section className="py-20 bg-muted/40">
-        <div className="container-x">
-          <div className="grid lg:grid-cols-2 gap-14 items-center">
+      <section className="py-20 bg-slate-50/70 dark:bg-slate-900/40 border-y border-border/70">
+        <div className="container-x max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="grid lg:grid-cols-2 gap-10 sm:gap-14 items-center">
             <Reveal>
-              <p className="text-xs uppercase tracking-[0.22em] text-gold font-semibold mb-3">Why Join Us</p>
-              <h2 className="text-3xl sm:text-4xl font-bold mb-5 leading-snug">
+              <p className="text-[11px] uppercase tracking-[0.22em] text-gold font-bold mb-2">Why Join Us</p>
+              <h2 className="font-serif text-2xl sm:text-4xl font-bold mb-4 leading-snug text-foreground">
                 Be part of something <span className="text-gradient-gold">bigger than yourself</span>
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-6">

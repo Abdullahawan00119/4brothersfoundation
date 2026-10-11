@@ -66,9 +66,9 @@ function GalleryPage() {
   return (
     <>
       <PageHero
-        eyebrow="Gallery"
-        title={<>Moments of <span className="text-gradient-gold">impact</span></>}
-        subtitle="A glimpse into our work, our people, and the families whose lives we share in."
+        eyebrow="Photo Gallery"
+        title={<>Moments of <span className="text-gold font-bold">Impact & Service.</span></>}
+        subtitle="A glimpse into our field work, community food distributions, special education school, and relief operations."
       />
 
       <section className="py-20 bg-background">

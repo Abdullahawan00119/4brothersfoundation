@@ -5,153 +5,150 @@ import { Reveal } from "./Reveal";
 
 const stories = [
   {
-    quote: "When the floods took everything, 4 Brothers were the first to reach our village. They gave us food, clean water and the courage to rebuild.",
+    quote: "When the floods took everything, 4 Brothers were the first to reach our village. They gave us food, clean water, and the courage to rebuild.",
     name: "Ayesha B.",
-    role: "Beneficiary, Sindh",
+    role: "Community Beneficiary, Sindh",
   },
   {
-    quote: "Volunteering here changed my life. You don't just give — you receive ten times more in love and purpose.",
+    quote: "Volunteering with the ration drives changed my perspective. You don't just distribute food — you restore human dignity to families.",
     name: "Hamza A.",
-    role: "Volunteer, Lahore",
+    role: "Outreach Volunteer, Quetta",
   },
   {
-    quote: "Our children now have books, uniforms and a future. Before 4 Brothers, school was a dream we couldn't afford.",
+    quote: "My daughter now receives specialized speech and physiotherapy at Hope & Ability School. Her progress in just months has given our entire family renewed hope.",
     name: "Tariq M.",
-    role: "Parent, Quetta",
+    role: "Parent, Brewery Road Center",
   },
   {
-    quote: "The free medical camp saved my father's life. We had no money for treatment — they asked for nothing in return.",
+    quote: "The hospital meal initiative brings hot meals to patient attendants who often go days without food. It is a genuine lifeline of compassion.",
     name: "Nadia R.",
-    role: "Beneficiary, Balochistan",
+    role: "Attendant, BMC Hospital",
   },
 ];
 
-const CARD_W = 420;
-const GAP    = 20;
-const STEP   = CARD_W + GAP;
-const AUTO_INTERVAL = 3500;
+const DESKTOP_CARD_W = 420;
+const GAP = 20;
+const AUTO_INTERVAL = 4000;
+
+function getStoryCardWidth() {
+  if (typeof window === "undefined") return DESKTOP_CARD_W;
+  return window.innerWidth < 640 ? Math.round(window.innerWidth * 0.88) : DESKTOP_CARD_W;
+}
 
 export function Stories() {
   const [active, setActive] = useState(0);
+  const [cardW, setCardW] = useState(DESKTOP_CARD_W);
   const x = useMotionValue(0);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  useEffect(() => {
+    const update = () => setCardW(getStoryCardWidth());
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
+  const step = cardW + GAP;
 
   const goTo = (idx: number) => {
     const clamped = ((idx % stories.length) + stories.length) % stories.length;
     setActive(clamped);
-    animate(x, -(clamped * STEP), { type: "spring", stiffness: 240, damping: 28 });
+    animate(x, -(clamped * step), { type: "spring", stiffness: 240, damping: 28 });
   };
 
-  /* auto-advance */
   const resetTimer = () => {
     if (timerRef.current) clearInterval(timerRef.current);
-    timerRef.current = setInterval(() => setActive((a) => {
-      const next = (a + 1) % stories.length;
-      animate(x, -(next * STEP), { type: "spring", stiffness: 240, damping: 28 });
-      return next;
-    }), AUTO_INTERVAL);
+    timerRef.current = setInterval(() => {
+      setActive((a) => {
+        const next = (a + 1) % stories.length;
+        animate(x, -(next * step), { type: "spring", stiffness: 240, damping: 28 });
+        return next;
+      });
+    }, AUTO_INTERVAL);
   };
 
   useEffect(() => {
     resetTimer();
-    return () => { if (timerRef.current) clearInterval(timerRef.current); };
-  }, []);
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, [step]);
 
-  /* drag */
-  const dragStart = useRef(0);
-  const onDragStart = () => { dragStart.current = x.get(); resetTimer(); };
   const onDragEnd = (_: unknown, info: { offset: { x: number } }) => {
-    if (info.offset.x < -60) goTo(active + 1);
-    else if (info.offset.x > 60) goTo(active - 1);
+    if (info.offset.x < -50) goTo(active + 1);
+    else if (info.offset.x > 50) goTo(active - 1);
     else goTo(active);
   };
 
   return (
-    <section className="relative py-24 bg-gradient-hero text-white overflow-hidden">
-      <div className="absolute inset-0 bg-radial-glow" />
-
-      {/* Decorative blobs */}
-      <div className="absolute -top-20 -left-20 size-72 rounded-full blur-3xl pointer-events-none" style={{ background: "oklch(0.78 0.17 70 / 0.10)" }} />
-      <div className="absolute -bottom-20 -right-20 size-72 rounded-full blur-3xl pointer-events-none" style={{ background: "oklch(0.58 0.15 240 / 0.12)" }} />
-
-      <div className="container-x relative">
-
+    <section className="py-16 sm:py-24 bg-slate-900 text-white relative overflow-hidden border-y border-white/10">
+      <div className="container-x max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
         {/* Header */}
-        <Reveal className="text-center max-w-2xl mx-auto mb-14">
-          <p className="text-xs uppercase tracking-[0.22em] text-gold font-semibold">Voices of Hope</p>
-          <h2 className="mt-3 text-3xl sm:text-5xl font-bold">
-            Stories from the people{" "}
-            <span className="text-gradient-gold">we serve</span>
+        <Reveal className="text-center max-w-xl mx-auto mb-10 sm:mb-14">
+          <p className="text-[11px] uppercase tracking-[0.22em] text-gold font-bold mb-2">
+            Voices of Hope
+          </p>
+          <h2 className="font-sans text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white leading-tight">
+            Stories From The Communities We Serve
           </h2>
+          <p className="mt-2 text-xs sm:text-sm text-white/70 leading-relaxed font-normal">
+            Real testimonies of dignity restored, children educated, and families nourished across Pakistan.
+          </p>
         </Reveal>
 
         {/* Carousel track */}
         <div className="overflow-hidden">
           <motion.div
             drag="x"
-            dragConstraints={{ left: -(STEP * (stories.length - 1)), right: 0 }}
+            dragConstraints={{ left: -(step * (stories.length - 1)), right: 0 }}
             dragElastic={0.06}
-            onDragStart={onDragStart}
             onDragEnd={onDragEnd}
             style={{ x }}
-            className="flex gap-5 cursor-grab active:cursor-grabbing select-none"
+            className="flex cursor-grab active:cursor-grabbing select-none"
           >
             {stories.map((s, i) => {
               const isActive = i === active;
               return (
                 <motion.div
                   key={s.name}
-                  animate={{ scale: isActive ? 1 : 0.93, opacity: isActive ? 1 : 0.5 }}
-                  transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                  className="relative shrink-0 rounded-3xl p-8 border border-white/10 bg-white/[0.05] backdrop-blur-sm"
-                  style={{ width: CARD_W }}
+                  animate={{ scale: isActive ? 1 : 0.95, opacity: isActive ? 1 : 0.6 }}
+                  transition={{ duration: 0.3 }}
+                  className="relative shrink-0 rounded-2xl p-6 sm:p-7 border border-white/15 bg-white/[0.06] backdrop-blur-md flex flex-col justify-between"
+                  style={{ width: cardW, marginRight: GAP }}
                 >
-                  {/* Gold quote mark */}
-                  <div className="size-12 rounded-2xl bg-gradient-gold flex items-center justify-center mb-6 shadow-glow">
-                    <Quote className="size-5 text-navy fill-navy" />
+                  <div>
+                    <div className="size-10 rounded-xl bg-gold/15 flex items-center justify-center mb-4 border border-gold/30">
+                      <Quote className="size-4 text-gold fill-gold" />
+                    </div>
+
+                    <p className="text-white/90 leading-relaxed text-sm sm:text-base italic mb-6">
+                      "{s.quote}"
+                    </p>
                   </div>
 
-                  {/* Quote */}
-                  <p className="text-white/85 leading-relaxed text-[1.05rem] italic mb-8">
-                    "{s.quote}"
-                  </p>
-
-                  {/* Author */}
-                  <div className="flex items-center gap-3 pt-6 border-t border-white/10">
-                    {/* Avatar initials */}
-                    <div
-                      className="size-10 rounded-full flex items-center justify-center font-display font-bold text-sm shrink-0"
-                      style={{ background: "oklch(0.78 0.17 70 / 0.25)", color: "oklch(0.78 0.17 70)" }}
-                    >
+                  <div className="flex items-center gap-3 pt-4 border-t border-white/10">
+                    <div className="size-9 rounded-full bg-gold/20 text-gold flex items-center justify-center font-sans font-bold text-sm shrink-0">
                       {s.name.charAt(0)}
                     </div>
                     <div>
-                      <div className="font-display font-semibold text-white">{s.name}</div>
-                      <div className="text-sm text-white/50">{s.role}</div>
+                      <div className="font-semibold text-white text-sm">{s.name}</div>
+                      <div className="text-xs text-white/60">{s.role}</div>
                     </div>
                   </div>
-
-                  {/* Active bottom line */}
-                  {isActive && (
-                    <motion.div
-                      layoutId="story-line"
-                      className="absolute bottom-0 left-6 right-6 h-0.5 rounded-full bg-gradient-gold"
-                    />
-                  )}
                 </motion.div>
               );
             })}
           </motion.div>
         </div>
 
-        {/* Thin progress bar — auto advances, no dots/arrows */}
-        <div className="mt-8 h-0.5 rounded-full bg-white/10 max-w-xs mx-auto overflow-hidden">
+        {/* Progress bar */}
+        <div className="mt-8 h-1 rounded-full bg-white/10 max-w-xs mx-auto overflow-hidden">
           <motion.div
             key={active}
             initial={{ width: "0%" }}
             animate={{ width: "100%" }}
             transition={{ duration: AUTO_INTERVAL / 1000, ease: "linear" }}
-            className="h-full rounded-full bg-gradient-gold"
+            className="h-full rounded-full bg-gold"
           />
         </div>
       </div>

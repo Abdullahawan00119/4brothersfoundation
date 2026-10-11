@@ -10,52 +10,47 @@ type NavItem = {
   sub?: { to: string; label: string; desc?: string }[];
 };
 
+// Streamlined, merged navigation (5 concise links + Donate)
 const nav: NavItem[] = [
-  { to: "/", label: "Home" },
   {
     to: "/about",
-    label: "About",
+    label: "About Us",
     sub: [
-      { to: "/about", label: "Our Story",    desc: "History, mission & vision" },
-      { to: "/about", label: "Our Team",     desc: "Founders & leadership" },
-      { to: "/about", label: "Core Values",  desc: "What guides every decision" },
+      { to: "/about", label: "Our Story & Vision", desc: "History, mission & values" },
+      { to: "/management", label: "Leadership & Team", desc: "Founders & coordinators" },
     ],
   },
   {
     to: "/programs",
     label: "Programs",
     sub: [
-      { to: "/programs", label: "Food & Ration",    desc: "Weekly meals & ration packs" },
-      { to: "/programs", label: "Education",         desc: "Books, tuition & uniforms" },
-      { to: "/programs", label: "Healthcare",        desc: "Free camps & surgeries" },
-      { to: "/programs", label: "Clean Water",       desc: "Wells & filtration plants" },
-      { to: "/programs", label: "Emergency Relief",  desc: "Flood & disaster response" },
-      { to: "/programs", label: "Orphan Care",       desc: "Sponsorships for children" },
+      { to: "/programs", label: "Hope & Ability School", desc: "Special needs education" },
+      { to: "/programs", label: "Ration Distribution", desc: "Monthly food security" },
+      { to: "/programs", label: "Hospital Meal Drives", desc: "BMC Hospital weekly food" },
+      { to: "/programs", label: "All Programs", desc: "Water, medical & recovery" },
     ],
   },
-  { to: "/gallery", label: "Gallery" },
   {
-    to: "/media",
-    label: "Media",
+    to: "/gallery",
+    label: "Media & Gallery",
     sub: [
-      { to: "/media", label: "News & Updates",  desc: "Latest field reports" },
-      { to: "/media", label: "Press Releases",  desc: "Official announcements" },
-      { to: "/media", label: "Impact Reports",  desc: "Annual & quarterly data" },
+      { to: "/gallery", label: "Photo Gallery", desc: "On-the-ground field photos" },
+      { to: "/media", label: "News & Field Reports", desc: "Updates & impact stories" },
     ],
   },
   { to: "/get-involved", label: "Get Involved" },
-  { to: "/contact",      label: "Contact" },
+  { to: "/contact", label: "Contact" },
 ];
 
 export function SiteHeader() {
-  const [scrolled, setScrolled]   = useState(false);
-  const [open, setOpen]           = useState(false);
-  const [dropdown, setDropdown]   = useState<string | null>(null);
+  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [dropdown, setDropdown] = useState<string | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    const onScroll = () => setScrolled(window.scrollY > 20);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -73,67 +68,80 @@ export function SiteHeader() {
   }, []);
 
   // close mobile menu on route change
-  useEffect(() => { setOpen(false); setDropdown(null); }, [location.pathname]);
+  useEffect(() => {
+    setOpen(false);
+    setDropdown(null);
+  }, [location.pathname]);
 
   const textColor = scrolled ? "text-foreground/80" : "text-white/90";
-  const hoverBg   = scrolled ? "hover:bg-accent hover:text-primary" : "hover:bg-white/10 hover:text-white";
+  const hoverBg = scrolled
+    ? "hover:bg-accent hover:text-primary"
+    : "hover:bg-white/10 hover:text-white";
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 px-4">
+    <div className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-3 px-3 sm:px-4">
       <motion.header
-        initial={{ y: -40, opacity: 0 }}
+        initial={{ y: -30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        className={`w-full max-w-6xl rounded-2xl transition-all duration-300 ${
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className={`w-full max-w-5xl rounded-2xl transition-all duration-300 ${
           scrolled
-            ? "bg-background/90 backdrop-blur-2xl border border-border shadow-elegant"
-            : "bg-white/[0.06] backdrop-blur-xl border border-white/10"
+            ? "bg-background/95 backdrop-blur-xl border border-border shadow-md"
+            : "bg-slate-900/60 backdrop-blur-md border border-white/15"
         }`}
         ref={dropdownRef as React.RefObject<HTMLElement>}
       >
-        <div className="flex items-center justify-between px-5 py-3">
-
+        <div className="flex items-center justify-between px-4 sm:px-5 py-2.5">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 shrink-0">
-            <motion.img
+          <Link to="/" className="flex items-center gap-2.5 shrink-0 group">
+            <img
               src="/logo.png"
               alt="4 Brothers Foundation"
-              className={`transition-all duration-300 ${scrolled ? "h-9" : "h-10"} w-auto drop-shadow`}
-              whileHover={{ rotate: 8, scale: 1.06 }}
+              className={`transition-all duration-300 ${scrolled ? "h-8" : "h-9"} w-auto`}
             />
-            <div className="leading-tight hidden sm:block">
-              <div className={`font-display font-bold text-sm ${scrolled ? "text-foreground" : "text-white"}`}>
+            <div className="leading-tight">
+              <div
+                className={`font-display font-bold text-sm tracking-tight ${
+                  scrolled ? "text-foreground" : "text-white"
+                }`}
+              >
                 4 Brothers Foundation
               </div>
-              <div className={`text-[10px] tracking-[0.18em] uppercase ${scrolled ? "text-muted-foreground" : "text-white/60"}`}>
+              <div
+                className={`text-[9px] tracking-[0.16em] uppercase font-semibold ${
+                  scrolled ? "text-muted-foreground" : "text-white/70"
+                }`}
+              >
                 Together as Humans
               </div>
             </div>
           </Link>
 
-          {/* Desktop nav */}
-          <nav className="hidden lg:flex items-center gap-0.5">
+          {/* Desktop nav - clean 5 links */}
+          <nav className="hidden md:flex items-center gap-1">
             {nav.map((item) => (
-              <div key={item.to} className="relative">
+              <div key={item.label} className="relative">
                 {item.sub ? (
                   <button
                     onClick={() => setDropdown(dropdown === item.label ? null : item.label)}
-                    className={`flex items-center gap-1 px-3.5 py-2 rounded-xl text-sm font-medium transition-all ${textColor} ${hoverBg}`}
+                    className={`flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs lg:text-sm font-medium transition-all ${textColor} ${hoverBg}`}
                   >
                     {item.label}
-                    <motion.span
-                      animate={{ rotate: dropdown === item.label ? 180 : 0 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <ChevronDown className="size-3.5 opacity-60" />
-                    </motion.span>
+                    <ChevronDown
+                      className={`size-3 opacity-60 transition-transform duration-200 ${
+                        dropdown === item.label ? "rotate-180" : ""
+                      }`}
+                    />
                   </button>
                 ) : (
                   <Link
                     to={item.to}
-                    activeOptions={{ exact: item.to === "/" }}
-                    className={`px-3.5 py-2 rounded-xl text-sm font-medium transition-all block ${textColor} ${hoverBg}`}
-                    activeProps={{ className: `px-3.5 py-2 rounded-xl text-sm font-semibold block ${scrolled ? "text-primary bg-accent" : "text-white bg-white/15"}` }}
+                    className={`px-3 py-1.5 rounded-lg text-xs lg:text-sm font-medium transition-all block ${textColor} ${hoverBg}`}
+                    activeProps={{
+                      className: `px-3 py-1.5 rounded-lg text-xs lg:text-sm font-semibold block ${
+                        scrolled ? "text-primary bg-accent" : "text-white bg-white/15"
+                      }`,
+                    }}
                   >
                     {item.label}
                   </Link>
@@ -143,11 +151,11 @@ export function SiteHeader() {
                 <AnimatePresence>
                   {item.sub && dropdown === item.label && (
                     <motion.div
-                      initial={{ opacity: 0, y: 8, scale: 0.97 }}
+                      initial={{ opacity: 0, y: 6, scale: 0.98 }}
                       animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: 8, scale: 0.97 }}
-                      transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
-                      className="absolute top-full left-0 mt-2 w-56 rounded-2xl border border-border bg-background/95 backdrop-blur-2xl shadow-elegant overflow-hidden"
+                      exit={{ opacity: 0, y: 6, scale: 0.98 }}
+                      transition={{ duration: 0.15 }}
+                      className="absolute top-full left-0 mt-1.5 w-56 rounded-xl border border-border bg-background/95 backdrop-blur-xl shadow-lg overflow-hidden z-50"
                     >
                       <div className="p-1.5">
                         {item.sub.map((s) => (
@@ -155,10 +163,16 @@ export function SiteHeader() {
                             key={s.label}
                             to={s.to}
                             onClick={() => setDropdown(null)}
-                            className="flex flex-col px-3.5 py-2.5 rounded-xl hover:bg-accent transition-colors group"
+                            className="flex flex-col px-3 py-2 rounded-lg hover:bg-accent transition-colors group"
                           >
-                            <span className="text-sm font-semibold text-foreground group-hover:text-primary">{s.label}</span>
-                            {s.desc && <span className="text-[11px] text-muted-foreground mt-0.5">{s.desc}</span>}
+                            <span className="text-xs sm:text-sm font-semibold text-foreground group-hover:text-primary">
+                              {s.label}
+                            </span>
+                            {s.desc && (
+                              <span className="text-[11px] text-muted-foreground mt-0.5">
+                                {s.desc}
+                              </span>
+                            )}
                           </Link>
                         ))}
                       </div>
@@ -171,28 +185,19 @@ export function SiteHeader() {
 
           {/* Right actions */}
           <div className="flex items-center gap-2">
-            <Link to="/donate" className="hidden sm:block">
-              <Button className="bg-gradient-gold text-navy font-semibold h-9 px-5 text-sm shadow-glow hover:opacity-95">
-                <Heart className="size-3.5 mr-1.5 fill-navy" /> Donate
+            <Link to="/donate">
+              <Button className="bg-gradient-gold text-navy font-bold h-8 px-4 text-xs sm:text-sm shadow-sm hover:opacity-95">
+                <Heart className="size-3.5 mr-1 fill-navy" /> Donate
               </Button>
             </Link>
             <button
               aria-label="Toggle menu"
               onClick={() => setOpen((v) => !v)}
-              className={`lg:hidden p-2 rounded-xl transition-colors ${scrolled ? "text-foreground hover:bg-accent" : "text-white hover:bg-white/10"}`}
+              className={`md:hidden p-1.5 rounded-lg transition-colors ${
+                scrolled ? "text-foreground hover:bg-accent" : "text-white hover:bg-white/10"
+              }`}
             >
-              <AnimatePresence mode="wait" initial={false}>
-                <motion.span
-                  key={open ? "x" : "menu"}
-                  initial={{ rotate: -90, opacity: 0 }}
-                  animate={{ rotate: 0, opacity: 1 }}
-                  exit={{ rotate: 90, opacity: 0 }}
-                  transition={{ duration: 0.15 }}
-                  className="block"
-                >
-                  {open ? <X className="size-5" /> : <Menu className="size-5" />}
-                </motion.span>
-              </AnimatePresence>
+              {open ? <X className="size-5" /> : <Menu className="size-5" />}
             </button>
           </div>
         </div>
@@ -204,24 +209,69 @@ export function SiteHeader() {
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-              className="lg:hidden overflow-hidden border-t border-border/50"
+              transition={{ duration: 0.2 }}
+              className="md:hidden overflow-hidden border-t border-border/50"
             >
-              <div className="px-4 py-3 flex flex-col gap-0.5">
-                {nav.map((item) => (
-                  <div key={item.label}>
-                    <Link
-                      to={item.to}
-                      onClick={() => setOpen(false)}
-                      className="block px-3 py-2.5 rounded-xl text-sm font-medium text-foreground/80 hover:bg-accent transition-colors"
-                    >
-                      {item.label}
-                    </Link>
-                  </div>
-                ))}
+              <div className="px-4 py-3 flex flex-col gap-1 bg-background/95 backdrop-blur-xl">
+                <Link
+                  to="/"
+                  onClick={() => setOpen(false)}
+                  className="px-3 py-2 rounded-lg text-sm font-medium text-foreground hover:bg-accent"
+                >
+                  Home
+                </Link>
+                <Link
+                  to="/about"
+                  onClick={() => setOpen(false)}
+                  className="px-3 py-2 rounded-lg text-sm font-medium text-foreground hover:bg-accent"
+                >
+                  About Us & Story
+                </Link>
+                <Link
+                  to="/management"
+                  onClick={() => setOpen(false)}
+                  className="px-3 py-2 rounded-lg text-sm font-medium text-foreground hover:bg-accent"
+                >
+                  Leadership & Team
+                </Link>
+                <Link
+                  to="/programs"
+                  onClick={() => setOpen(false)}
+                  className="px-3 py-2 rounded-lg text-sm font-medium text-foreground hover:bg-accent"
+                >
+                  Our Programs
+                </Link>
+                <Link
+                  to="/gallery"
+                  onClick={() => setOpen(false)}
+                  className="px-3 py-2 rounded-lg text-sm font-medium text-foreground hover:bg-accent"
+                >
+                  Photo Gallery
+                </Link>
+                <Link
+                  to="/media"
+                  onClick={() => setOpen(false)}
+                  className="px-3 py-2 rounded-lg text-sm font-medium text-foreground hover:bg-accent"
+                >
+                  News & Reports
+                </Link>
+                <Link
+                  to="/get-involved"
+                  onClick={() => setOpen(false)}
+                  className="px-3 py-2 rounded-lg text-sm font-medium text-foreground hover:bg-accent"
+                >
+                  Get Involved
+                </Link>
+                <Link
+                  to="/contact"
+                  onClick={() => setOpen(false)}
+                  className="px-3 py-2 rounded-lg text-sm font-medium text-foreground hover:bg-accent"
+                >
+                  Contact
+                </Link>
                 <div className="pt-2 pb-1">
                   <Link to="/donate" onClick={() => setOpen(false)}>
-                    <Button className="w-full bg-gradient-gold text-navy font-semibold">
+                    <Button className="w-full bg-gradient-gold text-navy font-bold h-9">
                       <Heart className="size-4 mr-1.5 fill-navy" /> Donate Now
                     </Button>
                   </Link>

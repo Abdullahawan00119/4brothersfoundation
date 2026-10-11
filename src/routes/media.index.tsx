@@ -38,9 +38,9 @@ function MediaIndex() {
   return (
     <>
       <PageHero
-        eyebrow="Media & Updates"
-        title={<>News, stories & <span className="text-gradient-gold">field reports</span></>}
-        subtitle="Stay close to our work — read the latest from our programs, press releases and impact reports."
+        eyebrow="Media & Field Reports"
+        title={<>News, Stories & <span className="text-gold font-bold">Field Reports.</span></>}
+        subtitle="Stay close to our work — read the latest from our community initiatives, press releases, and impact reports."
       />
 
       <section className="py-16 bg-background">

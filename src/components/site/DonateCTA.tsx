@@ -1,165 +1,105 @@
-import { motion } from "framer-motion";
 import { Link } from "@tanstack/react-router";
-import { Heart, Shield, CheckCircle2, ArrowRight, Sparkles } from "lucide-react";
+import { Heart, ShieldCheck, CheckCircle2, ArrowRight } from "lucide-react";
 import { Reveal } from "./Reveal";
 import { Button } from "@/components/ui/button";
 
 const categories = [
-  { label: "Food & Ration",    amount: "500",    impact: "Feeds a family for a day",           accent: "oklch(0.78 0.17 70)"  },
-  { label: "Education",        amount: "2,500",  impact: "Books & uniform for one child",       accent: "oklch(0.30 0.16 258)" },
-  { label: "Healthcare",       amount: "1,000",  impact: "Free medical camp visit",             accent: "oklch(0.78 0.17 70)"  },
-  { label: "Clean Water",      amount: "5,000",  impact: "Water filtration for 10 families",    accent: "oklch(0.30 0.16 258)" },
-  { label: "Emergency Relief", amount: "10,000", impact: "Emergency kit for a family",          accent: "oklch(0.78 0.17 70)"  },
-  { label: "Orphan Care",      amount: "3,000",  impact: "Monthly sponsorship for a child",     accent: "oklch(0.30 0.16 258)" },
+  { label: "Family Monthly Ration Bag", amount: "PKR 8,000", impact: "Feeds a vulnerable family for a full month" },
+  { label: "Special Child Education & Therapy", amount: "PKR 10,000", impact: "Tuition & therapy at Hope & Ability School" },
+  { label: "BMC Hospital Meal Drive", amount: "PKR 5,000", impact: "Hot wholesome meals for ~50 attendants" },
+  { label: "Clean Water Hand Pump", amount: "PKR 35,000", impact: "Permanent fresh water in a rural village" },
 ];
 
 const trust = [
-  "100% donation policy",
-  "Tax-deductible receipts",
-  "Verified by independent auditors",
+  "100% donation policy — zero admin deduction",
+  "Direct door-to-door beneficiary verification",
+  "Operational costs funded independently by founders",
 ];
 
 export function DonateCTA() {
   return (
-    <section className="py-28 bg-background overflow-hidden">
-      <div className="container-x">
+    <section className="py-16 sm:py-24 bg-background">
+      <div className="container-x max-w-6xl mx-auto px-4 sm:px-6">
         <Reveal>
-          <div
-            className="relative rounded-[2.5rem] overflow-hidden text-white shadow-elegant"
-            style={{ background: "linear-gradient(135deg, oklch(0.14 0.07 260) 0%, oklch(0.18 0.09 254) 50%, oklch(0.22 0.10 248) 100%)" }}
-          >
-            {/* ── Background decoration ── */}
-            <div className="absolute inset-0 pointer-events-none">
-              {/* Grid */}
-              <div
-                className="absolute inset-0 opacity-[0.04]"
-                style={{
-                  backgroundImage: "linear-gradient(oklch(1 0 0) 1px, transparent 1px), linear-gradient(90deg, oklch(1 0 0) 1px, transparent 1px)",
-                  backgroundSize: "56px 56px",
-                }}
-              />
-              {/* Orbs */}
-              <motion.div
-                animate={{ scale: [1, 1.15, 1], opacity: [0.18, 0.30, 0.18] }}
-                transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -top-40 -right-40 size-[500px] rounded-full blur-[100px]"
-                style={{ background: "oklch(0.78 0.17 70 / 0.22)" }}
-              />
-              <motion.div
-                animate={{ scale: [1, 1.2, 1], opacity: [0.10, 0.20, 0.10] }}
-                transition={{ duration: 11, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-                className="absolute -bottom-40 -left-40 size-[450px] rounded-full blur-[90px]"
-                style={{ background: "oklch(0.58 0.15 240 / 0.18)" }}
-              />
-              {/* Diagonal accent */}
-              <div
-                className="absolute inset-0"
-                style={{ background: "linear-gradient(115deg, transparent 55%, oklch(0.78 0.17 70 / 0.04) 55%, oklch(0.78 0.17 70 / 0.04) 58%, transparent 58%)" }}
-              />
-            </div>
+          <div className="relative rounded-3xl overflow-hidden text-white shadow-md bg-gradient-to-br from-[#071739] via-[#0C2D6E] to-[#185FA5] border border-white/10">
+            {/* Subtle texture */}
+            <div
+              className="absolute inset-0 opacity-[0.035] pointer-events-none"
+              style={{
+                backgroundImage:
+                  "linear-gradient(rgba(255,255,255,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.2) 1px, transparent 1px)",
+                backgroundSize: "36px 36px",
+              }}
+            />
 
-            <div className="relative grid lg:grid-cols-[1fr_1.1fr] gap-0">
-
-              {/* ── LEFT ── */}
-              <div className="p-10 sm:p-14 flex flex-col justify-between">
+            <div className="relative z-10 grid lg:grid-cols-12 gap-8 lg:gap-12 p-7 sm:p-12 items-center">
+              {/* Left Column */}
+              <div className="lg:col-span-6 flex flex-col justify-between">
                 <div>
-                  {/* Eyebrow */}
-                  <div className="inline-flex items-center gap-2 rounded-full border border-gold/35 bg-gold/[0.08] px-4 py-1.5 mb-7">
-                    <Sparkles className="size-3.5 text-gold" />
-                    <span className="text-[10px] uppercase tracking-[0.28em] text-gold font-bold">Make a difference</span>
+                  <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3.5 py-1 text-[11px] uppercase tracking-[0.2em] text-white/90 font-semibold mb-5">
+                    <ShieldCheck className="size-3.5 text-gold" />
+                    Trusted Humanitarian Action
                   </div>
 
-                  {/* Headline */}
-                  <h2 className="text-3xl sm:text-5xl font-extrabold leading-[1.06] tracking-tight mb-5">
-                    Your contribution
-                    <br />
-                    <span className="text-gradient-gold">saves lives.</span>
+                  <h2 className="font-sans text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight mb-4 tracking-tight">
+                    Your contribution <br />
+                    <span className="text-gold font-bold">saves and restores</span> lives.
                   </h2>
 
-                  <p className="text-white/65 leading-relaxed max-w-sm mb-8">
-                    Every rupee goes directly to families in need — full transparency, instant impact, zero overhead.
+                  <p className="text-white/80 text-sm sm:text-base leading-relaxed mb-6 font-normal">
+                    Whether funding a month of groceries for an impoverished family or sponsoring speech therapy for a special child, your donation creates immediate change.
                   </p>
 
-                  {/* Trust list */}
-                  <ul className="space-y-3 mb-10">
+                  <ul className="space-y-2.5 mb-8">
                     {trust.map((t) => (
-                      <li key={t} className="flex items-center gap-3 text-sm text-white/70">
-                        <span className="size-5 rounded-full bg-gold/15 border border-gold/30 flex items-center justify-center shrink-0">
-                          <CheckCircle2 className="size-3 text-gold" />
-                        </span>
-                        {t}
+                      <li key={t} className="flex items-center gap-2.5 text-xs sm:text-sm text-white/85">
+                        <CheckCircle2 className="size-4 text-gold shrink-0" />
+                        <span>{t}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                {/* CTA */}
-                <div>
+                <div className="pt-2">
                   <Link to="/donate">
-                    <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
-                      <Button
-                        size="lg"
-                        className="relative h-14 px-10 bg-gradient-gold text-navy font-extrabold text-base overflow-hidden group"
-                        style={{ boxShadow: "0 0 40px oklch(0.78 0.17 70 / 0.45)" }}
-                      >
-                        <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12" />
-                        <Heart className="size-5 mr-2.5 fill-navy relative z-10" />
-                        <span className="relative z-10">Donate Now</span>
-                      </Button>
-                    </motion.div>
+                    <Button
+                      size="lg"
+                      className="bg-gradient-gold text-navy font-bold text-sm sm:text-base h-12 px-8 shadow-md hover:opacity-95"
+                    >
+                      <Heart className="size-4 mr-2 fill-navy" /> Support Our Mission Today
+                    </Button>
                   </Link>
-                  <p className="mt-3 text-xs text-white/40 flex items-center gap-1.5">
-                    <Shield className="size-3" /> Secure SSL · Instant receipt
-                  </p>
                 </div>
               </div>
 
-              {/* ── RIGHT — category grid ── */}
-              <div
-                className="p-8 sm:p-10 border-l border-white/[0.07] grid grid-cols-2 gap-3 content-center"
-              >
-                <p className="col-span-2 text-[10px] uppercase tracking-[0.25em] text-white/40 font-semibold mb-1">
-                  Choose where your donation goes
-                </p>
-                {categories.map((c, i) => (
-                  <motion.div
+              {/* Right Column: Sponsorship Tiers */}
+              <div className="lg:col-span-6 grid sm:grid-cols-2 gap-3.5 sm:gap-4">
+                {categories.map((c) => (
+                  <div
                     key={c.label}
-                    initial={{ opacity: 0, y: 16 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.07, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                    className="p-5 rounded-2xl bg-white/10 backdrop-blur-md border border-white/15 hover:border-gold/50 transition-colors flex flex-col justify-between"
                   >
-                    <Link
-                      to="/donate"
-                      className="group relative flex flex-col rounded-2xl p-4 border border-white/[0.08] hover:border-white/20 transition-all duration-300 overflow-hidden"
-                      style={{ background: "oklch(1 0 0 / 0.04)", backdropFilter: "blur(12px)" }}
-                    >
-                      {/* Hover glow */}
-                      <div
-                        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"
-                        style={{ background: `radial-gradient(ellipse at top left, ${c.accent}18, transparent 70%)` }}
-                      />
-
-                      {/* Accent dot + label */}
-                      <div className="flex items-center gap-2 mb-3 relative z-10">
-                        <span className="size-2 rounded-full shrink-0" style={{ background: c.accent }} />
-                        <span className="text-[10px] uppercase tracking-wider text-white/50 font-semibold">{c.label}</span>
+                    <div>
+                      <div className="text-[11px] uppercase tracking-wider font-semibold text-white/75 mb-1">
+                        {c.label}
                       </div>
-
-                      {/* Amount */}
-                      <div className="font-display font-extrabold text-2xl leading-none relative z-10" style={{ color: c.accent }}>
-                        PKR {c.amount}
+                      <div className="font-sans text-xl sm:text-2xl font-extrabold text-gold mb-2 tracking-tight">
+                        {c.amount}
                       </div>
+                      <p className="text-xs text-white/80 leading-relaxed font-normal">
+                        {c.impact}
+                      </p>
+                    </div>
 
-                      {/* Impact */}
-                      <p className="text-white/50 text-[11px] mt-1.5 leading-snug relative z-10">{c.impact}</p>
-
-                      {/* Arrow */}
-                      <ArrowRight
-                        className="absolute bottom-3.5 right-3.5 size-3.5 text-white/20 group-hover:text-white/60 group-hover:translate-x-0.5 transition-all duration-200"
-                      />
-                    </Link>
-                  </motion.div>
+                    <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between">
+                      <Link
+                        to="/donate"
+                        className="inline-flex items-center gap-1 text-xs font-semibold text-white hover:text-gold transition-colors"
+                      >
+                        Pledge this <ArrowRight className="size-3" />
+                      </Link>
+                    </div>
+                  </div>
                 ))}
               </div>
             </div>
