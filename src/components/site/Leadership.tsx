@@ -82,6 +82,7 @@ function FounderCard({ founder, i }: { founder: Founder; i: number }) {
               </span>
             </div>
           )}
+          {/* testing */}
 
           {/* Clean Role Badge */}
           <div className="absolute top-2.5 left-2.5">
