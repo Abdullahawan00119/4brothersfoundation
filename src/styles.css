@@ -99,9 +99,9 @@
   --gradient-ocean: linear-gradient(135deg, oklch(0.55 0.13 240), oklch(0.75 0.13 230));
   --gradient-radial: radial-gradient(ellipse at top, oklch(0.45 0.18 250 / 0.4), transparent 60%);
 
-  --shadow-soft: 0 4px 20px -4px oklch(0.28 0.13 258 / 0.15);
-  --shadow-glow: 0 0 40px oklch(0.79 0.15 75 / 0.45);
-  --shadow-elegant: 0 20px 60px -20px oklch(0.18 0.08 258 / 0.3);
+  --shadow-soft: 0 2px 10px -2px oklch(0.28 0.13 258 / 0.06);
+  --shadow-glow: 0 0 20px oklch(0.79 0.15 75 / 0.25);
+  --shadow-elegant: 0 8px 24px -8px oklch(0.18 0.08 258 / 0.12);
 }
 
 .dark {

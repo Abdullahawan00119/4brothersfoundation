@@ -107,15 +107,15 @@ function DonatePage() {
       <section className="py-14 sm:py-20 bg-background">
         <div className="container-x max-w-6xl mx-auto px-4 sm:px-6">
           {/* Top trust bar */}
-          <Reveal className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 mb-12 sm:mb-16 p-4 sm:p-5 rounded-2xl bg-muted/50 border border-border">
+          <Reveal className="grid grid-cols-2 sm:flex sm:flex-wrap items-center justify-center gap-2.5 sm:gap-6 mb-10 sm:mb-14 p-3.5 sm:p-4 rounded-2xl bg-muted/30 border border-border/70">
             {[
               "100% Donation Policy",
               "Registered Welfare Trust",
               "Direct Beneficiary Verification",
               "Tax Receipt & Updates",
             ].map((t) => (
-              <span key={t} className="flex items-center gap-2 text-xs sm:text-sm font-medium text-foreground/75">
-                <CheckCircle2 className="size-4 text-gold shrink-0" /> {t}
+              <span key={t} className="flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-sm font-medium text-foreground/80">
+                <CheckCircle2 className="size-3.5 sm:size-4 text-gold shrink-0" /> {t}
               </span>
             ))}
           </Reveal>
@@ -124,12 +124,12 @@ function DonatePage() {
             {/* ── LEFT: Official Account Card ── */}
             <div className="space-y-8">
               <Reveal>
-                <div className="rounded-3xl border border-border bg-card shadow-soft overflow-hidden">
+                <div className="rounded-3xl border border-border/70 bg-card shadow-sm overflow-hidden">
                   {/* Card Header */}
-                  <div className="p-6 sm:p-8 bg-gradient-to-r from-primary/10 via-primary/5 to-transparent border-b border-border">
+                  <div className="p-6 sm:p-8 bg-gradient-to-r from-primary/10 via-primary/5 to-transparent border-b border-border/70">
                     <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
                       <div className="flex items-center gap-3">
-                        <div className="size-12 rounded-2xl bg-gradient-gold flex items-center justify-center shadow-glow shrink-0">
+                        <div className="size-12 rounded-2xl bg-gradient-gold flex items-center justify-center shadow-sm shrink-0">
                           <Building2 className="size-6 text-navy" />
                         </div>
                         <div>
@@ -183,7 +183,7 @@ function DonatePage() {
                   <div className="grid sm:grid-cols-2 gap-4">
                     <a
                       href="mailto:info@4brothersfoundation.com"
-                      className="p-4 rounded-2xl bg-card border border-border hover:border-gold hover:shadow-soft transition-all flex items-start gap-3 group"
+                      className="p-4 rounded-2xl bg-card border border-border/70 hover:border-gold hover:shadow-sm transition-all flex items-start gap-3 group"
                     >
                       <div className="size-10 rounded-xl bg-gold/15 flex items-center justify-center shrink-0 group-hover:bg-gold transition-colors">
                         <Mail className="size-5 text-gold group-hover:text-navy transition-colors" />
@@ -198,7 +198,7 @@ function DonatePage() {
 
                     <a
                       href="tel:+923333610874"
-                      className="p-4 rounded-2xl bg-card border border-border hover:border-gold hover:shadow-soft transition-all flex items-start gap-3 group"
+                      className="p-4 rounded-2xl bg-card border border-border/70 hover:border-gold hover:shadow-sm transition-all flex items-start gap-3 group"
                     >
                       <div className="size-10 rounded-xl bg-gold/15 flex items-center justify-center shrink-0 group-hover:bg-gold transition-colors">
                         <Phone className="size-5 text-gold group-hover:text-navy transition-colors" />
@@ -212,7 +212,7 @@ function DonatePage() {
                     </a>
                   </div>
 
-                  <div className="mt-4 p-4 rounded-2xl bg-card border border-border flex items-start gap-3">
+                  <div className="mt-4 p-4 rounded-2xl bg-card border border-border/70 flex items-start gap-3">
                     <MapPin className="size-5 text-gold shrink-0 mt-0.5" />
                     <div className="text-xs sm:text-sm text-muted-foreground">
                       <strong className="text-foreground">Head Office:</strong> 4 Brothers Spini Road, Quetta, Balochistan, Pakistan
@@ -256,7 +256,7 @@ function DonatePage() {
                     ].map((item) => (
                       <div
                         key={item.title}
-                        className="rounded-2xl border border-border bg-card p-5 flex flex-col justify-between hover:shadow-soft transition-all"
+                        className="rounded-2xl border border-border/70 bg-card p-5 flex flex-col justify-between hover:border-gold/60 hover:shadow-sm transition-all"
                       >
                         <div>
                           <div className="text-xs font-bold text-primary uppercase tracking-wider mb-1">
@@ -269,7 +269,7 @@ function DonatePage() {
                             {item.desc}
                           </p>
                         </div>
-                        <div className="mt-4 pt-3 border-t border-border">
+                        <div className="mt-4 pt-3 border-t border-border/60">
                           <Link
                             to="/contact"
                             className="inline-flex items-center gap-1 text-xs font-bold text-foreground hover:text-gold transition-colors"
@@ -288,7 +288,7 @@ function DonatePage() {
             <div className="space-y-6">
               {/* Trust Card */}
               <Reveal delay={0.1}>
-                <div className="rounded-3xl bg-gradient-hero text-white p-7 shadow-elegant">
+                <div className="rounded-3xl bg-gradient-hero text-white p-7 shadow-md">
                   <Shield className="size-8 text-gold mb-4" />
                   <h3 className="font-display text-lg font-bold mb-3">Why donate to us?</h3>
                   <ul className="space-y-3 text-sm text-white/80">
@@ -309,14 +309,14 @@ function DonatePage() {
 
               {/* Quick Contact Form link */}
               <Reveal delay={0.2}>
-                <div className="rounded-3xl border border-border bg-card p-6 text-center">
+                <div className="rounded-3xl border border-border/70 bg-card p-6 text-center shadow-sm">
                   <Heart className="size-8 text-gold fill-gold mx-auto mb-3" />
                   <h4 className="font-display font-bold text-lg mb-2">Have a question?</h4>
                   <p className="text-xs sm:text-sm text-muted-foreground mb-5 leading-relaxed">
                     Need help arranging a bank wire, corporate CSR sponsorship, or Zakat distribution?
                   </p>
                   <Link to="/contact">
-                    <Button className="w-full bg-gradient-gold text-navy font-bold shadow-glow">
+                    <Button className="w-full bg-gradient-gold text-navy font-bold shadow-sm hover:opacity-95">
                       Contact Us
                     </Button>
                   </Link>
