@@ -34,7 +34,7 @@ export function LatestNews() {
               <Link
                 to="/media/$slug"
                 params={{ slug: p.slug }}
-                className="group block h-full bg-card rounded-2xl overflow-hidden border border-border shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 flex flex-col"
+                className="group block h-full bg-card rounded-2xl overflow-hidden border border-border/70 shadow-sm hover:shadow transition-all duration-300 hover:-translate-y-1 flex flex-col"
               >
                 <div className="aspect-[16/10] overflow-hidden bg-muted">
                   <img

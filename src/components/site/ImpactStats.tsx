@@ -31,7 +31,7 @@ export function ImpactStats() {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {stats.map((s, i) => (
             <Reveal key={s.label} delay={i * 0.08}>
-              <div className="bg-card rounded-2xl p-5 sm:p-7 shadow-sm hover:shadow-md transition-all duration-300 border border-border text-center flex flex-col items-center group">
+              <div className="bg-card rounded-2xl p-5 sm:p-7 shadow-sm hover:shadow transition-all duration-300 border border-border/70 text-center flex flex-col items-center group">
                 <div className={`p-3 rounded-xl border mb-3.5 ${s.color}`}>
                   <s.icon className="size-5 sm:size-6" />
                 </div>

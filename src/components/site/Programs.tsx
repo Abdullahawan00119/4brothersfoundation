@@ -157,7 +157,7 @@ export function Programs() {
                   opacity: active === i ? 1 : 0.85,
                 }}
                 transition={{ duration: 0.3 }}
-                className={`relative group rounded-3xl overflow-hidden bg-card border border-border shadow-soft hover:shadow-elegant flex flex-col transition-all duration-300 ${
+                className={`relative group rounded-3xl overflow-hidden bg-card border border-border/70 shadow-sm hover:shadow-md flex flex-col transition-all duration-300 ${
                   active === i ? "ring-2 ring-gold/40" : ""
                 }`}
               >
@@ -169,7 +169,7 @@ export function Programs() {
                     draggable={false}
                     className="size-full object-cover group-hover:scale-105 transition-transform duration-700 pointer-events-none"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-card via-card/20 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
 
                   {/* Badge */}
                   <div className="absolute top-4 left-4">

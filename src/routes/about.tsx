@@ -190,7 +190,7 @@ function AboutPage() {
               {values.map((v) => (
                 <div
                   key={v.title}
-                  className="bg-card rounded-2xl p-5 border border-border shadow-sm hover:shadow-md transition-all"
+                  className="bg-card rounded-2xl p-5 border border-border/70 shadow-sm hover:shadow transition-all"
                 >
                   <div className="inline-flex p-2.5 rounded-xl bg-primary/10 text-primary mb-3">
                     <v.icon className="size-5" />
@@ -216,7 +216,7 @@ function AboutPage() {
 
           <div className="grid sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
             <Reveal delay={0.1}>
-              <div className="bg-card rounded-2xl p-7 border border-border shadow-sm h-full flex flex-col justify-between">
+              <div className="bg-card rounded-2xl p-7 border border-border/70 shadow-sm h-full flex flex-col justify-between">
                 <div>
                   <span className="text-[11px] uppercase tracking-wider font-bold text-primary block mb-2">Our Mission</span>
                   <h3 className="font-sans text-xl sm:text-2xl font-bold text-foreground mb-3 leading-snug">
@@ -230,7 +230,7 @@ function AboutPage() {
             </Reveal>
 
             <Reveal delay={0.2}>
-              <div className="bg-card rounded-2xl p-7 border border-border shadow-sm h-full flex flex-col justify-between">
+              <div className="bg-card rounded-2xl p-7 border border-border/70 shadow-sm h-full flex flex-col justify-between">
                 <div>
                   <span className="text-[11px] uppercase tracking-wider font-bold text-primary block mb-2">Our Vision</span>
                   <h3 className="font-sans text-xl sm:text-2xl font-bold text-foreground mb-3 leading-snug">
@@ -262,7 +262,7 @@ function AboutPage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
             {services.map((s, i) => (
               <Reveal key={s.title} delay={i * 0.08}>
-                <div className="bg-card rounded-2xl p-6 border border-border shadow-sm hover:shadow-md transition-all h-full flex flex-col">
+                <div className="bg-card rounded-2xl p-6 border border-border/70 shadow-sm hover:shadow transition-all h-full flex flex-col">
                   <div className={`inline-flex p-3 rounded-xl border mb-4 self-start ${s.color}`}>
                     <s.icon className="size-5" />
                   </div>

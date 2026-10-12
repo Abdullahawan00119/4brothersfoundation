@@ -223,7 +223,7 @@ function ProgramsPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
             {additionalPillars.map((p, i) => (
               <Reveal key={p.title} delay={i * 0.08} className="h-full">
-                <div className="bg-card rounded-2xl overflow-hidden border border-border hover:border-primary/40 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col h-full group">
+                <div className="bg-card rounded-2xl overflow-hidden border border-border/70 hover:border-primary/40 shadow-sm hover:shadow transition-all duration-300 flex flex-col h-full group">
                   {/* Proportional compact image */}
                   <div className="aspect-[16/10] overflow-hidden relative bg-muted shrink-0">
                     <img

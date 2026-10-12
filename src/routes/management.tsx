@@ -70,7 +70,7 @@ function TeamCard({ member, index }: { member: TeamMember; index: number }) {
 
   return (
     <Reveal delay={index * 0.1} className="h-full">
-      <div className="bg-card rounded-2xl border border-border hover:border-gold/50 shadow-sm hover:shadow-md transition-all duration-300 p-4 sm:p-5 flex flex-col h-full text-center group">
+      <div className="bg-card rounded-2xl border border-border/70 hover:border-gold/50 shadow-sm hover:shadow transition-all duration-300 p-4 sm:p-5 flex flex-col h-full text-center group">
         {/* Photo Container — aspect-[4/3] to fit photos naturally without awkward crop */}
         <div className="relative aspect-[4/3] w-full rounded-xl overflow-hidden bg-muted/60 border border-border/60 mb-3.5 shrink-0 flex items-center justify-center">
           {!imgError ? (

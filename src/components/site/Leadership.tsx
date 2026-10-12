@@ -61,7 +61,7 @@ function FounderCard({ founder, i }: { founder: Founder; i: number }) {
 
   return (
     <Reveal delay={i * 0.08} className="h-full">
-      <div className="bg-card rounded-2xl border border-border hover:border-gold/50 shadow-sm hover:shadow-md transition-all duration-300 p-4 sm:p-5 flex flex-col h-full text-center group">
+      <div className="bg-card rounded-2xl border border-border/70 hover:border-gold/50 shadow-sm hover:shadow transition-all duration-300 p-4 sm:p-5 flex flex-col h-full text-center group">
         {/* Photo Container — aspect-[4/3] to ensure SC.jpg (4:3) and R.jpg are never cut */}
         <div className="relative aspect-[4/3] w-full rounded-xl overflow-hidden bg-muted/60 border border-border/60 mb-3.5 shrink-0 flex items-center justify-center">
           {hasPhoto ? (
@@ -82,7 +82,6 @@ function FounderCard({ founder, i }: { founder: Founder; i: number }) {
               </span>
             </div>
           )}
-          {/* testing */}
 
           {/* Clean Role Badge */}
           <div className="absolute top-2.5 left-2.5">

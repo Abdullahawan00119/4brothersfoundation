@@ -113,7 +113,7 @@ export function Stories() {
                   key={s.name}
                   animate={{ scale: isActive ? 1 : 0.95, opacity: isActive ? 1 : 0.6 }}
                   transition={{ duration: 0.3 }}
-                  className="relative shrink-0 rounded-2xl p-6 sm:p-7 border border-white/15 bg-white/[0.06] backdrop-blur-md flex flex-col justify-between"
+                  className="relative shrink-0 rounded-2xl p-6 sm:p-7 border border-white/10 bg-white/[0.03] backdrop-blur-md flex flex-col justify-between"
                   style={{ width: cardW, marginRight: GAP }}
                 >
                   <div>
