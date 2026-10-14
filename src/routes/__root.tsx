@@ -1,4 +1,4 @@
-import { Outlet, Link, createRootRoute } from "@tanstack/react-router";
+import { Outlet, Link, createRootRoute, ScrollRestoration, useLocation } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { LoadingScreen } from "@/components/site/LoadingScreen";
@@ -35,6 +35,7 @@ export const Route = createRootRoute({
 function RootComponent() {
   const [isLoading, setIsLoading] = useState(true);
   const [showLoadingScreen, setShowLoadingScreen] = useState(true);
+  const location = useLocation();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -43,12 +44,20 @@ function RootComponent() {
     return () => clearTimeout(timer);
   }, []);
 
+  // Guarantee that every route change starts at the very top of the page
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  }, [location.pathname]);
+
   const handleLoadComplete = () => {
     setShowLoadingScreen(false);
   };
 
   return (
     <>
+      <ScrollRestoration />
       {showLoadingScreen && (
         <LoadingScreen
           isLoading={isLoading}
