@@ -2,8 +2,10 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Hero } from "@/components/site/Hero";
 import { ImpactStats } from "@/components/site/ImpactStats";
 import { Programs } from "@/components/site/Programs";
+import { TransparencyModel } from "@/components/site/TransparencyModel";
 import { Leadership } from "@/components/site/Leadership";
-import { Stories } from "@/components/site/Stories";
+import { FieldCoordinators } from "@/components/site/FieldCoordinators";
+import { VolunteerHelpdesk } from "@/components/site/VolunteerHelpdesk";
 import { DonateCTA } from "@/components/site/DonateCTA";
 import { LatestNews } from "@/components/site/LatestNews";
 
@@ -27,8 +29,10 @@ function Home() {
       <Hero />
       <ImpactStats />
       <Programs />
+      <TransparencyModel />
       <Leadership />
-      <Stories />
+      <FieldCoordinators />
+      <VolunteerHelpdesk />
       <DonateCTA />
       <LatestNews />
     </>

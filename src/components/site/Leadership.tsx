@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { Reveal } from "./Reveal";
-import { Mail } from "lucide-react";
+import { Mail, ShieldCheck } from "lucide-react";
 
 export interface Founder {
   name: string;
   role: string;
   title: string;
+  focus: string;
   bio: string;
   email: string;
   img: string | null;
@@ -16,37 +17,31 @@ export const founders: Founder[] = [
   {
     name: "Roshan",
     role: "Founder",
-    title: "Founder",
-    bio: "Visionary leader with a decade in social development, leading humanitarian missions and relief operations.",
+    title: "Founder & Executive Director",
+    focus: "Field Missions & Operations",
+    bio: "Visionary leader with a decade in social development, directing humanitarian relief and ground operations across Quetta and Balochistan.",
     email: "chouhanroshan877@gmail.com",
     img: "/R.jpg",
     initials: "R",
   },
   {
-    name: "Sharoon Chouhan",
-    role: "Founder",
-    title: "Founder",
-    bio: "Expert in community health systems and grassroots mobilization across Balochistan and nationwide.",
-    email: "Sharoonchouhan702@gmail.com",
-    img: "/SC.jpg",
-    initials: "SC",
-  },
-  {
     name: "Afshan",
     role: "Founder",
-    title: "Founder",
-    bio: "Certified accountant ensuring transparent fund allocation, financial integrity, and accountability.",
+    title: "Co-Founder & Financial Trustee",
+    focus: "Financial Integrity & Audit",
+    bio: "Certified finance professional ensuring transparent fund allocation, ethical governance, and strict accountability for every rupee donated.",
     email: "afshanwilliam00@gmail.com",
-    img: "/images/afshan.png",
+    img: null,
     initials: "A",
   },
   {
     name: "Sonia Khurram Chohan",
     role: "Founder",
-    title: "Founder",
-    bio: "Connecting communities through strategic partnerships, inclusive education, and digital engagement.",
+    title: "Co-Founder & Community Outreach",
+    focus: "Special Education & Partnerships",
+    bio: "Driving educational empowerment and community care through strategic NGO alliances and specialized children's therapy programs.",
     email: "sonia@4brotherfoundation.com",
-    img: "/images/sonia.png",
+    img: null,
     initials: "SK",
   },
 ];
@@ -60,58 +55,73 @@ function FounderCard({ founder, i }: { founder: Founder; i: number }) {
   const hasPhoto = Boolean(founder.img) && !imgError;
 
   return (
-    <Reveal delay={i * 0.08} className="h-full">
-      <div className="bg-card rounded-2xl border border-border/70 hover:border-gold/50 shadow-sm hover:shadow transition-all duration-300 p-4 sm:p-5 flex flex-col h-full text-center group">
-        {/* Photo Container — aspect-[4/3] to ensure SC.jpg (4:3) and R.jpg are never cut */}
-        <div className="relative aspect-[4/3] w-full rounded-xl overflow-hidden bg-muted/60 border border-border/60 mb-3.5 shrink-0 flex items-center justify-center">
+    <Reveal delay={i * 0.1} className="h-full">
+      <div className="bg-card rounded-2xl border border-border/80 hover:border-gold/50 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 p-5 sm:p-6 flex flex-col h-full text-center group relative overflow-hidden">
+        {/* Subtle decorative gold top accent on hover */}
+        <div className="absolute top-0 inset-x-0 h-1 bg-gradient-gold opacity-0 group-hover:opacity-100 transition-opacity" />
+
+        {/* Photo or Monogram Frame */}
+        <div className="relative aspect-[4/3] w-full rounded-xl overflow-hidden bg-muted/40 border border-border/60 mb-4 shrink-0 flex items-center justify-center">
           {hasPhoto ? (
             <img
               src={founder.img!}
               alt={founder.name}
               loading="lazy"
               onError={() => setImgError(true)}
-              className="w-full h-full object-cover object-[center_15%] group-hover:scale-102 transition-transform duration-500"
+              className="size-full object-cover object-[center_15%] group-hover:scale-103 transition-transform duration-500"
             />
           ) : (
-            <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-b from-primary/10 to-primary/20 text-primary">
-              <span className="font-sans font-bold text-3xl sm:text-4xl tracking-tight text-primary">
-                {founder.initials}
-              </span>
-              <span className="text-[10px] uppercase tracking-widest font-semibold opacity-70 mt-1">
-                Founder
+            <div className="size-full flex flex-col items-center justify-center bg-gradient-to-b from-[#071739] to-[#0a2357] text-white relative overflow-hidden">
+              {/* Subtle gold decorative circle */}
+              <div className="absolute -top-6 -right-6 size-24 rounded-full bg-gold/10 blur-xl pointer-events-none" />
+
+              <div className="size-16 sm:size-18 rounded-full border-2 border-gold/40 bg-white/10 backdrop-blur-sm flex items-center justify-center shadow-inner mb-1.5">
+                <span className="font-display font-extrabold text-2xl sm:text-3xl text-gold tracking-tight">
+                  {founder.initials}
+                </span>
+              </div>
+              <span className="text-[10px] uppercase tracking-widest font-bold text-white/70">
+                Founder & Trustee
               </span>
             </div>
           )}
 
-          {/* Clean Role Badge */}
+          {/* Role badge */}
           <div className="absolute top-2.5 left-2.5">
-            <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-black/60 backdrop-blur-md text-white border border-white/10">
-              {founder.role}
+            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-black/60 backdrop-blur-md text-white border border-white/15">
+              <ShieldCheck className="size-3 text-gold" /> {founder.role}
             </span>
           </div>
         </div>
 
-        {/* Content */}
+        {/* Founder Info */}
         <div className="flex flex-col flex-1">
-          <h3 className="font-display font-bold text-base sm:text-lg text-foreground leading-snug">
+          <h3 className="font-display font-bold text-lg sm:text-xl text-foreground leading-snug group-hover:text-gold transition-colors">
             {founder.name}
           </h3>
-          <p className="text-[11px] font-semibold text-primary uppercase tracking-wider mt-0.5 mb-2">
+
+          <p className="text-xs font-semibold text-primary uppercase tracking-wider mt-0.5 mb-1.5">
             {founder.title}
           </p>
 
-          <p className="text-xs text-muted-foreground leading-relaxed flex-1 line-clamp-3">
+          <div className="mb-3">
+            <span className="inline-block text-[10.5px] font-semibold px-2.5 py-0.5 rounded-md bg-gold/10 text-gold border border-gold/20">
+              {founder.focus}
+            </span>
+          </div>
+
+          <p className="text-xs text-muted-foreground leading-relaxed flex-1 line-clamp-3 mb-4 font-normal">
             {founder.bio}
           </p>
 
-          {/* Email link (no social media icons) */}
-          <div className="mt-3 pt-3 border-t border-border/70 flex items-center justify-center">
+          {/* Email button */}
+          <div className="pt-3 border-t border-border/60 flex items-center justify-center">
             <a
               href={`mailto:${founder.email}`}
-              className="inline-flex items-center gap-1.5 text-[11px] text-muted-foreground hover:text-primary transition-colors truncate max-w-full font-medium"
+              className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-gold transition-colors font-medium truncate max-w-full px-2 py-1 rounded-lg hover:bg-muted/50"
               title={founder.email}
             >
-              <Mail className="size-3 text-gold shrink-0" />
+              <Mail className="size-3.5 text-gold shrink-0" />
               <span className="truncate">{founder.email}</span>
             </a>
           </div>
@@ -123,23 +133,23 @@ function FounderCard({ founder, i }: { founder: Founder; i: number }) {
 
 export function Leadership({ compact = false }: LeadershipProps) {
   return (
-    <section className="py-12 sm:py-16 bg-muted/20 border-y border-border/40">
-      <div className="container-x max-w-6xl">
+    <section className="py-14 sm:py-20 bg-muted/20 border-y border-border/40">
+      <div className="container-x max-w-5xl">
         {/* Section header */}
-        <Reveal className="text-center max-w-xl mx-auto mb-8 sm:mb-10">
+        <Reveal className="text-center max-w-xl mx-auto mb-10 sm:mb-12">
           <p className="text-[11px] uppercase tracking-[0.22em] text-gold font-bold mb-2">
             Leadership & Governance
           </p>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold leading-tight text-foreground">
             Our Founders
           </h2>
-          <p className="mt-2.5 text-muted-foreground text-xs sm:text-sm leading-relaxed">
-            United by blood and driven by a shared vision to serve humanity and give back to the communities that raised them.
+          <p className="mt-2.5 text-muted-foreground text-xs sm:text-sm leading-relaxed font-normal">
+            United by blood and driven by a shared commitment to serve humanity and uplift vulnerable communities across Pakistan.
           </p>
         </Reveal>
 
-        {/* Cards grid — compact, balanced 4 cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+        {/* Cards grid — balanced responsive 3 columns */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
           {founders.map((founder, i) => (
             <FounderCard key={founder.name} founder={founder} i={i} />
           ))}

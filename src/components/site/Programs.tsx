@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import { Link } from "@tanstack/react-router";
 import { motion, useMotionValue, animate } from "framer-motion";
-import { ArrowRight, ArrowLeft, ArrowUpRight, Heart, MapPin } from "lucide-react";
+import { Heart } from "lucide-react";
 import { Reveal } from "./Reveal";
 
 const programs = [
@@ -107,28 +107,12 @@ export function Programs() {
             </h2>
           </Reveal>
 
-          <Reveal delay={0.15} className="flex items-center gap-3">
-            <button
-              onClick={() => goTo(active - 1)}
-              disabled={active === 0}
-              aria-label="Previous program"
-              className="size-11 rounded-full border border-border flex items-center justify-center text-foreground/60 hover:border-gold hover:text-gold disabled:opacity-30 transition-all"
-            >
-              <ArrowLeft className="size-4" />
-            </button>
-            <button
-              onClick={() => goTo(active + 1)}
-              disabled={active === programs.length - 1}
-              aria-label="Next program"
-              className="size-11 rounded-full border border-border flex items-center justify-center text-foreground/60 hover:border-gold hover:text-gold disabled:opacity-30 transition-all"
-            >
-              <ArrowRight className="size-4" />
-            </button>
+          <Reveal delay={0.15} className="flex items-center">
             <Link
               to="/programs"
-              className="ml-2 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-gold transition-colors"
+              className="inline-flex items-center px-4 py-2 rounded-xl border border-border bg-card hover:border-gold hover:text-gold text-xs sm:text-sm font-semibold text-foreground transition-all shadow-sm"
             >
-              View all programs <ArrowRight className="size-4" />
+              View all programs
             </Link>
           </Reveal>
         </div>
@@ -206,7 +190,7 @@ export function Programs() {
                       to="/programs"
                       className="inline-flex items-center gap-1.5 text-xs font-bold text-foreground group-hover:text-gold transition-colors"
                     >
-                      Explore Program <ArrowUpRight className="size-3.5" />
+                      Explore Program
                     </Link>
                     <Link
                       to="/donate"

@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 
 vi.mock("@tanstack/react-router", () => ({
@@ -9,8 +9,11 @@ vi.mock("framer-motion", async () => {
   const actual = await vi.importActual("framer-motion");
   return {
     ...actual,
+    AnimatePresence: ({ children }: { children: React.ReactNode }) => <>{children}</>,
     motion: {
-      div: ({ children, ...props }: { children: React.ReactNode; [key: string]: unknown }) => <div {...props}>{children}</div>,
+      div: ({ children, layoutId, ...props }: { children: React.ReactNode; layoutId?: string; [key: string]: unknown }) => (
+        <div {...props}>{children}</div>
+      ),
       h1: ({ children, ...props }: { children: React.ReactNode; [key: string]: unknown }) => <h1 {...props}>{children}</h1>,
       p: ({ children, ...props }: { children: React.ReactNode; [key: string]: unknown }) => <p {...props}>{children}</p>,
       span: ({ children, ...props }: { children: React.ReactNode; [key: string]: unknown }) => <span {...props}>{children}</span>,
@@ -18,39 +21,45 @@ vi.mock("framer-motion", async () => {
   };
 });
 
-vi.mock("@/assets/quetta-distribution.jpg", () => ({ default: "hero.jpg" }));
-
 import { Hero } from "./Hero";
 
 describe("Hero", () => {
-  it("renders headline", () => {
-    render(<Hero />);
-    expect(screen.getByText(/Building hope/i)).toBeInTheDocument();
-  });
-
-  it("renders Donate Now CTA", () => {
-    render(<Hero />);
-    expect(screen.getByText(/Donate Now/i)).toBeInTheDocument();
-  });
-
-  it("renders Volunteer CTA", () => {
-    render(<Hero />);
-    expect(screen.getByText(/Volunteer/i)).toBeInTheDocument();
-  });
-
-  it("renders impact stats", () => {
-    render(<Hero />);
-    expect(screen.getByText(/Families helped/i)).toBeInTheDocument();
-  });
-
-  it("renders background image", () => {
-    render(<Hero />);
-    const img = screen.getByAltText(/Volunteers distributing food/i);
-    expect(img).toBeInTheDocument();
-  });
-
   it("renders tagline badge", () => {
     render(<Hero />);
     expect(screen.getByText(/Together as Humans/i)).toBeInTheDocument();
+  });
+
+  it("renders first program headline and tag", () => {
+    render(<Hero />);
+    expect(screen.getByText(/Gawahi 4B Hope & Ability School:/i)).toBeInTheDocument();
+    expect(screen.getByText(/Empowering 27 Special Students/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/Special Needs Education/i).length).toBeGreaterThanOrEqual(1);
+  });
+
+  it("renders primary action donate/support button", () => {
+    render(<Hero />);
+    expect(screen.getByText(/Support Special School/i)).toBeInTheDocument();
+  });
+
+  it("renders impact metrics chips", () => {
+    render(<Hero />);
+    expect(screen.getAllByText(/Special Students/i).length).toBeGreaterThanOrEqual(1);
+    expect(screen.getByText(/27 Special Students • 8 Qualified Teachers/i)).toBeInTheDocument();
+  });
+
+  it("switches slides when an indicator dot is clicked", () => {
+    render(<Hero />);
+    const dot2 = screen.getByRole("button", { name: /Go to slide 2/i });
+    fireEvent.click(dot2);
+
+    // Second slide is Community Ration Distribution
+    expect(screen.getByText(/Community Ration Distribution:/i)).toBeInTheDocument();
+  });
+
+  it("has no arrows, no slide counter, and no bulky card pills", () => {
+    render(<Hero />);
+    expect(screen.queryByRole("button", { name: /previous event slide/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: /next event slide/i })).not.toBeInTheDocument();
+    expect(screen.queryByText("01")).not.toBeInTheDocument();
   });
 });

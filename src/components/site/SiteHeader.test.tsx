@@ -37,7 +37,7 @@ describe("SiteHeader", () => {
     render(<SiteHeader />);
     expect(screen.getByAltText(/4 Brothers Welfare Trust logo/i)).toBeInTheDocument();
     expect(screen.getByText("Home")).toBeInTheDocument();
-    expect(screen.getByText("About")).toBeInTheDocument();
+    expect(screen.getByText("About Us")).toBeInTheDocument();
     expect(screen.getByText("Programs")).toBeInTheDocument();
   });
 
@@ -67,7 +67,7 @@ describe("SiteHeader", () => {
 
   it("renders all navigation items", () => {
     render(<SiteHeader />);
-    const navItems = ["Home", "About", "Programs", "Gallery", "Media", "Get Involved", "Contact"];
+    const navItems = ["About Us", "Programs", "Media & Gallery", "Get Involved", "Contact"];
     navItems.forEach((item) => {
       expect(screen.getByText(item)).toBeInTheDocument();
     });
