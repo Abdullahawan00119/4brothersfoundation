@@ -71,15 +71,15 @@ function GalleryPage() {
         subtitle="A glimpse into our field work, community food distributions, special education school, and relief operations."
       />
 
-      <section className="py-20 bg-background">
-        <div className="container-x">
-          {/* Category filter */}
-          <Reveal className="flex flex-wrap gap-2 mb-10">
+      <section className="py-12 sm:py-20 bg-background">
+        <div className="container-x max-w-6xl mx-auto px-4 sm:px-6">
+          {/* Category filter: horizontal scrollable on mobile */}
+          <Reveal className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-2 sm:flex-wrap sm:overflow-visible mb-6 sm:mb-10 -mx-4 px-4 sm:mx-0 sm:px-0">
             {categories.map((c) => (
               <button
                 key={c}
                 onClick={() => setActive(c)}
-                className={`px-5 py-2 rounded-full text-sm font-semibold border transition-all ${
+                className={`px-4 sm:px-5 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold border transition-all shrink-0 ${
                   active === c
                     ? "bg-gradient-gold text-navy border-transparent shadow-glow"
                     : "bg-background border-border text-foreground/80 hover:border-gold"
@@ -91,13 +91,13 @@ function GalleryPage() {
           </Reveal>
 
           {/* Masonry grid */}
-          <div className="columns-1 sm:columns-2 lg:columns-3 gap-5 [&>*]:mb-5">
+          <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 sm:gap-5 [&>*]:mb-4 sm:[&>*]:mb-5">
             {filtered.map((img, i) => (
               <Reveal key={`${img.src}-${i}`} delay={(i % 3) * 0.08}>
                 <button
                   onClick={() => openLightbox(i)}
                   className={`relative break-inside-avoid w-full rounded-2xl overflow-hidden shadow-soft hover:shadow-elegant transition-all group block ${
-                    img.tall ? "h-[420px]" : "h-[280px]"
+                    img.tall ? "h-[320px] sm:h-[420px]" : "h-[220px] sm:h-[280px]"
                   }`}
                   aria-label={`View ${img.alt}`}
                 >

@@ -119,19 +119,19 @@ function ProgramsPage() {
       />
 
       {/* Flagship Initiatives Section */}
-      <section className="py-16 sm:py-24 bg-background">
+      <section className="py-12 sm:py-20 bg-background">
         <div className="container-x max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="space-y-20 sm:space-y-28">
+          <div className="space-y-12 sm:space-y-24">
             {flagshipPrograms.map((p, i) => (
               <Reveal key={p.title}>
                 <article
-                  className={`grid lg:grid-cols-12 gap-8 lg:gap-12 items-center ${
+                  className={`grid lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-12 items-center ${
                     i % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""
                   }`}
                 >
                   {/* Image container */}
                   <div className="lg:col-span-6">
-                    <div className="relative rounded-3xl overflow-hidden shadow-elegant border border-border group bg-muted aspect-[4/3]">
+                    <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-elegant border border-border group bg-muted aspect-[4/3]">
                       <img
                         src={p.img}
                         alt={p.title}
@@ -139,14 +139,14 @@ function ProgramsPage() {
                         className="size-full object-cover group-hover:scale-105 transition-transform duration-700"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
-                      <div className="absolute top-4 left-4">
-                        <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-gold text-navy shadow-md">
+                      <div className="absolute top-3.5 left-3.5 sm:top-4 sm:left-4">
+                        <span className="inline-flex items-center px-3 py-1 rounded-full text-[10.5px] sm:text-xs font-bold uppercase tracking-wider bg-gold text-navy shadow-md">
                           {p.badge}
                         </span>
                       </div>
                       {p.location && (
-                        <div className="absolute bottom-4 left-4 right-4 flex items-center gap-2 text-white/90 text-xs sm:text-sm font-medium bg-black/40 backdrop-blur-md px-3.5 py-2 rounded-xl border border-white/10">
-                          <MapPin className="size-4 text-gold shrink-0" />
+                        <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 flex items-center gap-2 text-white/90 text-xs sm:text-sm font-medium bg-black/50 backdrop-blur-md px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl border border-white/10">
+                          <MapPin className="size-3.5 sm:size-4 text-gold shrink-0" />
                           <span className="truncate">{p.location}</span>
                         </div>
                       )}
@@ -155,44 +155,44 @@ function ProgramsPage() {
 
                   {/* Content container */}
                   <div className="lg:col-span-6 flex flex-col">
-                    <span className="text-xs font-bold uppercase tracking-[0.22em] text-gold mb-2">
+                    <span className="text-[11px] sm:text-xs font-bold uppercase tracking-[0.22em] text-gold mb-1.5 sm:mb-2">
                       Flagship Program 0{i + 1}
                     </span>
-                    <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground leading-tight">
+                    <h2 className="font-serif text-xl sm:text-3xl lg:text-4xl font-bold text-foreground leading-tight">
                       {p.title}
                     </h2>
-                    <p className="mt-2 text-sm sm:text-base font-semibold text-primary/90">
+                    <p className="mt-1.5 sm:mt-2 text-xs sm:text-base font-semibold text-primary/90">
                       {p.tagline}
                     </p>
-                    <p className="mt-4 text-sm sm:text-base text-muted-foreground leading-relaxed">
+                    <p className="mt-3 sm:mt-4 text-xs sm:text-base text-muted-foreground leading-relaxed">
                       {p.desc}
                     </p>
 
                     {/* Highlights */}
-                    <div className="mt-6 space-y-2.5">
+                    <div className="mt-5 sm:mt-6 space-y-2 sm:space-y-2.5">
                       {p.highlights.map((h) => (
                         <div key={h} className="flex items-start gap-2.5 text-xs sm:text-sm text-foreground/90">
-                          <CheckCircle2 className="size-4 text-gold shrink-0 mt-0.5" />
+                          <CheckCircle2 className="size-3.5 sm:size-4 text-gold shrink-0 mt-0.5" />
                           <span>{h}</span>
                         </div>
                       ))}
                     </div>
 
                     {p.costInfo && (
-                      <div className="mt-5 p-3 rounded-2xl bg-gold/10 border border-gold/25 inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-gold">
-                        <Heart className="size-4 fill-gold shrink-0" />
+                      <div className="mt-4 sm:mt-5 p-2.5 sm:p-3 rounded-xl sm:rounded-2xl bg-gold/10 border border-gold/25 inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-gold self-start">
+                        <Heart className="size-3.5 sm:size-4 fill-gold shrink-0" />
                         <span>{p.costInfo}</span>
                       </div>
                     )}
 
-                    <div className="mt-7 flex flex-wrap items-center gap-4">
-                      <Link to="/donate">
-                        <Button className="bg-gradient-gold text-navy font-bold h-11 px-7 shadow-glow">
+                    <div className="mt-6 sm:mt-7 flex flex-col xs:flex-row items-stretch xs:items-center gap-3 sm:gap-4">
+                      <Link to="/donate" className="w-full xs:w-auto">
+                        <Button className="w-full xs:w-auto bg-gradient-gold text-navy font-bold h-11 px-7 shadow-glow">
                           Support this program <ArrowRight className="size-4 ml-1.5" />
                         </Button>
                       </Link>
-                      <Link to="/contact">
-                        <Button variant="outline" className="h-11 px-6">
+                      <Link to="/contact" className="w-full xs:w-auto">
+                        <Button variant="outline" className="w-full xs:w-auto h-11 px-6">
                           Inquire Details
                         </Button>
                       </Link>

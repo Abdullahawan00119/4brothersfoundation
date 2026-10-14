@@ -111,18 +111,18 @@ function GetInvolvedPage() {
       </section>
 
       {/* ── Ways to Get Involved ── */}
-      <section id="ways" className="py-24 bg-background">
-        <div className="container-x">
-          <Reveal className="text-center max-w-2xl mx-auto mb-14">
-            <p className="text-xs uppercase tracking-[0.22em] text-gold font-semibold mb-3">How You Can Help</p>
-            <h2 className="text-3xl sm:text-5xl font-bold">
+      <section id="ways" className="py-14 sm:py-20 bg-background">
+        <div className="container-x max-w-6xl mx-auto px-4 sm:px-6">
+          <Reveal className="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
+            <p className="text-xs uppercase tracking-[0.22em] text-gold font-semibold mb-2 sm:mb-3">How You Can Help</p>
+            <h2 className="text-2xl xs:text-3xl sm:text-5xl font-bold">
               Choose your{" "}
               <span className="text-gradient-gold">path to impact</span>
             </h2>
-            <p className="mt-4 text-muted-foreground text-lg">Every skill, every hour, every contribution makes a difference.</p>
+            <p className="mt-3 text-muted-foreground text-sm sm:text-lg">Every skill, every hour, every contribution makes a difference.</p>
           </Reveal>
 
-          <div className="grid sm:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
             {ways.map((w, i) => (
               <Reveal key={w.title} delay={i * 0.12}>
                 <motion.div
@@ -205,17 +205,17 @@ function GetInvolvedPage() {
       </section>
 
       {/* ── Volunteer Sign-up Form ── */}
-      <section id="signup-form" className="py-24 bg-background">
-        <div className="container-x">
-          <Reveal className="text-center max-w-xl mx-auto mb-12">
-            <p className="text-xs uppercase tracking-[0.22em] text-gold font-semibold mb-3">Join Today</p>
-            <h2 className="text-3xl sm:text-4xl font-bold">Volunteer Sign-up</h2>
-            <p className="mt-3 text-muted-foreground">We'll get back to you within 48 hours with your first mission.</p>
+      <section id="signup-form" className="py-14 sm:py-20 bg-background">
+        <div className="container-x max-w-4xl mx-auto px-4 sm:px-6">
+          <Reveal className="text-center max-w-xl mx-auto mb-10 sm:mb-12">
+            <p className="text-xs uppercase tracking-[0.22em] text-gold font-semibold mb-2 sm:mb-3">Join Today</p>
+            <h2 className="text-2xl sm:text-4xl font-bold">Volunteer Sign-up</h2>
+            <p className="mt-2 sm:mt-3 text-xs sm:text-sm text-muted-foreground">We'll get back to you within 48 hours with your first mission.</p>
           </Reveal>
 
           <Reveal>
             <div
-              className="relative max-w-3xl mx-auto rounded-3xl border border-white/[0.10] p-8 sm:p-12 overflow-hidden"
+              className="relative max-w-3xl mx-auto rounded-2xl sm:rounded-3xl border border-white/[0.10] p-5 xs:p-6 sm:p-10 overflow-hidden"
               style={{
                 background: "linear-gradient(135deg, oklch(0.14 0.07 260 / 0.85) 0%, oklch(0.18 0.09 255 / 0.85) 100%)",
                 backdropFilter: "blur(20px)",

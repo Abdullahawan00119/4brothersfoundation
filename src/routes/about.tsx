@@ -105,7 +105,7 @@ function AboutPage() {
   return (
     <>
       {/* ── 1. Hero Section (Deep Foundation Navy, Professional & Human) ── */}
-      <section className="relative pt-32 sm:pt-40 pb-16 sm:pb-24 bg-gradient-to-br from-[#071739] via-[#0C2D6E] to-[#185FA5] text-white overflow-hidden">
+      <section className="relative pt-28 xs:pt-32 sm:pt-40 pb-12 sm:pb-20 bg-gradient-to-br from-[#071739] via-[#0C2D6E] to-[#185FA5] text-white overflow-hidden">
         <div
           className="absolute inset-0 opacity-[0.035] pointer-events-none"
           style={{
@@ -118,27 +118,27 @@ function AboutPage() {
         <div className="container-x max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
           <div className="grid lg:grid-cols-[1fr_380px] gap-8 lg:gap-14 items-center">
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3.5 py-1 text-[11px] uppercase tracking-[0.2em] text-white/90 font-semibold mb-5">
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3.5 py-1 text-[10.5px] sm:text-[11px] uppercase tracking-[0.2em] text-white/90 font-semibold mb-4 sm:mb-5">
                 <ShieldCheck className="size-3.5 text-gold" />
                 Our Story & Purpose • Est. 2026
               </div>
 
-              <h1 className="font-sans text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.15] mb-5">
+              <h1 className="font-sans text-2xl xs:text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.18] sm:leading-[1.15] mb-4 sm:mb-5">
                 Empowering Communities Through Compassionate Service
               </h1>
 
-              <p className="text-white/80 text-sm sm:text-base lg:text-lg leading-relaxed max-w-2xl mb-8 font-normal">
+              <p className="text-white/80 text-xs xs:text-sm sm:text-base lg:text-lg leading-relaxed max-w-2xl mb-6 sm:mb-8 font-normal">
                 What started as four brothers sharing meals with neighbors on Spini Road, Quetta has grown into a dedicated foundation serving thousands of families — through specialized education, daily food drives, healthcare relief, and clean water.
               </p>
 
-              <div className="flex flex-wrap gap-3">
-                <Link to="/donate">
-                  <Button className="bg-gradient-gold text-navy font-bold text-sm h-11 px-7 shadow-md">
+              <div className="flex flex-col xs:flex-row gap-3">
+                <Link to="/donate" className="w-full xs:w-auto">
+                  <Button className="w-full xs:w-auto bg-gradient-gold text-navy font-bold text-sm h-11 px-7 shadow-md">
                     <Heart className="size-4 mr-2 fill-navy" /> Support Our Mission
                   </Button>
                 </Link>
-                <Link to="/management">
-                  <Button variant="outline" className="border-white/20 bg-white/10 text-white hover:bg-white/20 text-sm h-11 px-6 backdrop-blur-md">
+                <Link to="/management" className="w-full xs:w-auto">
+                  <Button variant="outline" className="w-full xs:w-auto border-white/20 bg-white/10 text-white hover:bg-white/20 text-sm h-11 px-6 backdrop-blur-md">
                     Meet Our Leadership
                   </Button>
                 </Link>

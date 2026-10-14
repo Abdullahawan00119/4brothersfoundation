@@ -43,15 +43,15 @@ function MediaIndex() {
         subtitle="Stay close to our work — read the latest from our community initiatives, press releases, and impact reports."
       />
 
-      <section className="py-16 bg-background">
-        <div className="container-x">
-          <div className="flex flex-col md:flex-row gap-4 md:items-center justify-between mb-10">
-            <div className="flex flex-wrap gap-2">
+      <section className="py-12 sm:py-16 bg-background">
+        <div className="container-x max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="flex flex-col md:flex-row gap-4 md:items-center justify-between mb-8 sm:mb-10">
+            <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-2 sm:flex-wrap sm:overflow-visible -mx-4 px-4 sm:mx-0 sm:px-0">
               {categories.map((c) => (
                 <button
                   key={c}
                   onClick={() => setActive(c)}
-                  className={`px-4 py-2 rounded-full text-sm font-semibold border transition-all ${
+                  className={`px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold border transition-all shrink-0 ${
                     active === c
                       ? "bg-gradient-gold text-navy border-transparent shadow-glow"
                       : "bg-background border-border text-foreground/80 hover:border-gold"
@@ -67,7 +67,7 @@ function MediaIndex() {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search updates…"
-                className="w-full h-11 pl-10 pr-4 rounded-full bg-card border border-border focus:outline-none focus:ring-2 focus:ring-ring text-sm"
+                className="w-full h-10 sm:h-11 pl-10 pr-4 rounded-full bg-card border border-border focus:outline-none focus:ring-2 focus:ring-ring text-base sm:text-sm"
               />
             </div>
           </div>
@@ -77,7 +77,7 @@ function MediaIndex() {
               <Link
                 to="/media/$slug"
                 params={{ slug: featured.slug }}
-                className="group grid lg:grid-cols-2 gap-8 items-stretch bg-card border border-border rounded-3xl overflow-hidden shadow-soft hover:shadow-elegant transition-all mb-12"
+                className="group grid lg:grid-cols-2 gap-6 sm:gap-8 items-stretch bg-card border border-border rounded-2xl sm:rounded-3xl overflow-hidden shadow-soft hover:shadow-elegant transition-all mb-8 sm:mb-12"
               >
                 <div className="aspect-[16/10] lg:aspect-auto overflow-hidden">
                   <img
@@ -86,14 +86,14 @@ function MediaIndex() {
                     className="size-full object-cover group-hover:scale-105 transition-transform duration-1000"
                   />
                 </div>
-                <div className="p-8 lg:p-12 flex flex-col justify-center">
-                  <span className="inline-flex w-fit text-xs uppercase tracking-widest bg-accent text-primary px-3 py-1.5 rounded-full font-bold">
+                <div className="p-5 sm:p-8 lg:p-12 flex flex-col justify-center">
+                  <span className="inline-flex w-fit text-[11px] sm:text-xs uppercase tracking-widest bg-accent text-primary px-3 py-1 rounded-full font-bold">
                     Featured · {featured.category}
                   </span>
-                  <h2 className="mt-5 font-display text-2xl sm:text-4xl font-extrabold leading-tight">
+                  <h2 className="mt-3 sm:mt-5 font-display text-xl sm:text-3xl lg:text-4xl font-extrabold leading-tight">
                     {featured.title}
                   </h2>
-                  <p className="mt-4 text-muted-foreground">{featured.excerpt}</p>
+                  <p className="mt-2.5 sm:mt-4 text-xs sm:text-sm text-muted-foreground leading-relaxed">{featured.excerpt}</p>
                   <div className="mt-6 flex items-center gap-4 text-xs text-muted-foreground">
                     <span className="inline-flex items-center gap-1"><Calendar className="size-3.5" /> {formatDate(featured.date)}</span>
                     <span className="inline-flex items-center gap-1"><Clock className="size-3.5" /> {featured.readMin} min read</span>

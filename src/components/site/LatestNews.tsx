@@ -65,7 +65,7 @@ export function LatestNews() {
                       {p.excerpt}
                     </p>
                     <div className="mt-4 pt-3 border-t border-border/70 inline-flex items-center gap-1.5 text-gold font-bold text-xs">
-                      Read full report
+                      Read story
                       <ArrowRight className="size-3.5 group-hover:translate-x-1 transition-transform" />
                     </div>
                   </div>
