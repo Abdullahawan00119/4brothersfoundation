@@ -28,45 +28,59 @@ export function LatestNews() {
           </Reveal>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+        {/* News: Horizontal Snap Scroll on Mobile, Grid on Desktop */}
+        <div className="flex overflow-x-auto snap-x snap-mandatory pb-4 pt-1 -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 no-scrollbar">
           {items.map((p, i) => (
-            <Reveal key={p.slug} delay={i * 0.08}>
-              <Link
-                to="/media/$slug"
-                params={{ slug: p.slug }}
-                className="group block h-full bg-card rounded-2xl overflow-hidden border border-border/70 shadow-xs hover:shadow-sm transition-all duration-300 flex flex-col"
-              >
-                <div className="aspect-[16/10] overflow-hidden bg-muted">
-                  <img
-                    src={p.image}
-                    alt={p.title}
-                    loading="lazy"
-                    className="size-full object-cover group-hover:scale-103 transition-transform duration-500"
-                  />
-                </div>
-                <div className="p-5 flex flex-col flex-1">
-                  <div className="flex items-center gap-2.5 text-xs text-muted-foreground mb-2.5">
-                    <span className="inline-block bg-primary/10 text-primary px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider">
-                      {p.category}
-                    </span>
-                    <span className="inline-flex items-center gap-1 text-[11px]">
-                      <Calendar className="size-3 text-gold" /> {formatDate(p.date)}
-                    </span>
+            <div
+              key={p.slug}
+              className="w-[82vw] xs:w-[72vw] sm:w-auto shrink-0 snap-center h-full"
+            >
+              <Reveal delay={i * 0.08} className="h-full">
+                <Link
+                  to="/media/$slug"
+                  params={{ slug: p.slug }}
+                  className="group block h-full bg-card rounded-2xl overflow-hidden border border-border/70 shadow-xs hover:shadow-sm transition-all duration-300 flex flex-col"
+                >
+                  <div className="aspect-[16/10] overflow-hidden bg-muted">
+                    <img
+                      src={p.image}
+                      alt={p.title}
+                      loading="lazy"
+                      className="size-full object-cover group-hover:scale-103 transition-transform duration-500"
+                    />
                   </div>
-                  <h3 className="font-display font-bold text-base sm:text-lg text-foreground leading-snug group-hover:text-primary transition-colors mb-2">
-                    {p.title}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-muted-foreground line-clamp-2 leading-relaxed flex-1">
-                    {p.excerpt}
-                  </p>
-                  <div className="mt-4 pt-3 border-t border-border/70 inline-flex items-center gap-1.5 text-gold font-bold text-xs">
-                    Read full report
-                    <ArrowRight className="size-3.5 group-hover:translate-x-1 transition-transform" />
+                  <div className="p-5 flex flex-col flex-1">
+                    <div className="flex items-center gap-2.5 text-xs text-muted-foreground mb-2.5">
+                      <span className="inline-block bg-primary/10 text-primary px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider">
+                        {p.category}
+                      </span>
+                      <span className="inline-flex items-center gap-1 text-[11px]">
+                        <Calendar className="size-3 text-gold" /> {formatDate(p.date)}
+                      </span>
+                    </div>
+                    <h3 className="font-display font-bold text-base sm:text-lg text-foreground leading-snug group-hover:text-primary transition-colors mb-2">
+                      {p.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-muted-foreground line-clamp-2 leading-relaxed flex-1">
+                      {p.excerpt}
+                    </p>
+                    <div className="mt-4 pt-3 border-t border-border/70 inline-flex items-center gap-1.5 text-gold font-bold text-xs">
+                      Read full report
+                      <ArrowRight className="size-3.5 group-hover:translate-x-1 transition-transform" />
+                    </div>
                   </div>
-                </div>
-              </Link>
-            </Reveal>
+                </Link>
+              </Reveal>
+            </div>
           ))}
+        </div>
+
+        {/* Mobile swipe helper indicator */}
+        <div className="sm:hidden flex items-center justify-center gap-1.5 mt-2 text-[11px] text-muted-foreground/80 font-medium">
+          <span className="size-1.5 rounded-full bg-gold/80" />
+          <span className="size-1.5 rounded-full bg-muted-foreground/30" />
+          <span className="size-1.5 rounded-full bg-muted-foreground/30" />
+          <span className="ml-1 text-[10.5px]">Swipe to read more stories</span>
         </div>
       </div>
     </section>
