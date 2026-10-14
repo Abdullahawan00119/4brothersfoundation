@@ -56,9 +56,9 @@ function FounderCard({ founder, i }: { founder: Founder; i: number }) {
 
   return (
     <Reveal delay={i * 0.1} className="h-full">
-      <div className="bg-card rounded-2xl border border-border/80 hover:border-gold/50 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 p-5 sm:p-6 flex flex-col h-full text-center group relative overflow-hidden">
+      <div className="bg-card rounded-2xl border border-border/80 hover:border-gold/50 shadow-xs hover:shadow-sm transition-all duration-300 p-5 sm:p-6 flex flex-col h-full text-center group relative overflow-hidden">
         {/* Subtle decorative gold top accent on hover */}
-        <div className="absolute top-0 inset-x-0 h-1 bg-gradient-gold opacity-0 group-hover:opacity-100 transition-opacity" />
+        <div className="absolute top-0 inset-x-0 h-0.5 bg-gold opacity-0 group-hover:opacity-100 transition-opacity" />
 
         {/* Photo or Monogram Frame */}
         <div className="relative aspect-[4/3] w-full rounded-xl overflow-hidden bg-muted/40 border border-border/60 mb-4 shrink-0 flex items-center justify-center">
@@ -71,11 +71,8 @@ function FounderCard({ founder, i }: { founder: Founder; i: number }) {
               className="size-full object-cover object-[center_15%] group-hover:scale-103 transition-transform duration-500"
             />
           ) : (
-            <div className="size-full flex flex-col items-center justify-center bg-gradient-to-b from-[#071739] to-[#0a2357] text-white relative overflow-hidden">
-              {/* Subtle gold decorative circle */}
-              <div className="absolute -top-6 -right-6 size-24 rounded-full bg-gold/10 blur-xl pointer-events-none" />
-
-              <div className="size-16 sm:size-18 rounded-full border-2 border-gold/40 bg-white/10 backdrop-blur-sm flex items-center justify-center shadow-inner mb-1.5">
+            <div className="size-full flex flex-col items-center justify-center bg-[#071739] text-white relative overflow-hidden">
+              <div className="size-16 sm:size-18 rounded-full border border-gold/40 bg-white/10 flex items-center justify-center shadow-inner mb-1.5">
                 <span className="font-display font-extrabold text-2xl sm:text-3xl text-gold tracking-tight">
                   {founder.initials}
                 </span>
@@ -133,11 +130,11 @@ function FounderCard({ founder, i }: { founder: Founder; i: number }) {
 
 export function Leadership({ compact = false }: LeadershipProps) {
   return (
-    <section className="py-14 sm:py-20 bg-muted/20 border-y border-border/40">
+    <section className="py-14 sm:py-20 bg-muted/20 border-b border-border/40">
       <div className="container-x max-w-5xl">
         {/* Section header */}
         <Reveal className="text-center max-w-xl mx-auto mb-10 sm:mb-12">
-          <p className="text-[11px] uppercase tracking-[0.22em] text-gold font-bold mb-2">
+          <p className="text-[11px] uppercase tracking-[0.2em] text-gold font-bold mb-2">
             Leadership & Governance
           </p>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold leading-tight text-foreground">

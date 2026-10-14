@@ -58,11 +58,11 @@ const programs = [
 ];
 
 const DESKTOP_CARD_W = 390;
-const GAP = 18;
+const GAP = 16;
 
 function getCardWidth() {
   if (typeof window === "undefined") return DESKTOP_CARD_W;
-  return window.innerWidth < 640 ? Math.round(window.innerWidth * 0.85) : DESKTOP_CARD_W;
+  return window.innerWidth < 640 ? Math.min(320, Math.round(window.innerWidth * 0.84)) : DESKTOP_CARD_W;
 }
 
 export function Programs() {
@@ -88,29 +88,29 @@ export function Programs() {
 
   const onDragEnd = (_: unknown, info: { offset: { x: number } }) => {
     const delta = info.offset.x;
-    if (delta < -45) goTo(active + 1);
-    else if (delta > 45) goTo(active - 1);
+    if (delta < -40) goTo(active + 1);
+    else if (delta > 40) goTo(active - 1);
     else goTo(active);
   };
 
   return (
-    <section className="py-14 sm:py-24 bg-background overflow-hidden">
+    <section className="py-14 sm:py-24 bg-background overflow-hidden border-b border-border/50">
       <div className="container-x">
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 sm:mb-12">
           <Reveal>
-            <p className="text-xs uppercase tracking-[0.22em] text-gold font-semibold mb-2">
+            <p className="text-[11px] uppercase tracking-[0.2em] text-gold font-bold mb-2">
               What We Do
             </p>
-            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold max-w-xl leading-tight">
-              Our Core <span className="text-gradient-gold">Programs</span>
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold max-w-xl leading-tight text-foreground">
+              Our Core <span className="text-gold">Programs</span>
             </h2>
           </Reveal>
 
           <Reveal delay={0.15} className="flex items-center">
             <Link
               to="/programs"
-              className="inline-flex items-center px-4 py-2 rounded-xl border border-border bg-card hover:border-gold hover:text-gold text-xs sm:text-sm font-semibold text-foreground transition-all shadow-sm"
+              className="inline-flex items-center px-4 py-2 rounded-xl border border-border bg-card hover:border-gold hover:text-gold text-xs sm:text-sm font-semibold text-foreground transition-all shadow-xs"
             >
               View all programs
             </Link>
@@ -138,11 +138,11 @@ export function Programs() {
                 style={{ width: cardW, minWidth: cardW }}
                 animate={{
                   scale: active === i ? 1 : 0.98,
-                  opacity: active === i ? 1 : 0.85,
+                  opacity: active === i ? 1 : 0.88,
                 }}
-                transition={{ duration: 0.3 }}
-                className={`relative group rounded-3xl overflow-hidden bg-card border border-border/70 shadow-sm hover:shadow-md flex flex-col transition-all duration-300 ${
-                  active === i ? "ring-2 ring-gold/40" : ""
+                transition={{ duration: 0.25 }}
+                className={`relative group rounded-3xl overflow-hidden bg-card border border-border/70 shadow-xs hover:shadow-sm flex flex-col transition-all duration-300 ${
+                  active === i ? "ring-2 ring-gold/40 border-gold/40" : ""
                 }`}
               >
                 {/* Image top */}
@@ -151,19 +151,19 @@ export function Programs() {
                     src={p.img}
                     alt={p.title}
                     draggable={false}
-                    className="size-full object-cover group-hover:scale-105 transition-transform duration-700 pointer-events-none"
+                    className="size-full object-cover group-hover:scale-103 transition-transform duration-500 pointer-events-none"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
 
                   {/* Badge */}
                   <div className="absolute top-4 left-4">
-                    <span className="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-gold text-navy shadow-md">
+                    <span className="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-gold text-navy shadow-xs">
                       {p.badge}
                     </span>
                   </div>
 
                   {/* Impact metric float */}
-                  <div className="absolute bottom-4 right-4 bg-black/60 backdrop-blur-md px-3.5 py-1.5 rounded-2xl border border-white/10 text-right">
+                  <div className="absolute bottom-4 right-4 bg-black/65 backdrop-blur-md px-3.5 py-1.5 rounded-2xl border border-white/10 text-right">
                     <div className="font-display font-black text-xl text-gold leading-none">
                       {p.count}
                     </div>
@@ -175,7 +175,7 @@ export function Programs() {
 
                 {/* Card body */}
                 <div className="p-6 flex flex-col flex-1">
-                  <p className="text-xs font-semibold text-primary/90 uppercase tracking-wider mb-1">
+                  <p className="text-xs font-semibold text-primary uppercase tracking-wider mb-1">
                     {p.subtitle}
                   </p>
                   <h3 className="font-display font-extrabold text-xl text-foreground leading-snug mb-3">
@@ -185,10 +185,10 @@ export function Programs() {
                     {p.desc}
                   </p>
 
-                  <div className="pt-4 border-t border-border flex items-center justify-between">
+                  <div className="pt-4 border-t border-border/70 flex items-center justify-between">
                     <Link
                       to="/programs"
-                      className="inline-flex items-center gap-1.5 text-xs font-bold text-foreground group-hover:text-gold transition-colors"
+                      className="inline-flex items-center text-xs font-bold text-foreground group-hover:text-gold transition-colors"
                     >
                       Explore Program
                     </Link>

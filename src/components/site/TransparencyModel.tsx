@@ -30,28 +30,18 @@ const pillars = [
 
 export function TransparencyModel() {
   return (
-    <section className="py-14 sm:py-20 bg-[#071739] text-white relative overflow-hidden">
-      {/* Subtle brand watermark background */}
-      <div
-        className="absolute inset-0 opacity-[0.03] pointer-events-none"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px)",
-          backgroundSize: "40px 40px",
-        }}
-      />
-
+    <section className="py-14 sm:py-20 bg-[#071739] text-white relative overflow-hidden border-b border-white/10">
       <div className="container-x relative z-10">
         {/* Header */}
-        <Reveal className="text-center max-w-2xl mx-auto mb-10 sm:mb-14">
-          <p className="text-xs uppercase tracking-[0.22em] text-gold font-bold mb-2">
+        <Reveal className="text-center max-w-xl mx-auto mb-10 sm:mb-14">
+          <p className="text-[11px] uppercase tracking-[0.2em] text-gold font-bold mb-2">
             Trust & Integrity
           </p>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold leading-tight text-white">
             The <span className="text-gold">100% Donation Model</span>
           </h2>
           <p className="mt-2.5 text-white/75 text-xs sm:text-sm leading-relaxed">
-            We believe transparent stewardship is sacred. Here is how 4 Brothers Welfare Trust ensures your support brings maximum impact.
+            Transparent stewardship is sacred. 4 Brothers Welfare Trust ensures 100% of your relief contribution reaches verified beneficiaries.
           </p>
         </Reveal>
 
@@ -61,7 +51,7 @@ export function TransparencyModel() {
             const Icon = p.icon;
             return (
               <Reveal key={p.title} delay={i * 0.08} className="h-full">
-                <div className="rounded-2xl border border-white/10 bg-white/5 hover:bg-white/10 hover:border-gold/50 transition-all duration-300 p-5 sm:p-6 flex flex-col h-full text-left group">
+                <div className="rounded-2xl border border-white/10 bg-white/[0.04] hover:bg-white/[0.08] hover:border-gold/40 transition-all duration-300 p-5 sm:p-6 flex flex-col h-full text-left group">
                   <div className="flex items-center justify-between mb-4">
                     <div className="size-11 rounded-xl bg-gold/15 text-gold flex items-center justify-center border border-gold/30 group-hover:scale-105 transition-transform">
                       <Icon className="size-5 text-gold" />

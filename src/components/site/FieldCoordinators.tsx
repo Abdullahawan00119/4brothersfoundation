@@ -70,9 +70,9 @@ export function FieldCoordinators() {
 
             return (
               <Reveal key={member.name} delay={i * 0.1} className="h-full">
-                <div className="bg-card rounded-2xl border border-border/80 hover:border-gold/50 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 p-5 sm:p-6 flex flex-col h-full text-center group relative overflow-hidden">
+                <div className="bg-card rounded-2xl border border-border/80 hover:border-gold/50 shadow-xs hover:shadow-sm transition-all duration-300 p-5 sm:p-6 flex flex-col h-full text-center group relative overflow-hidden">
                   {/* Subtle top hover accent */}
-                  <div className="absolute top-0 inset-x-0 h-1 bg-gradient-gold opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="absolute top-0 inset-x-0 h-0.5 bg-gold opacity-0 group-hover:opacity-100 transition-opacity" />
 
                   {/* Photo Frame (aspect-[4/3] to preserve natural portrait and photo bounds) */}
                   <div className="relative aspect-[4/3] w-full rounded-xl overflow-hidden bg-muted/40 border border-border/60 mb-4 shrink-0 flex items-center justify-center">
@@ -89,7 +89,7 @@ export function FieldCoordinators() {
                         } group-hover:scale-103 transition-transform duration-500`}
                       />
                     ) : (
-                      <div className="size-full flex flex-col items-center justify-center bg-gradient-to-b from-[#071739] to-[#0a2357] text-white">
+                      <div className="size-full flex flex-col items-center justify-center bg-[#071739] text-white">
                         <span className="font-display font-extrabold text-2xl text-gold">{member.initials}</span>
                       </div>
                     )}

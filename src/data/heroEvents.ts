@@ -81,26 +81,6 @@ export const HERO_EVENT_SLIDES: HeroEventSlide[] = [
     },
   },
   {
-    id: "youth-rehabilitation",
-    tag: "Drug-Free Youth Mission",
-    tagCategory: "Rehabilitation",
-    title: "Rehabilitation & Recovery:",
-    highlightText: "Partnering with NIJAT Center",
-    subtitle: "Medical detox, psychological counseling, and family reintegration for a healthier society.",
-    location: "Quetta City",
-    image: "/images/frehabliation.jpg",
-    focalPoint: "object-[center_18%]",
-    keyStat: "500+ Rehabilitated • NIJAT Center",
-    primaryAction: {
-      label: "Support Recovery",
-      href: "/donate",
-    },
-    secondaryAction: {
-      label: "Our Programs",
-      href: "/programs",
-    },
-  },
-  {
     id: "clean-water-projects",
     tag: "Safe Water Access",
     tagCategory: "Clean Water",

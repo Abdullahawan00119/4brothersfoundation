@@ -6,11 +6,11 @@ import { news, formatDate } from "@/data/news";
 export function LatestNews() {
   const items = news.slice(0, 3);
   return (
-    <section className="py-16 sm:py-24 bg-slate-50/70 dark:bg-slate-900/40 border-t border-border/70">
+    <section className="py-16 sm:py-24 bg-slate-50/80 dark:bg-slate-900/40 border-t border-border/60">
       <div className="container-x max-w-6xl mx-auto px-4 sm:px-6">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 sm:mb-12">
           <Reveal>
-            <p className="text-[11px] uppercase tracking-[0.22em] text-gold font-bold mb-2">
+            <p className="text-[11px] uppercase tracking-[0.2em] text-gold font-bold mb-2">
               Media & Field Reports
             </p>
             <h2 className="font-sans text-2xl sm:text-3xl lg:text-4xl font-extrabold text-foreground tracking-tight">
@@ -34,7 +34,7 @@ export function LatestNews() {
               <Link
                 to="/media/$slug"
                 params={{ slug: p.slug }}
-                className="group block h-full bg-card rounded-2xl overflow-hidden border border-border/70 shadow-sm hover:shadow transition-all duration-300 hover:-translate-y-1 flex flex-col"
+                className="group block h-full bg-card rounded-2xl overflow-hidden border border-border/70 shadow-xs hover:shadow-sm transition-all duration-300 flex flex-col"
               >
                 <div className="aspect-[16/10] overflow-hidden bg-muted">
                   <img
@@ -50,7 +50,7 @@ export function LatestNews() {
                       {p.category}
                     </span>
                     <span className="inline-flex items-center gap-1 text-[11px]">
-                      <Calendar className="size-3" /> {formatDate(p.date)}
+                      <Calendar className="size-3 text-gold" /> {formatDate(p.date)}
                     </span>
                   </div>
                   <h3 className="font-display font-bold text-base sm:text-lg text-foreground leading-snug group-hover:text-primary transition-colors mb-2">
