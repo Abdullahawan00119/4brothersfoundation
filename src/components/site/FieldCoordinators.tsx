@@ -44,7 +44,7 @@ export const fieldCoordinators: TeamMember[] = [
     department: "Community Welfare",
     station: "Grassroots Relief Network • Balochistan",
     bio: "Drives grassroots women's welfare programs, vocational training, and emergency ration relief distributions to female-headed households across Quetta.",
-    img: null,
+    img: "/images/opher.jpeg",
     initials: "OJ",
   },
 ];
