@@ -78,7 +78,7 @@ export function SiteFooter() {
               rel="noopener noreferrer"
               className="font-semibold text-gold hover:underline transition-all"
             >
-              Abdullah
+              Developer
             </a>
           </p>
           <div className="flex gap-5 items-center">
