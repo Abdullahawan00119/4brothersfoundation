@@ -19,6 +19,8 @@ const AUTO_SLIDE_DURATION = 6000; // 6s per slide
 export function Hero() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
+  const [touchEndX, setTouchEndX] = useState<number | null>(null);
 
   const totalSlides = HERO_EVENT_SLIDES.length;
   const currentSlide: HeroEventSlide = HERO_EVENT_SLIDES[currentIndex];
@@ -55,6 +57,27 @@ export function Hero() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [prevSlide, nextSlide]);
 
+  // Mobile Touch Swipe Navigation
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchEndX(null);
+    setTouchStartX(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEndX(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStartX || !touchEndX) return;
+    const distance = touchStartX - touchEndX;
+    const minSwipeDistance = 45;
+    if (distance > minSwipeDistance) {
+      nextSlide();
+    } else if (distance < -minSwipeDistance) {
+      prevSlide();
+    }
+  };
+
   // Category Icon helper
   const getCategoryIcon = (category: HeroEventSlide["tagCategory"]) => {
     switch (category) {
@@ -76,9 +99,12 @@ export function Hero() {
   return (
     <section
       aria-label="Humanitarian Work Showcase"
-      className="relative z-10 min-h-[500px] sm:min-h-[580px] lg:min-h-[640px] bg-[#051126] text-white pt-20 xs:pt-24 sm:pt-32 pb-8 sm:pb-14 flex flex-col justify-center overflow-hidden"
+      className="relative z-10 min-h-[460px] xs:min-h-[500px] sm:min-h-[580px] lg:min-h-[640px] bg-[#051126] text-white pt-24 xs:pt-28 sm:pt-32 pb-6 sm:pb-14 flex flex-col justify-end sm:justify-center overflow-hidden"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
     >
       {/* ── Background Photography with Optimized Uncropped Focal Point ── */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -102,20 +128,23 @@ export function Hero() {
 
         {/* ── Overlays: Pristine Contrast Without Artificial Neon Colors ── */}
         {/* Top Dark Fade: Blends cleanly under the floating navbar */}
-        <div className="absolute top-0 inset-x-0 h-28 sm:h-36 bg-gradient-to-b from-[#051126] via-[#051126]/80 to-transparent z-10" />
+        <div className="absolute top-0 inset-x-0 h-24 sm:h-36 bg-gradient-to-b from-[#051126] via-[#051126]/60 to-transparent z-10" />
 
-        {/* Left Side Contrast Vignette for Clean Typography */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#051126]/90 via-[#051126]/75 sm:via-[#051126]/60 to-transparent z-10" />
+        {/* Left Side Contrast Vignette for Clean Typography (Desktop/Tablet) */}
+        <div className="hidden sm:block absolute inset-0 bg-gradient-to-r from-[#051126]/90 via-[#051126]/60 to-transparent z-10" />
 
-        {/* Bottom Dark Fade */}
-        <div className="absolute bottom-0 inset-x-0 h-20 sm:h-24 bg-gradient-to-t from-[#051126] via-[#051126]/40 to-transparent z-10" />
+        {/* Mobile Gradient: Soft bottom-up fade so subjects/faces remain brightly visible */}
+        <div className="sm:hidden absolute inset-0 bg-gradient-to-t from-[#051126]/95 via-[#051126]/30 to-transparent z-10 pointer-events-none" />
+
+        {/* Bottom Dark Fade (Desktop/Tablet) */}
+        <div className="hidden sm:block absolute bottom-0 inset-x-0 h-20 sm:h-24 bg-gradient-to-t from-[#051126] via-[#051126]/40 to-transparent z-10" />
       </div>
 
-      {/* ── Minimalist Content Container ── */}
+      {/* ── Content Container ── */}
       <div className="container-x relative z-20">
         <div className="max-w-2xl text-left">
-          {/* Top Micro Tag */}
-          <div className="inline-flex items-center gap-1.5 sm:gap-2 rounded-full border border-gold/30 bg-gold/10 backdrop-blur-md px-2.5 sm:px-3 py-0.5 sm:py-1 text-[10.5px] sm:text-xs font-semibold text-gold shadow-sm mb-2 sm:mb-3">
+          {/* Top Micro Tag (Desktop) */}
+          <div className="hidden sm:inline-flex items-center gap-1.5 sm:gap-2 rounded-full border border-gold/30 bg-gold/10 backdrop-blur-md px-2.5 sm:px-3 py-0.5 sm:py-1 text-[10.5px] sm:text-xs font-semibold text-gold shadow-sm mb-2 sm:mb-3">
             <span className="size-1.5 sm:size-2 rounded-full bg-gold" />
             <span>Together as Humans • Core Programs</span>
           </div>
@@ -128,8 +157,8 @@ export function Hero() {
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.35, ease: "easeOut" }}
             >
-              {/* Category + Location Badges */}
-              <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-2 sm:mb-2.5">
+              {/* Category + Location Badges (Desktop) */}
+              <div className="hidden sm:flex flex-wrap items-center gap-1.5 sm:gap-2 mb-2 sm:mb-2.5">
                 <span className="inline-flex items-center gap-1 sm:gap-1.5 rounded-full border border-white/20 bg-white/10 backdrop-blur-md px-2 sm:px-2.5 py-0.5 text-[10.5px] sm:text-xs font-medium text-white">
                   {getCategoryIcon(currentSlide.tagCategory)}
                   {currentSlide.tag}
@@ -141,24 +170,24 @@ export function Hero() {
                 </span>
               </div>
 
-              {/* Punchy Headline - Tuned for mobile screens */}
-              <h1 className="text-xl xs:text-2xl sm:text-4xl md:text-5xl font-extrabold leading-[1.18] tracking-tight mb-2 sm:mb-2.5 text-white">
+              {/* Punchy Headline - Sole content on mobile for pristine image clarity */}
+              <h1 className="text-xl xs:text-2xl sm:text-4xl md:text-5xl font-extrabold leading-[1.22] sm:leading-[1.18] tracking-tight mb-2 sm:mb-2.5 text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)] sm:drop-shadow-none">
                 {currentSlide.title}{" "}
                 <span className="text-gold block xs:inline">{currentSlide.highlightText}</span>
               </h1>
 
-              {/* 1-Sentence Concise Subtitle */}
-              <p className="text-xs sm:text-sm md:text-base text-white/85 leading-relaxed max-w-xl mb-3 sm:mb-4 font-normal">
+              {/* 1-Sentence Concise Subtitle (Desktop) */}
+              <p className="hidden sm:block text-xs sm:text-sm md:text-base text-white/85 leading-relaxed max-w-xl mb-3 sm:mb-4 font-normal">
                 {currentSlide.subtitle}
               </p>
 
-              {/* Minimal Key Stat Pill */}
-              <div className="inline-flex items-center gap-1.5 sm:gap-2 rounded-lg border border-white/15 bg-white/10 backdrop-blur-md px-2.5 sm:px-3 py-1 text-[11px] sm:text-xs md:text-sm font-semibold text-gold mb-3.5 sm:mb-5">
+              {/* Minimal Key Stat Pill (Desktop) */}
+              <div className="hidden sm:inline-flex items-center gap-1.5 sm:gap-2 rounded-lg border border-white/15 bg-white/10 backdrop-blur-md px-2.5 sm:px-3 py-1 text-[11px] sm:text-xs md:text-sm font-semibold text-gold mb-3.5 sm:mb-5">
                 <span>{currentSlide.keyStat}</span>
               </div>
 
-              {/* Action Buttons: Responsive row on mobile */}
-              <div className="flex flex-row items-center gap-2 sm:gap-3">
+              {/* Action Buttons: Responsive row on desktop */}
+              <div className="hidden sm:flex flex-row items-center gap-2 sm:gap-3">
                 <Link to={currentSlide.primaryAction.href} className="flex-1 xs:flex-none">
                   <Button
                     size="lg"
@@ -182,7 +211,7 @@ export function Hero() {
           </AnimatePresence>
 
           {/* ── Slide Indicator Dots ── */}
-          <div className="pt-4 sm:pt-6 flex items-center gap-2">
+          <div className="pt-2 sm:pt-6 flex items-center gap-2">
             {HERO_EVENT_SLIDES.map((slide, idx) => (
               <button
                 key={slide.id}
