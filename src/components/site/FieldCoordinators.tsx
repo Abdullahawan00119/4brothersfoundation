@@ -15,7 +15,7 @@ export interface TeamMember {
   department: string;
   station: string;
   bio: string;
-  img: string;
+  img: string | null;
   initials: string;
 }
 
@@ -44,7 +44,7 @@ export const fieldCoordinators: TeamMember[] = [
     department: "Community Welfare",
     station: "Grassroots Relief Network • Balochistan",
     bio: "Drives grassroots women's welfare programs, vocational training, and emergency ration relief distributions to female-headed households across Quetta.",
-    img: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop&crop=face",
+    img: null,
     initials: "OJ",
   },
 ];
@@ -77,7 +77,7 @@ export function FieldCoordinators() {
         {/* Coordinators: Horizontal Snap Scroll on Mobile, 3-column Grid on Desktop */}
         <div className="flex overflow-x-auto snap-x snap-mandatory pb-4 pt-1 -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-3 gap-5 sm:gap-6 no-scrollbar">
           {fieldCoordinators.map((member, i) => {
-            const hasError = imgErrors[member.name];
+            const hasPhoto = Boolean(member.img) && !imgErrors[member.name];
 
             return (
               <div
@@ -91,20 +91,20 @@ export function FieldCoordinators() {
 
                     {/* Photo Frame */}
                     <div className="relative aspect-[4/3] w-full rounded-xl overflow-hidden bg-slate-900 border border-border/60 mb-4 shrink-0 flex items-center justify-center shadow-inner">
-                      {!hasError ? (
+                      {hasPhoto ? (
                         <div className="relative size-full overflow-hidden flex items-center justify-center">
                           {member.name === "Adil Akash" ? (
                             <>
                               {/* Ambient subtle blur to smoothly blend the edges */}
                               <img
-                                src={member.img}
+                                src={member.img!}
                                 alt=""
                                 aria-hidden="true"
                                 className="absolute inset-0 size-full object-cover blur-xl opacity-40 scale-125 pointer-events-none"
                               />
                               {/* Full uncropped portrait showing hair, eyes, and collar button */}
                               <img
-                                src={member.img}
+                                src={member.img!}
                                 alt={member.name}
                                 loading="lazy"
                                 onError={() => setImgErrors((prev) => ({ ...prev, [member.name]: true }))}
@@ -113,7 +113,7 @@ export function FieldCoordinators() {
                             </>
                           ) : (
                             <img
-                              src={member.img}
+                              src={member.img!}
                               alt={member.name}
                               loading="lazy"
                               onError={() => setImgErrors((prev) => ({ ...prev, [member.name]: true }))}
@@ -124,13 +124,26 @@ export function FieldCoordinators() {
                           <div className="absolute inset-0 bg-gradient-to-t from-[#071739]/60 via-transparent to-transparent pointer-events-none" />
                         </div>
                       ) : (
-                        <div className="size-full flex flex-col items-center justify-center bg-gradient-to-b from-[#071739] via-[#091f4d] to-[#040e24] text-white">
-                          <div className="size-16 rounded-full border-2 border-gold/50 bg-[#071739]/90 shadow-md flex items-center justify-center mb-2">
-                            <span className="font-display font-black text-2xl text-gold">
+                        <div className="size-full flex flex-col items-center justify-center bg-gradient-to-b from-[#071739] via-[#091f4d] to-[#040e24] text-white relative overflow-hidden p-4">
+                          {/* Decorative radial crest pattern */}
+                          <div
+                            className="absolute inset-0 opacity-[0.06] pointer-events-none"
+                            style={{
+                              backgroundImage:
+                                "radial-gradient(circle at center, rgba(197, 168, 128, 0.8) 1px, transparent 1px)",
+                              backgroundSize: "16px 16px",
+                            }}
+                          />
+                          <div className="absolute inset-0 rounded-xl border border-gold/15 pointer-events-none m-2" />
+
+                          {/* Embossed Coordinator Monogram Seal */}
+                          <div className="relative size-16 sm:size-20 rounded-full border-2 border-gold/50 bg-[#071739]/90 shadow-lg flex items-center justify-center mb-2 group-hover:border-gold group-hover:scale-105 transition-all duration-300">
+                            <div className="absolute inset-1 rounded-full border border-gold/20" />
+                            <span className="font-display font-black text-2xl sm:text-3xl text-gold tracking-tight drop-shadow-sm">
                               {member.initials}
                             </span>
                           </div>
-                          <span className="text-[10px] uppercase tracking-wider font-semibold text-white/70">
+                          <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-white/75">
                             Field Coordinator
                           </span>
                         </div>
