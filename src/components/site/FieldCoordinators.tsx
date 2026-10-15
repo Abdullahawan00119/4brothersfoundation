@@ -93,22 +93,22 @@ export function FieldCoordinators() {
                     <div className="relative aspect-[4/3] w-full rounded-xl overflow-hidden bg-slate-900 border border-border/60 mb-4 shrink-0 flex items-center justify-center shadow-inner">
                       {hasPhoto ? (
                         <div className="relative size-full overflow-hidden flex items-center justify-center">
-                          {member.name === "Adil Akash" ? (
+                          {member.name === "Adil Akash" || member.name === "Opher Jamil" ? (
                             <>
-                              {/* Ambient subtle blur to smoothly blend the edges */}
+                              {/* Ambient subtle blur to smoothly blend the edges without cropping */}
                               <img
                                 src={member.img!}
                                 alt=""
                                 aria-hidden="true"
-                                className="absolute inset-0 size-full object-cover blur-xl opacity-40 scale-125 pointer-events-none"
+                                className="absolute inset-0 size-full object-cover blur-xl opacity-45 scale-125 pointer-events-none"
                               />
-                              {/* Full uncropped portrait showing hair, eyes, and collar button */}
+                              {/* Full uncropped portrait showing entire head, hair, and collar */}
                               <img
                                 src={member.img!}
                                 alt={member.name}
                                 loading="lazy"
                                 onError={() => setImgErrors((prev) => ({ ...prev, [member.name]: true }))}
-                                className="relative h-full max-w-full object-contain p-1 group-hover:scale-105 transition-transform duration-700 ease-out"
+                                className="relative h-full max-w-full object-contain p-1 group-hover:scale-105 transition-transform duration-700 ease-out drop-shadow-md"
                               />
                             </>
                           ) : (
