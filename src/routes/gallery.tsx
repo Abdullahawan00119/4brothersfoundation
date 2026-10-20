@@ -31,9 +31,15 @@ export const Route = createFileRoute("/gallery")({
   }),
 });
 
-type Category = "All" | "Food" | "Education" | "Medical" | "Water" | "Emergency";
+type Category = "All" | "Food" | "Education" | "Medical" | "Water" | "Emergency" | "Plantation";
 
 const allImages: (LightboxImage & { category: Category; tall?: boolean })[] = [
+  { src: "/Food-distribution/hero-image.jpeg", alt: "Food distribution to families in Quetta", caption: "Community meal & ration distribution drive", category: "Food", tall: true },
+  { src: "/Plantation/hero-image.jpeg", alt: "Youth volunteers planting saplings", caption: "Green Quetta Tree Plantation Drive", category: "Plantation", tall: true },
+  { src: "/Food-distribution/WhatsApp Image 2026-10-18 at 8.29.26 PM.jpeg", alt: "Food packages arranged by volunteers", caption: "Essential grocery packs and meal boxes", category: "Food" },
+  { src: "/Plantation/WhatsApp Image 2026-10-18 at 8.26.28 PM.jpeg", alt: "Planting saplings in school yard", caption: "School grounds greening initiative", category: "Plantation" },
+  { src: "/Food-distribution/WhatsApp Image 2026-10-18 at 8.29.30 PM.jpeg", alt: "Distribution of meals to beneficiaries", caption: "Direct community food assistance", category: "Food", tall: true },
+  { src: "/Plantation/WhatsApp Image 2026-10-18 at 8.26.29 PM.jpeg", alt: "Watering young trees in Quetta", caption: "Nurturing newly planted trees", category: "Plantation" },
   { src: distribution, alt: "Food distribution to families", caption: "Weekly food distribution drive", category: "Food", tall: true },
   { src: quettaDist, alt: "Ration packs being handed out", caption: "Ration packs for 500 families", category: "Food" },
   { src: quettaRamadan, alt: "Ramadan iftar distribution", caption: "Ramadan iftar for 2,000 people", category: "Food" },
@@ -50,7 +56,7 @@ const allImages: (LightboxImage & { category: Category; tall?: boolean })[] = [
   { src: quettaCity, alt: "Quetta city outreach", caption: "Community outreach in Quetta", category: "Food" },
 ];
 
-const categories: Category[] = ["All", "Food", "Education", "Medical", "Water", "Emergency"];
+const categories: Category[] = ["All", "Food", "Plantation", "Education", "Medical", "Water", "Emergency"];
 
 function GalleryPage() {
   const [active, setActive] = useState<Category>("All");

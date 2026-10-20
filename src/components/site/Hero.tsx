@@ -10,6 +10,7 @@ import {
   Utensils,
   GraduationCap,
   Droplets,
+  Sprout,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { HERO_EVENT_SLIDES, type HeroEventSlide } from "@/data/heroEvents";
@@ -91,6 +92,8 @@ export function Hero() {
         return <ShieldAlert className="size-3.5 text-emerald-400" />;
       case "Clean Water":
         return <Droplets className="size-3.5 text-sky-400" />;
+      case "Tree Plantation":
+        return <Sprout className="size-3.5 text-emerald-400" />;
       default:
         return <Sparkles className="size-3.5 text-gold" />;
     }

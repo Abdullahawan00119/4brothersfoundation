@@ -10,6 +10,12 @@ const city         = "/images/f6.jpg";
 
 export type NewsCategory = "News" | "Stories" | "Press Release" | "Events" | "Reports";
 
+export type NewsGalleryImage = {
+  src: string;
+  alt: string;
+  caption?: string;
+};
+
 export type NewsItem = {
   slug: string;
   title: string;
@@ -21,9 +27,170 @@ export type NewsItem = {
   readMin: number;
   author: string;
   location: string;
+  gallery?: NewsGalleryImage[];
 };
 
 export const news: NewsItem[] = [
+  {
+    slug: "community-food-distribution-drive",
+    title: "Community Food Distribution: Providing Warm Meals & Dignity to Hundreds in Quetta",
+    excerpt:
+      "Our emergency relief volunteers mobilized across underprivileged neighborhoods in Quetta to deliver warm freshly prepared meals and comprehensive monthly grocery rations.",
+    body: [
+      "In our steadfast pledge that no family should sleep hungry, 4 Brothers Welfare Trust conducted a high-impact food distribution drive across underserved communities and hospital surroundings in Quetta. With inflation straining basic necessities, thousands of vulnerable daily wagers, widows, and low-income households struggle daily for sustenance.",
+      "From the break of dawn, our culinary logistics team and community volunteers prepared, hygienically boxed, and organized the delivery of nutritious hot meals. Special priority was given to elderly individuals, patients' attendants at medical centers, and destitute families who welcomed our volunteers with heartwarming warmth.",
+      "Alongside immediate hot food parcels, our field team distributed monthly family ration kits filled with flour, rice, cooking oil, lentils, sugar, and tea. Each package is designed to sustain an average family of six for up to a month.",
+      "This mission is made possible strictly through the continuous generosity of compassionate donors and the relentless dedication of our on-ground volunteers. Every package distributed represents not just food, but hope, solidarity, and the fundamental belief that we are together as humans.",
+    ],
+    image: "/Food-distribution/hero-image.jpeg",
+    category: "Stories",
+    date: "2026-10-19",
+    readMin: 3,
+    author: "Food Relief Operations — Quetta",
+    location: "Quetta & Surrounds, Balochistan",
+    gallery: [
+      {
+        src: "/Food-distribution/hero-image.jpeg",
+        alt: "Food distribution hero view",
+        caption: "Community meal & ration distribution drive in Quetta",
+      },
+      {
+        src: "/Food-distribution/WhatsApp Image 2026-10-18 at 8.29.26 PM.jpeg",
+        alt: "Volunteers organizing meal packages for community members",
+        caption: "Field volunteers coordinating meal distribution logistics in Quetta",
+      },
+      {
+        src: "/Food-distribution/WhatsApp Image 2026-10-18 at 8.29.27 PM.jpeg",
+        alt: "Community gathering for food distribution",
+        caption: "Local residents gathering as ration packages are prepared for distribution",
+      },
+      {
+        src: "/Food-distribution/WhatsApp Image 2026-10-18 at 8.29.28 PM.jpeg",
+        alt: "Food distribution drive in Quetta",
+        caption: "Careful distribution of hot meals and grocery hampers to families",
+      },
+      {
+        src: "/Food-distribution/WhatsApp Image 2026-10-18 at 8.29.29 PM.jpeg",
+        alt: "Volunteers handing food packages directly to recipients",
+        caption: "Direct community outreach ensuring dignified assistance for each recipient",
+      },
+      {
+        src: "/Food-distribution/WhatsApp Image 2026-10-18 at 8.29.29 PM (1).jpeg",
+        alt: "Dedicated team preparing distribution sets",
+        caption: "Structured packaging ensuring hygiene and complete meal packages",
+      },
+      {
+        src: "/Food-distribution/WhatsApp Image 2026-10-18 at 8.29.29 PM (2).jpeg",
+        alt: "Food distribution field site",
+        caption: "Community members receiving daily food packages with respect",
+      },
+      {
+        src: "/Food-distribution/WhatsApp Image 2026-10-18 at 8.29.30 PM.jpeg",
+        alt: "Team members handing out essential rations",
+        caption: "Handing out essential food kits to daily wagers and community elders",
+      },
+      {
+        src: "/Food-distribution/WhatsApp Image 2026-10-18 at 8.29.30 PM (1).jpeg",
+        alt: "Distribution area with assembled food packages",
+        caption: "Packaged grocery bags lined up for systematic distribution",
+      },
+      {
+        src: "/Food-distribution/WhatsApp Image 2026-10-18 at 8.29.31 PM.jpeg",
+        alt: "Volunteers interacting with local community beneficiaries",
+        caption: "Our team speaking with community beneficiaries and understanding further needs",
+      },
+      {
+        src: "/Food-distribution/WhatsApp Image 2026-10-18 at 8.29.32 PM.jpeg",
+        alt: "Beneficiary receiving food package",
+        caption: "Providing vital food relief with dignity and care",
+      },
+      {
+        src: "/Food-distribution/WhatsApp Image 2026-10-18 at 8.30.50 PM.jpeg",
+        alt: "Food distribution center coordination",
+        caption: "Community members at the distribution point",
+      },
+      {
+        src: "/Food-distribution/WhatsApp Image 2026-10-18 at 8.30.50 PM (1).jpeg",
+        alt: "Organized queue and seamless handover of meals",
+        caption: "Organized queue ensuring quick and respectful handover of hot meals",
+      },
+      {
+        src: "/Food-distribution/WhatsApp Image 2026-10-18 at 8.30.50 PM (2).jpeg",
+        alt: "Volunteers and community members concluding successful distribution",
+        caption: "Field volunteers successfully completing another impactful distribution round",
+      },
+    ],
+  },
+  {
+    slug: "green-quetta-tree-plantation-drive",
+    title: "Green Horizon Tree Plantation: Restoring Greenery & Clean Air in Quetta",
+    excerpt:
+      "Youth volunteers and local community members joined hands in a massive tree planting campaign across educational grounds, roadsides, and public areas.",
+    body: [
+      "Balochistan faces severe environmental challenges, including rising desertification, water table depletion, and scorching summer temperatures. To combat local environmental degradation and promote long-term ecological balance, 4 Brothers Welfare Trust initiated the 'Green Horizon' Tree Plantation Drive across Quetta.",
+      "The campaign brought together enthusiastic student volunteers, environmental advocates, and community elders who planted hundreds of indigenous saplings specifically selected for their drought resistance, low water consumption, and deep soil-binding properties.",
+      "Every tree planted represents an investment in the health of our children and future generations. Beyond planting, our team established dedicated youth maintenance groups responsible for scheduled watering, protective fencing, and ongoing monitoring to ensure high survival rates.",
+      "Our environmental team plans to expand this initiative across additional districts in Balochistan, transforming dry landscapes into thriving green sanctuaries that purify the atmosphere, create natural shade, and preserve soil fertility.",
+    ],
+    image: "/Plantation/hero-image.jpeg",
+    category: "Stories",
+    date: "2026-10-18",
+    readMin: 4,
+    author: "Green Horizon Initiative — Quetta",
+    location: "Quetta, Balochistan",
+    gallery: [
+      {
+        src: "/Plantation/hero-image.jpeg",
+        alt: "Green Quetta plantation drive hero view",
+        caption: "Youth and volunteers during the Green Horizon Tree Plantation Drive",
+      },
+      {
+        src: "/Plantation/WhatsApp Image 2026-10-18 at 8.26.27 PM.jpeg",
+        alt: "Volunteers planting saplings during the Green Quetta drive",
+        caption: "Youth volunteers actively planting native saplings in Quetta",
+      },
+      {
+        src: "/Plantation/WhatsApp Image 2026-10-18 at 8.26.27 PM (1).jpeg",
+        alt: "Community members preparing ground for tree plantation",
+        caption: "Soil preparation and planting at designated community green spaces",
+      },
+      {
+        src: "/Plantation/WhatsApp Image 2026-10-18 at 8.26.27 PM (2).jpeg",
+        alt: "Dedicated volunteers planting trees along school grounds",
+        caption: "Planting trees alongside schools and educational premises for natural shade",
+      },
+      {
+        src: "/Plantation/WhatsApp Image 2026-10-18 at 8.26.27 PM (3).jpeg",
+        alt: "Tree plantation drive group activity",
+        caption: "Collaborative community participation during the tree planting drive",
+      },
+      {
+        src: "/Plantation/WhatsApp Image 2026-10-18 at 8.26.28 PM.jpeg",
+        alt: "Volunteers nurturing young saplings",
+        caption: "Proper staking and soil compaction to ensure strong root growth",
+      },
+      {
+        src: "/Plantation/WhatsApp Image 2026-10-18 at 8.26.28 PM (1).jpeg",
+        alt: "Team members placing saplings in prepared pits",
+        caption: "Careful placement of climate-resilient saplings by our field team",
+      },
+      {
+        src: "/Plantation/WhatsApp Image 2026-10-18 at 8.26.29 PM.jpeg",
+        alt: "Watering freshly planted trees",
+        caption: "Initial deep watering and protective care for newly planted trees",
+      },
+      {
+        src: "/Plantation/WhatsApp Image 2026-10-18 at 8.26.29 PM (1).jpeg",
+        alt: "Volunteers collaborating during the plantation drive",
+        caption: "Volunteers sharing smiles and dedication during the planting initiative",
+      },
+      {
+        src: "/Plantation/WhatsApp Image 2026-10-18 at 8.26.29 PM (2).jpeg",
+        alt: "Overview of planted green boundary in Quetta",
+        caption: "Creating a cleaner, cooler, and greener environment for Quetta",
+      },
+    ],
+  },
   {
     slug: "ramadan-iftar-quetta-2024",
     title: "Ramadan Iftar Dastarkhwan Feeds 8,000 Nightly Across Quetta",

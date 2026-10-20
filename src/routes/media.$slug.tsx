@@ -1,8 +1,10 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { useState } from "react";
 import { Reveal } from "@/components/site/Reveal";
 import { news, formatDate } from "@/data/news";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Calendar, Clock, Facebook, Twitter, Linkedin, Heart, User, MapPin } from "lucide-react";
+import { Lightbox } from "@/components/site/Lightbox";
+import { ArrowLeft, Calendar, Clock, Facebook, Twitter, Linkedin, Heart, User, MapPin, Camera } from "lucide-react";
 
 export const Route = createFileRoute("/media/$slug")({
   component: ArticlePage,
@@ -41,6 +43,18 @@ export const Route = createFileRoute("/media/$slug")({
 function ArticlePage() {
   const { article } = Route.useLoaderData();
   const related = news.filter((n) => n.slug !== article.slug).slice(0, 3);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
+  const openLightbox = (idx: number) => setLightboxIndex(idx);
+  const closeLightbox = () => setLightboxIndex(null);
+  const prevImage = () => {
+    if (!article.gallery) return;
+    setLightboxIndex((i) => (i === null ? null : (i - 1 + article.gallery!.length) % article.gallery!.length));
+  };
+  const nextImage = () => {
+    if (!article.gallery) return;
+    setLightboxIndex((i) => (i === null ? null : (i + 1) % article.gallery!.length));
+  };
 
   return (
     <>
@@ -85,6 +99,55 @@ function ArticlePage() {
               </Reveal>
             ))}
           </article>
+
+          {/* Complete Photo Gallery on Detail Page if available */}
+          {article.gallery && article.gallery.length > 0 && (
+            <div className="mt-12 sm:mt-16 pt-10 sm:pt-12 border-t border-border">
+              <Reveal>
+                <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-6 sm:mb-8">
+                  <div>
+                    <span className="text-[10.5px] sm:text-[11px] uppercase tracking-[0.2em] text-gold font-bold mb-1.5 flex items-center gap-1.5">
+                      <Camera className="size-3.5" /> Field Photography
+                    </span>
+                    <h2 className="font-display text-xl sm:text-2xl md:text-3xl font-extrabold text-foreground">
+                      On-Ground Photo Gallery
+                    </h2>
+                  </div>
+                  <p className="text-xs sm:text-sm text-muted-foreground">
+                    {article.gallery.length} verified photos from this initiative
+                  </p>
+                </div>
+              </Reveal>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-5">
+                {article.gallery.map((img: import("@/data/news").NewsGalleryImage, idx: number) => (
+                  <Reveal key={`${img.src}-${idx}`} delay={idx * 0.04}>
+                    <button
+                      type="button"
+                      onClick={() => openLightbox(idx)}
+                      className="group relative w-full aspect-[4/3] rounded-2xl overflow-hidden bg-muted border border-border/80 shadow-soft hover:shadow-elegant transition-all text-left block focus:outline-none focus:ring-2 focus:ring-gold"
+                      aria-label={`View photo ${idx + 1}: ${img.alt}`}
+                    >
+                      <img
+                        src={img.src}
+                        alt={img.alt}
+                        loading="lazy"
+                        className="size-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#051126]/90 via-[#051126]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
+                        <p className="text-white text-xs sm:text-[13px] font-medium leading-snug drop-shadow-sm line-clamp-2">
+                          {img.caption || img.alt}
+                        </p>
+                        <span className="text-gold text-[10.5px] font-semibold mt-1 inline-flex items-center gap-1">
+                          Click to enlarge
+                        </span>
+                      </div>
+                    </button>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+          )}
 
           <Reveal>
             <div className="mt-10 sm:mt-14 pt-6 sm:pt-8 border-t border-border flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 sm:gap-6">
@@ -140,6 +203,17 @@ function ArticlePage() {
           </div>
         </div>
       </section>
+
+      {article.gallery && article.gallery.length > 0 && (
+        <Lightbox
+          images={article.gallery}
+          currentIndex={lightboxIndex ?? 0}
+          isOpen={lightboxIndex !== null}
+          onClose={closeLightbox}
+          onPrev={prevImage}
+          onNext={nextImage}
+        />
+      )}
     </>
   );
 }

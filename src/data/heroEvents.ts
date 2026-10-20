@@ -1,7 +1,7 @@
 export interface HeroEventSlide {
   id: string;
   tag: string;
-  tagCategory: "Education" | "Food Security" | "Hospital Meals" | "Rehabilitation" | "Clean Water";
+  tagCategory: "Education" | "Food Security" | "Hospital Meals" | "Rehabilitation" | "Clean Water" | "Tree Plantation";
   title: string;
   highlightText: string;
   subtitle: string;
@@ -20,6 +20,46 @@ export interface HeroEventSlide {
 }
 
 export const HERO_EVENT_SLIDES: HeroEventSlide[] = [
+  {
+    id: "food-distribution-drive",
+    tag: "Emergency Food Relief",
+    tagCategory: "Food Security",
+    title: "Community Food Distribution:",
+    highlightText: "Warm Meals for 500+ Families",
+    subtitle: "Serving freshly prepared nutritious meals and monthly staple packages across underserved communities in Quetta.",
+    location: "Quetta & Rural Suburbs",
+    image: "/Food-distribution/hero-image.jpeg",
+    focalPoint: "object-center",
+    keyStat: "500+ Meals Distributed • 100% Volunteer Driven",
+    primaryAction: {
+      label: "Support Food Relief",
+      href: "/donate",
+    },
+    secondaryAction: {
+      label: "Read Field Story",
+      href: "/media/community-food-distribution-drive",
+    },
+  },
+  {
+    id: "tree-plantation-drive",
+    tag: "Green Quetta Initiative",
+    tagCategory: "Tree Plantation",
+    title: "Green Horizon Tree Plantation:",
+    highlightText: "Greening Balochistan Soil",
+    subtitle: "Mobilizing youth volunteers to plant native, drought-resilient trees across public spaces and schools.",
+    location: "Quetta Valley, Balochistan",
+    image: "/Plantation/hero-image.jpeg",
+    focalPoint: "object-center",
+    keyStat: "1,000+ Native Trees Planted • Greener Tomorrow",
+    primaryAction: {
+      label: "Support Tree Plantation",
+      href: "/donate",
+    },
+    secondaryAction: {
+      label: "Read Field Story",
+      href: "/media/green-quetta-tree-plantation-drive",
+    },
+  },
   {
     id: "hope-ability-school",
     tag: "Special Needs Education",

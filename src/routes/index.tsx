@@ -28,13 +28,13 @@ function Home() {
     <>
       <Hero />
       <ImpactStats />
+      <LatestNews />
       <Programs />
       <TransparencyModel />
       <Leadership />
       <FieldCoordinators />
       <VolunteerHelpdesk />
       <DonateCTA />
-      <LatestNews />
     </>
   );
 }

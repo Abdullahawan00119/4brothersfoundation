@@ -31,20 +31,19 @@ describe("Hero", () => {
 
   it("renders first program headline and tag", () => {
     render(<Hero />);
-    expect(screen.getByText(/Gawahi 4B Hope & Ability School:/i)).toBeInTheDocument();
-    expect(screen.getByText(/Empowering 27 Special Students/i)).toBeInTheDocument();
-    expect(screen.getAllByText(/Special Needs Education/i).length).toBeGreaterThanOrEqual(1);
+    expect(screen.getByText(/Community Food Distribution:/i)).toBeInTheDocument();
+    expect(screen.getByText(/Warm Meals for 500\+ Families/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/Emergency Food Relief/i).length).toBeGreaterThanOrEqual(1);
   });
 
   it("renders primary action donate/support button", () => {
     render(<Hero />);
-    expect(screen.getByText(/Support Special School/i)).toBeInTheDocument();
+    expect(screen.getByText(/Support Food Relief/i)).toBeInTheDocument();
   });
 
   it("renders impact metrics chips", () => {
     render(<Hero />);
-    expect(screen.getAllByText(/Special Students/i).length).toBeGreaterThanOrEqual(1);
-    expect(screen.getByText(/27 Special Students • 8 Qualified Teachers/i)).toBeInTheDocument();
+    expect(screen.getByText(/500\+ Meals Distributed • 100% Volunteer Driven/i)).toBeInTheDocument();
   });
 
   it("switches slides when an indicator dot is clicked", () => {
@@ -52,8 +51,8 @@ describe("Hero", () => {
     const dot2 = screen.getByRole("button", { name: /Go to slide 2/i });
     fireEvent.click(dot2);
 
-    // Second slide is Community Ration Distribution
-    expect(screen.getByText(/Community Ration Distribution:/i)).toBeInTheDocument();
+    // Second slide is Green Horizon Tree Plantation
+    expect(screen.getByText(/Green Horizon Tree Plantation:/i)).toBeInTheDocument();
   });
 
   it("has no arrows, no slide counter, and no bulky card pills", () => {
