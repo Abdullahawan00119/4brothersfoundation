@@ -12,7 +12,7 @@ export const Route = createFileRoute("/programs")({
       {
         name: "description",
         content:
-          "Four flagship initiatives addressing the most pressing needs in the communities we serve: Special Education, Ration Packs, Hospital Meals, Water & Rehabilitation.",
+          "Flagship initiatives addressing the most pressing needs in the communities we serve: Ration Packs, Hospital Meals & Youth Rehabilitation.",
       },
     ],
   }),
@@ -30,6 +30,7 @@ interface CoreProgram {
 }
 
 const flagshipPrograms: CoreProgram[] = [
+  /*
   {
     title: "Gawahi 4B Hope & Ability School",
     tagline: "Empowering Special Children Through Education, Therapy & Care",
@@ -44,6 +45,7 @@ const flagshipPrograms: CoreProgram[] = [
     ],
     location: "Brewery Road, near SBK University, Quetta",
   },
+  */
   {
     title: "Community Ration Distribution Initiative",
     tagline: "Fighting Hunger Through Compassion and Community Support",
@@ -82,6 +84,7 @@ const additionalPillars = [
     desc: "Joining hands with NIJAT Drug Treatment Center for a drug-free youth and a healthier society in Quetta city. Providing medical detox, psychological counseling, and family reintegration.",
     impact: "500+ Youth & Families Supported",
   },
+  /*
   {
     title: "Clean Water Projects",
     tagline: "Safe Drinking Water for Desert & Rural Regions",
@@ -96,6 +99,7 @@ const additionalPillars = [
     desc: "Organizing free medical camps, emergency prescription funding, surgical subsidies, and mobile diagnostic clinics in underserved areas.",
     impact: "5,000+ Patients Treated Annually",
   },
+  */
   {
     title: "Orphan Care & Child Sponsorship",
     tagline: "Nurturing Hope for the Next Generation",
@@ -115,7 +119,7 @@ function ProgramsPage() {
             Our Core <span className="text-gold font-bold">Programs.</span>
           </>
         }
-        subtitle="Four flagship initiatives and key community welfare pillars addressing the most pressing humanitarian needs in the communities we serve."
+        subtitle="Flagship initiatives and key community welfare pillars addressing the most pressing humanitarian needs in the communities we serve."
       />
 
       {/* Flagship Initiatives Section */}

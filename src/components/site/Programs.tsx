@@ -5,6 +5,7 @@ import { Heart } from "lucide-react";
 import { Reveal } from "./Reveal";
 
 const programs = [
+  /*
   {
     title: "Gawahi 4B Hope & Ability School",
     subtitle: "Special Needs Education & Therapy",
@@ -15,6 +16,7 @@ const programs = [
     color: "from-sky-500/80",
     badge: "Since Feb 2026",
   },
+  */
   {
     title: "Community Ration Distribution",
     subtitle: "Monthly Family Food Security",
@@ -45,6 +47,7 @@ const programs = [
     color: "from-emerald-600/80",
     badge: "Drug-Free Youth",
   },
+  /*
   {
     title: "Clean Water Projects",
     subtitle: "Wells & RO Filtration Plants",
@@ -55,6 +58,7 @@ const programs = [
     color: "from-blue-600/80",
     badge: "Safe Water",
   },
+  */
 ];
 
 const DESKTOP_CARD_W = 390;

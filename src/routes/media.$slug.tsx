@@ -153,11 +153,17 @@ function ArticlePage() {
             <div className="mt-10 sm:mt-14 pt-6 sm:pt-8 border-t border-border flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 sm:gap-6">
               <div className="flex items-center gap-3">
                 <span className="text-xs sm:text-sm font-semibold text-muted-foreground">Share:</span>
-                {[Facebook, Twitter, Linkedin].map((Icon, i) => (
+                {[
+                  { icon: Facebook, href: "https://www.facebook.com/4brotherswelfare", label: "Facebook" },
+                  { icon: Twitter, href: "#", label: "Twitter" },
+                  { icon: Linkedin, href: "#", label: "LinkedIn" },
+                ].map(({ icon: Icon, href, label }) => (
                   <a
-                    key={i}
-                    href="#"
-                    aria-label="share"
+                    key={label}
+                    href={href}
+                    target={href !== "#" ? "_blank" : undefined}
+                    rel={href !== "#" ? "noopener noreferrer" : undefined}
+                    aria-label={label}
                     className="size-9 sm:size-10 rounded-full bg-accent text-primary flex items-center justify-center hover:bg-gradient-gold hover:text-navy transition-all"
                   >
                     <Icon className="size-4" />

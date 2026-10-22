@@ -70,11 +70,6 @@ export const news: NewsItem[] = [
         caption: "Careful distribution of hot meals and grocery hampers to families",
       },
       {
-        src: "/Food-distribution/WhatsApp Image 2026-10-18 at 8.29.29 PM.jpeg",
-        alt: "Volunteers handing food packages directly to recipients",
-        caption: "Direct community outreach ensuring dignified assistance for each recipient",
-      },
-      {
         src: "/Food-distribution/WhatsApp Image 2026-10-18 at 8.29.29 PM (1).jpeg",
         alt: "Dedicated team preparing distribution sets",
         caption: "Structured packaging ensuring hygiene and complete meal packages",
@@ -184,11 +179,6 @@ export const news: NewsItem[] = [
         alt: "Volunteers collaborating during the plantation drive",
         caption: "Volunteers sharing smiles and dedication during the planting initiative",
       },
-      {
-        src: "/Plantation/WhatsApp Image 2026-10-18 at 8.26.29 PM (2).jpeg",
-        alt: "Overview of planted green boundary in Quetta",
-        caption: "Creating a cleaner, cooler, and greener environment for Quetta",
-      },
     ],
   },
   {
@@ -242,6 +232,7 @@ export const news: NewsItem[] = [
     author: "Programs Team — Quetta",
     location: "Sariab Road, Quetta",
   },
+  /*
   {
     slug: "medical-camp-khuzdar",
     title: "Free Medical Camp Treats 480 Patients in Khuzdar District",
@@ -259,6 +250,7 @@ export const news: NewsItem[] = [
     author: "Medical Wing",
     location: "Khuzdar, Balochistan",
   },
+  */
   {
     slug: "annual-impact-report-2023",
     title: "Annual Impact Report 2023 — A Year of Quiet Miracles in Balochistan",
@@ -276,6 +268,7 @@ export const news: NewsItem[] = [
     author: "Office of the CEO",
     location: "Quetta, Balochistan",
   },
+  /*
   {
     slug: "clean-water-kharan-chagai",
     title: "Twelve New Water Wells Commissioned in Kharan & Chagai",
@@ -293,6 +286,7 @@ export const news: NewsItem[] = [
     author: "Water Programs",
     location: "Kharan & Chagai, Balochistan",
   },
+  */
   {
     slug: "education-scholarships-balochistan-2024",
     title: "850 New Education Scholarships Awarded Across Balochistan",

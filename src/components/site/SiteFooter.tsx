@@ -23,11 +23,18 @@ export function SiteFooter() {
               and emergency relief.
             </p>
             <div className="flex gap-3 mt-6">
-              {[Facebook, Instagram, Twitter, Youtube].map((Icon, i) => (
+              {[
+                { icon: Facebook, href: "https://www.facebook.com/4brotherswelfare", label: "Facebook" },
+                { icon: Instagram, href: "#", label: "Instagram" },
+                { icon: Twitter, href: "#", label: "Twitter" },
+                { icon: Youtube, href: "#", label: "YouTube" },
+              ].map(({ icon: Icon, href, label }) => (
                 <a
-                  key={i}
-                  href="#"
-                  aria-label="social link"
+                  key={label}
+                  href={href}
+                  target={href !== "#" ? "_blank" : undefined}
+                  rel={href !== "#" ? "noopener noreferrer" : undefined}
+                  aria-label={label}
                   className="size-9 rounded-full bg-white/10 hover:bg-gold hover:text-navy transition-all flex items-center justify-center"
                 >
                   <Icon className="size-4" />

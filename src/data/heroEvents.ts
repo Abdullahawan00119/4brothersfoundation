@@ -60,6 +60,7 @@ export const HERO_EVENT_SLIDES: HeroEventSlide[] = [
       href: "/media/green-quetta-tree-plantation-drive",
     },
   },
+  /*
   {
     id: "hope-ability-school",
     tag: "Special Needs Education",
@@ -80,6 +81,7 @@ export const HERO_EVENT_SLIDES: HeroEventSlide[] = [
       href: "/programs",
     },
   },
+  */
   {
     id: "ration-distribution",
     tag: "Family Food Security",
@@ -120,6 +122,7 @@ export const HERO_EVENT_SLIDES: HeroEventSlide[] = [
       href: "/programs",
     },
   },
+  /*
   {
     id: "clean-water-projects",
     tag: "Safe Water Access",
@@ -140,4 +143,5 @@ export const HERO_EVENT_SLIDES: HeroEventSlide[] = [
       href: "/programs",
     },
   },
+  */
 ];

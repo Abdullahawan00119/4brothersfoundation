@@ -24,10 +24,10 @@ const nav: NavItem[] = [
     to: "/programs",
     label: "Programs",
     sub: [
-      { to: "/programs", label: "Hope & Ability School", desc: "Special needs education" },
+      /* { to: "/programs", label: "Hope & Ability School", desc: "Special needs education" }, */
       { to: "/programs", label: "Ration Distribution", desc: "Monthly food security" },
       { to: "/programs", label: "Hospital Meal Drives", desc: "BMC Hospital weekly food" },
-      { to: "/programs", label: "All Programs", desc: "Water, medical & recovery" },
+      { to: "/programs", label: "All Programs", desc: "Key welfare initiatives" },
     ],
   },
   {
