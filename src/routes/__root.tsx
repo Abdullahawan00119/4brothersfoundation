@@ -1,4 +1,4 @@
-import { Outlet, Link, createRootRoute, ScrollRestoration, useLocation } from "@tanstack/react-router";
+import { Outlet, Link, createRootRoute, useLocation } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { LoadingScreen } from "@/components/site/LoadingScreen";
@@ -57,7 +57,6 @@ function RootComponent() {
 
   return (
     <>
-      <ScrollRestoration />
       {showLoadingScreen && (
         <LoadingScreen
           isLoading={isLoading}

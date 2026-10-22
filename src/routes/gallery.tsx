@@ -4,8 +4,6 @@ import { PageHero } from "@/components/site/PageHero";
 import { Reveal } from "@/components/site/Reveal";
 import { Lightbox, type LightboxImage } from "@/components/site/Lightbox";
 const education   = "/images/education.webp";
-const medical     = "/images/medical.jpeg";
-const water       = "/images/water.jpg";
 const relief      = "/images/f11.jpg";
 const distribution = "/images/f1.jpg";
 const quettaCity  = "/images/f2.jpg";
@@ -15,7 +13,6 @@ const quettaFlood = "/images/f12.jpg";
 const quettaMed   = "/images/f8.jpg";
 const quettaRamadan = "/images/f10.jpg";
 const quettaSkills  = "/images/f13.jpg";
-const quettaWater   = "/images/water.jpg";
 const quettaWinter  = "/images/f14.jpg";
 
 export const Route = createFileRoute("/gallery")({
@@ -31,7 +28,7 @@ export const Route = createFileRoute("/gallery")({
   }),
 });
 
-type Category = "All" | "Food" | "Education" | "Medical" | "Water" | "Emergency" | "Plantation";
+type Category = "All" | "Food" | "Education" | "Medical" | "Emergency" | "Plantation";
 
 const allImages: (LightboxImage & { category: Category; tall?: boolean })[] = [
   { src: "/Food-distribution/hero-image.jpeg", alt: "Food distribution to families in Quetta", caption: "Community meal & ration distribution drive", category: "Food", tall: true },
@@ -45,18 +42,15 @@ const allImages: (LightboxImage & { category: Category; tall?: boolean })[] = [
   { src: quettaRamadan, alt: "Ramadan iftar distribution", caption: "Ramadan iftar for 2,000 people", category: "Food" },
   { src: education, alt: "Children in classroom", caption: "Education support program", category: "Education", tall: true },
   { src: quettaEdu, alt: "Students receiving books", caption: "Books and uniforms for students", category: "Education" },
-  { src: quettaSkills, alt: "Skills training workshop", caption: "Vocational skills training", category: "Education" },
-  { src: medical, alt: "Free medical camp", caption: "Free medical camp — 300 patients", category: "Medical" },
+  { src: quettaSkills, alt: "Emergency relief packages handover", caption: "Emergency flood relief distribution", category: "Emergency" },
   { src: quettaMed, alt: "Doctor treating patient", caption: "Life-saving treatment provided", category: "Medical", tall: true },
-  { src: water, alt: "Clean water project", caption: "Hand pump installation", category: "Water" },
-  { src: quettaWater, alt: "Water filtration plant", caption: "Water filtration for 1,000 families", category: "Water", tall: true },
   { src: relief, alt: "Emergency relief operations", caption: "Flood relief response", category: "Emergency" },
   { src: quettaFlood, alt: "Flood victims receiving aid", caption: "Emergency flood relief", category: "Emergency", tall: true },
   { src: quettaWinter, alt: "Winter relief distribution", caption: "Winter blankets and warm clothing", category: "Emergency" },
   { src: quettaCity, alt: "Quetta city outreach", caption: "Community outreach in Quetta", category: "Food" },
 ];
 
-const categories: Category[] = ["All", "Food", "Plantation", "Education", "Medical", "Water", "Emergency"];
+const categories: Category[] = ["All", "Food", "Plantation", "Education", "Medical", "Emergency"];
 
 function GalleryPage() {
   const [active, setActive] = useState<Category>("All");

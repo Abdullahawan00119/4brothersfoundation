@@ -215,6 +215,7 @@ export const news: NewsItem[] = [
     author: "Field Operations — Balochistan",
     location: "Ziarat & Kalat, Balochistan",
   },
+  /*
   {
     slug: "skill-development-center-quetta",
     title: "New Women's Skill Center Opens in Sariab, Quetta",
@@ -232,6 +233,7 @@ export const news: NewsItem[] = [
     author: "Programs Team — Quetta",
     location: "Sariab Road, Quetta",
   },
+  */
   /*
   {
     slug: "medical-camp-khuzdar",
@@ -320,6 +322,18 @@ export const news: NewsItem[] = [
     readMin: 4,
     author: "Emergency Response",
     location: "Naseerabad & Jaffarabad, Balochistan",
+    gallery: [
+      {
+        src: flood,
+        alt: "Emergency flood relief team preparing packages",
+        caption: "Volunteers organizing emergency relief and survival food hampers in Balochistan",
+      },
+      {
+        src: skills,
+        alt: "Handover of emergency relief boxes to affected families",
+        caption: "Direct handover of emergency aid kits and food provisions to vulnerable families",
+      },
+    ],
   },
 ];
 
